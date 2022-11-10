@@ -73,6 +73,7 @@ class WidgetLocators:
     Reviews_displayed_text = (By.CSS_SELECTOR, ".at-tab-empty__title")
     Value_Reviews = (By.XPATH, "//div[@class ='at-widget-reviews']/*[1]")
     Value_Reviews_Images = (By.CSS_SELECTOR, ".at-photo-reviews-list__item")
+    Overview_is_displayed = (By.CSS_SELECTOR, ".at-gallery__current-image")
 
 
 # --------------------------------------------------------------------------------------------------------------
@@ -93,6 +94,7 @@ class WidgetLocators:
     Similar_products_orders2 = (By.XPATH, "//div[@class ='at-similar-list at-similar-list--small']/div/a/div/*[2]/span")
     # + Дополнительный для функции
     Similar_message_displayed = (By.CSS_SELECTOR, ".at-similar-list__best-offer-message")
+
 
 # --------------------------------------------------------------------------------------------------------------
 #   история

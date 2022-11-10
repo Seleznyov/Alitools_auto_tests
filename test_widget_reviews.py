@@ -41,3 +41,18 @@ def test_number_of_reviews(browser):
     print(display_quantity_on_widget, quantity_reviews_images)
     assert display_quantity_on_widget == quantity_reviews_images, \
         f"Ошибка -> значение количества обзоров виджета : {display_quantity_on_widget} не равно количеству изображений: {quantity_reviews_images} "
+
+
+def test_open_random_card_of_reviews(browser):
+    page = WidgetPage(browser, browser.current_url)
+    page.should_be_option_start()
+    page.click_on_cross_start_greeting()
+    page.open_reviews_widget()
+    # Выбор случайного обзора
+    random_review = page.choose_random_review()
+    # Поиск обзора
+    review = page.scroll_to_random_review(random_review)
+    # Открыть случайным обзор
+    page.open_random_review(review)
+    # Проверка что обзор открыт и  отображается
+    page.should_be_displayed_overview()
