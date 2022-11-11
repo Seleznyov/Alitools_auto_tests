@@ -25,3 +25,6 @@ profile = {"Email": "stanislav.seleznev@bdtech.by", "Password": "Stefler_1992"}
 # Список валют которые обрабатывают тесты
 currency_processing = {"US": "USD", "€": "EUR", "руб": "RUB"}
 currencies = ["USD", "EUR", "RUB"]
+
+# ID_extension
+extension = {"id": "eenflijjbchafephdplkdmeenekabdfb"}

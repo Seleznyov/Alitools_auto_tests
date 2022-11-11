@@ -8,7 +8,7 @@ class SettingsPage(BasePage):
         super(SettingsPage, self).__init__(*args, **kwargs)
 
     def open_currency_list(self):
-        currency_list = self.browser.find_element(*SettingsLocators.Currency_list)
+        currency_list = self.browser.find_element(*SettingsLocators.Widget_settings_currency_list)
         currency_list.click()
 
     def get_languages_list(self):
@@ -35,5 +35,29 @@ class SettingsPage(BasePage):
             r += 1
 
     def close_settings(self):
-        settings_button_cross = self.browser.find_element(*SettingsLocators.Settings_button_cross)
+        settings_button_cross = self.browser.find_element(*SettingsLocators.Widget_settings_button_cross)
         settings_button_cross.click()
+
+    def should_be_languages_text(self):
+        assert self.is_element_present(*SettingsLocators.Languages_text), "element is not presented"
+
+    def should_be_languages_list(self):
+        assert self.is_element_present(*SettingsLocators.Settings_languages_list), "list of languages is not presented"
+
+    def should_be_currency_text(self):
+        assert self.is_element_present(*SettingsLocators.Currency_text), "element is not presented"
+
+    def should_be_currency_list(self):
+        assert self.is_element_present(*SettingsLocators.Settings_currency_list), "currency of languages is not presented"
+
+    def should_be_button_cross(self):
+        assert self.is_element_present(*SettingsLocators.Settings_button_cross), "cross of languages is not presented"
+
+    def should_be_extension_text(self):
+        assert self.is_element_present(*SettingsLocators.Extension_text), "Extension text is not presented"
+
+    def should_be_checkbox_seller_verification(self):
+        assert self.is_element_present(*SettingsLocators.Checkbox_seller_verification), "Checkbox seller verification  is not presented"
+
+    def should_be_notifications_text(self):
+        assert self.is_element_present(*SettingsLocators.Notifications_text), "Notifications text   is not presented"

@@ -1,3 +1,5 @@
+import time
+
 import pytest
 from .pages.widget_page import WidgetPage
 from .pages.setting_page import SettingsPage

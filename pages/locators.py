@@ -11,29 +11,44 @@ class BasePageLocators:
 class ProductPageLocators:
     Product_price = (By.XPATH, "//div[@class ='snow-price_SnowPrice__mainS__18x8np']")
     Order_quantity = (By.XPATH, "//div[@class ='SnowProductDescription_ExtraInfo__wrap__193uk']/*[4]")
-    icon_login = (By.CSS_SELECTOR, ".SnowHeaderProfileItem_SnowHeaderProfileItem__item__1vsjg")
-    email_input = (By.CSS_SELECTOR, "#email")
-    password_input = (By.CSS_SELECTOR, "#password")
-    button_login = (By.XPATH, "//button[contains(text(),'Войти')]")
-    regional_settings = (By.XPATH, "//div[@class ='SnowMenu_FlagBlock__wrapper__i513w']/a[1]")
+    Icon_login = (By.CSS_SELECTOR, ".SnowHeaderProfileItem_SnowHeaderProfileItem__item__1vsjg")
+    Email_input = (By.CSS_SELECTOR, "#email")
+    Password_input = (By.CSS_SELECTOR, "#password")
+    Button_login = (By.XPATH, "//button[contains(text(),'Войти')]")
+    Regional_settings = (By.XPATH, "//div[@class ='SnowMenu_FlagBlock__wrapper__i513w']/a[1]")
     # Переписать этот локатор сделать три разных вместо одного
-    regional_country_currency_language = (By.XPATH, "//div[@class='RegionalSettings_RegionalSettings__select__ieug1']")
-    regional_currency_list = (By.CSS_SELECTOR, ".RegionalSettings_RegionalSettings__item__ieug1")
-    regional_currency_USD = (By.XPATH, "//li[@id='downshift-2-item-139']")
-    regional_currency_RUB = (By.XPATH, "//li[@id='downshift-2-item-68']")
-    regional_currency_EUR = (By.XPATH, "//li[@id='downshift-2-item-36']")
-    save_settings_button = (By.XPATH, "//div[@class='snow-scrolling-header_SnowScrollingHeader__buttonGroup__1uifpm']")
-    logo_link = (By.XPATH, "//div[@class='SnowCommonHeader_SnowCommonHeader__logo__okk9w']/a")
+    Regional_country_currency_language = (By.XPATH, "//div[@class='RegionalSettings_RegionalSettings__select__ieug1']")
+    Regional_currency_list = (By.CSS_SELECTOR, ".RegionalSettings_RegionalSettings__item__ieug1")
+    Regional_currency_USD = (By.XPATH, "//li[@id='downshift-2-item-139']")
+    Regional_currency_RUB = (By.XPATH, "//li[@id='downshift-2-item-68']")
+    Regional_currency_EUR = (By.XPATH, "//li[@id='downshift-2-item-36']")
+    Save_settings_button = (By.XPATH, "//div[@class='snow-scrolling-header_SnowScrollingHeader__buttonGroup__1uifpm']")
+    Logo_link = (By.XPATH, "//div[@class='SnowCommonHeader_SnowCommonHeader__logo__okk9w']/a")
 
 
 class SettingsLocators:
-    # Почему-то поменялся локатор с div[6] на div[5] когда стал смотреть тестовую сборку
-    Currency_list = (By.XPATH, "//div[2]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[2]/div[2]/div[1]/select[1]")
-    option_currency = ("//div[2]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[2]/div[2]/div[1]/select[contains(@class, 'at-select__control')]/option")
-    option_languages = ("//div[2]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[1]/select[contains(@class, 'at-select__control')]/option")
+    # Локаторы из виджета
+    widget = "//div[@class ='at-theme-light'][2]"
+    button_cross = "//a[@class ='_1OWT-']"
+    languages_list = "//div[@class ='_1mJSj']/*[1]/div[@class ='_36pFQ']/*/select"
+    currency_list = "//div[@class ='_1mJSj']/*[2]/div[@class ='_36pFQ']/*/select"
+    option_languages = widget+"//div[@class ='_1mJSj']/*[1]/div[@class ='_36pFQ']/div[1]/select[1]/option"
+    option_currency = widget+"//div[@class ='_1mJSj']/*[2]/div[@class ='_36pFQ']/div[1]/select[1]/option"
+
+    Widget_settings_currency_list = (By.XPATH, widget+currency_list)
     Currency_list_option = (By.XPATH, option_currency)
     Languages_list_option = (By.XPATH, option_languages)
-    Settings_button_cross = (By.XPATH, "//div[2]/div[1]/div[2]/div[1]/div[1]/a[1]")
+    Widget_settings_button_cross = (By.XPATH, widget+button_cross)
+
+    # Локаторы для настроек
+    Languages_text = (By.XPATH, "//div[@class ='_1mJSj']/*[1]/div[@class ='_2s2Fd']")
+    Settings_languages_list = (By.XPATH, languages_list)
+    Currency_text = (By.XPATH, "//div[@class ='_1mJSj']/*[2]/div[@class ='_2s2Fd']")
+    Settings_currency_list = (By.XPATH, currency_list)
+    Settings_button_cross = (By.XPATH, button_cross)
+    Extension_text = (By.XPATH, widget+"//div[@class ='_1LiA_']")
+    Checkbox_seller_verification = (By.XPATH, widget+"//label[@class ='_2eD5O']")
+    Notifications_text = (By.XPATH, widget+"//div[@class ='_2OVEo']")
 
 
 class WidgetLocators:

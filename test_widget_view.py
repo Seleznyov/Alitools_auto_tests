@@ -1,5 +1,3 @@
-import time
-
 import pytest
 from .pages.widget_page import WidgetPage
 from .pages.base_page import BasePage
@@ -27,7 +25,6 @@ def test_widget_price_view(browser):
     # Проверка откуда вы узнали о расширении
     page.should_be_option_start()
     # Открыть "цена"
-    # time.sleep(1)
     page.open_price_widget()
     # Отображается ли имя карточки "История цены"
     page.should_be_card_price()

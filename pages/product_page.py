@@ -22,26 +22,26 @@ class ProductPage(BasePage):
         return int(product_price)
 
     def open_profile(self):
-        icon_login = self.browser.find_element(*ProductPageLocators.icon_login)
+        icon_login = self.browser.find_element(*ProductPageLocators.Icon_login)
         icon_login.click()
 
     def log_in_aliexpress(self, email, password):
-        icon_login = self.browser.find_element(*ProductPageLocators.icon_login)
+        icon_login = self.browser.find_element(*ProductPageLocators.Icon_login)
         icon_login.click()
-        email_input = self.browser.find_element(*ProductPageLocators.email_input)
+        email_input = self.browser.find_element(*ProductPageLocators.Email_input)
         email_input.send_keys(email)
-        password_input = self.browser.find_element(*ProductPageLocators.password_input)
+        password_input = self.browser.find_element(*ProductPageLocators.Password_input)
         password_input.send_keys(password)
-        button_login = self.browser.find_element(*ProductPageLocators.button_login)
+        button_login = self.browser.find_element(*ProductPageLocators.Button_login)
         button_login.click()
 
     def open_regional_settings(self):
-        regional_settings = self.browser.find_element(*ProductPageLocators.regional_settings)
+        regional_settings = self.browser.find_element(*ProductPageLocators.Regional_settings)
         regional_settings.click()
 
     # Изменить функицю и локатор -> [regional_country_currency_language]
     def open_regional_currency_list(self):
-        regional_currency = self.browser.find_elements(*ProductPageLocators.regional_country_currency_language)
+        regional_currency = self.browser.find_elements(*ProductPageLocators.Regional_country_currency_language)
         x = 1
         for currency in regional_currency:
             if x == 3:
@@ -51,7 +51,7 @@ class ProductPage(BasePage):
 
     # Изменить функицю и локатор -> [regional_country_currency_language]
     def open_regional_language_list(self):
-        regional_language = self.browser.find_elements(*ProductPageLocators.regional_country_currency_language)
+        regional_language = self.browser.find_elements(*ProductPageLocators.Regional_country_currency_language)
         x = 1
         for language in regional_language:
             if x == 2:
@@ -61,29 +61,29 @@ class ProductPage(BasePage):
 
     def select_currency(self, currency):
         # Подумать как улучшить эту функцию
-        # get_regional_currency_list = self.browser.find_elements(*ProductPageLocators.regional_currency_list)
+        # get_regional_currency_list = self.browser.find_elements(*ProductPageLocators.Regional_currency_list)
         if currency == "USD":
-            currency = self.browser.find_element(*ProductPageLocators.regional_currency_USD)
+            currency = self.browser.find_element(*ProductPageLocators.Regional_currency_USD)
             actions = ActionChains(self.browser)
             actions.move_to_element(currency).perform()
             currency.click()
         elif currency == "RUB":
-            currency = self.browser.find_element(*ProductPageLocators.regional_currency_RUB)
+            currency = self.browser.find_element(*ProductPageLocators.Regional_currency_RUB)
             actions = ActionChains(self.browser)
             actions.move_to_element(currency).perform()
             currency.click()
         elif currency == "EUR":
-            currency = self.browser.find_element(*ProductPageLocators.regional_currency_EUR)
+            currency = self.browser.find_element(*ProductPageLocators.Regional_currency_EUR)
             actions = ActionChains(self.browser)
             actions.move_to_element(currency).perform()
             currency.click()
 
     def save_settings(self):
-        save_settings_button = self.browser.find_element(*ProductPageLocators.save_settings_button)
+        save_settings_button = self.browser.find_element(*ProductPageLocators.Save_settings_button)
         save_settings_button.click()
 
     def click_on_logo(self):
-        logo = self.browser.find_element(*ProductPageLocators.logo_link)
+        logo = self.browser.find_element(*ProductPageLocators.Logo_link)
         logo.click()
 
     # Определяем валюту старницы

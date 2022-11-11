@@ -14,6 +14,7 @@ def setup(browser):
 
 # Как показала практика целесообразно запускать несколько раз его, оставлю значение- 3
 # @pytest.mark.parametrize('execution_number', range(3))
+# Добавить проверку нужно ли менять валюту
 @pytest.mark.skip(reason="Есть ошибка")
 def test_exact_price_display(browser):
     page = WidgetPage(browser, browser.current_url)
