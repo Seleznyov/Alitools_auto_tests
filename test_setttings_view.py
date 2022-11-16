@@ -1,4 +1,5 @@
 import time
+
 import pytest
 from .pages.setting_page import SettingsPage
 from .settings import extension
@@ -24,6 +25,20 @@ def test_general_tab_view(browser, ID=extension["id"]):
     page.should_be_extension_text()
     page.should_be_checkbox_seller_verification()
     page.should_be_notifications_text()
+    # Проверка активен ли чекбокс "Счетчик уведомлений на иконке расширения"
+    page.checkbox_notification_counter_should_be_on()
+    page.should_be_checkbox_notification_counter()
+    # Проверка активен ли чекбокс "Пуш-уведомления о падении цен на товары"
+    page.checkbox_push_notifications_should_be_on()
+    page.should_be_checkbox_push_notifications()
+    page.should_be_message_describing_the_fall()
+    page.should_be_text_color_scheme()
+    page.should_be_light_theme()
+    # Проверка что светлая тема активна
+    page.light_theme_should_be_on()
+    page.should_be_dark_theme()
+    page.should_be_extension_version()
+    time.sleep(1)
 
 
 def test_image_search_tab_view(browser):

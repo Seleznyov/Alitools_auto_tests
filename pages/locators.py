@@ -4,8 +4,14 @@ from selenium.webdriver.common.by import By
 class BasePageLocators:
     Possible_answer = (By.XPATH, "//div[contains(text(),'Друзья или коллеги')]")
     Starting_greeting = (By.XPATH, "//div[contains(text(),'Alitools готов к работе')]")
+    #  Прод локатор
     Cross_start_greeting = (By.XPATH, "//div[@class ='_2GJWf']/div[@class ='_2CcGF']/*[1]")
-    Cross_repeated_favorites = (By.XPATH, "//div[@class ='_29Pkd _1bFZv']/div[@class ='_26mJL']/*[1]")
+    # Тестовый локатор
+    # Cross_start_greeting = (By.XPATH, "//body/div[6]/div[2]/div[1]/div[1]/div[2]/div[2]/div[1]/*[1]")
+    #  Прод локатор
+    # Cross_repeated_favorites = (By.XPATH, "//div[@class ='_29Pkd _1bFZv']/div[@class ='_26mJL']/*[1]")
+    # Тестовый локатор
+    Cross_repeated_favorites = (By.XPATH, "//body/div[6]/div[2]/div[1]/div[1]/div[2]/div[1]/div[2]/div[1]/*[1]")
 
 
 class ProductPageLocators:
@@ -34,6 +40,7 @@ class SettingsLocators:
     currency_list = "//div[@class ='_1mJSj']/*[2]/div[@class ='_36pFQ']/*/select"
     option_languages = widget+"//div[@class ='_1mJSj']/*[1]/div[@class ='_36pFQ']/div[1]/select[1]/option"
     option_currency = widget+"//div[@class ='_1mJSj']/*[2]/div[@class ='_36pFQ']/div[1]/select[1]/option"
+    checkbox_on = "at-checkbox__control at-checkbox__control--checked"
 
     Widget_settings_currency_list = (By.XPATH, widget+currency_list)
     Currency_list_option = (By.XPATH, option_currency)
@@ -41,14 +48,24 @@ class SettingsLocators:
     Widget_settings_button_cross = (By.XPATH, widget+button_cross)
 
     # Локаторы для настроек
+    # Вкладка "Общее"
     Languages_text = (By.XPATH, "//div[@class ='_1mJSj']/*[1]/div[@class ='_2s2Fd']")
     Settings_languages_list = (By.XPATH, languages_list)
     Currency_text = (By.XPATH, "//div[@class ='_1mJSj']/*[2]/div[@class ='_2s2Fd']")
     Settings_currency_list = (By.XPATH, currency_list)
     Settings_button_cross = (By.XPATH, button_cross)
-    Extension_text = (By.XPATH, widget+"//div[@class ='_1LiA_']")
-    Checkbox_seller_verification = (By.XPATH, widget+"//label[@class ='_2eD5O']")
-    Notifications_text = (By.XPATH, widget+"//div[@class ='_2OVEo']")
+    Extension_text = (By.XPATH, "//div[@class ='_1LiA_']")
+    Checkbox_seller_verification = (By.XPATH, "//label[@class ='_2eD5O']")
+    Notifications_text = (By.XPATH, "//div[@class ='_2OVEo']")
+    Checkbox_notification_counter = (By.XPATH, "//label[@class ='_3ou1_'][1]")
+    Checkbox_notification_counter_value = (By.XPATH, "//label[@class ='_3ou1_'][1]/span/div")
+    Checkbox_push_notifications = (By.XPATH, "//label[@class ='_3ou1_'][2]")
+    Checkbox_push_notifications_value = (By.XPATH, "//label[@class ='_3ou1_'][2]/span/div")
+    Message_describing_the_fall = (By.XPATH, "//div[@class ='_1bxEt']")
+    Text_color_scheme = (By.XPATH, "//div[@class ='_3s4F_']")
+    Light_theme = (By.XPATH, "//div[@class ='aXt0T']/label[1]")
+    Dark_theme = (By.XPATH, "//div[@class ='aXt0T']/label[2]")
+    Extension_version = (By.XPATH, "//div[@class ='UxYkK']")
 
 
 class WidgetLocators:

@@ -56,3 +56,4 @@ def test_open_random_card_of_reviews(browser):
     page.open_random_review(review)
     # Проверка что обзор открыт и  отображается
     page.should_be_displayed_overview()
+    time.sleep(1)
