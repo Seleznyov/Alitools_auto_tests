@@ -3,11 +3,20 @@ from .locators import SettingsLocators
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.actions.wheel_input import ScrollOrigin
+from ..settings import setting_tabs
 
 
 class SettingsPage(BasePage):
     def __init__(self, *args, **kwargs):
         super(SettingsPage, self).__init__(*args, **kwargs)
+
+    def get_active_tab(self):
+        tabs = self.browser.find_elements(*SettingsLocators.Tabs)
+        for i in range(len(tabs)):
+            page_tab = tabs[i]
+            activ_tab = page_tab.get_attribute('class')
+            if activ_tab == SettingsLocators.active_tab:
+                return page_tab.text
 
     def open_currency_list(self):
         currency_list = self.browser.find_element(*SettingsLocators.Widget_settings_currency_list)
@@ -92,17 +101,46 @@ class SettingsPage(BasePage):
     def light_theme_should_be_on(self):
         light_theme = self.browser.find_element(*SettingsLocators.Light_theme)
         attr_value = light_theme.get_attribute("class")
-        assert attr_value == "_3hBHw CaRjS", f"The light_theme is not switched on"
+        assert attr_value == SettingsLocators.theme_on, f"The light_theme is not switched on"
 
     def should_be_dark_theme(self):
         assert self.is_element_present(*SettingsLocators.Dark_theme), "Dark_theme is not presented"
 
-    def should_be_extension_version(self):
-        color_scheme = self.browser.find_element(*SettingsLocators.Text_color_scheme)
+    def should_be_extension_version(self, tab):
+        tab_general = self.browser.find_element(*SettingsLocators.Tab_general)
         actions = ActionChains(self.browser)
-        actions.move_to_element(color_scheme).perform()
-        scroll_origin = ScrollOrigin.from_element(color_scheme)
+        actions.move_to_element(tab_general).perform()
+        scroll_origin = ScrollOrigin.from_element(tab_general)
         ActionChains(self.browser).scroll_from_origin(scroll_origin, 0, 300).perform()
-        assert self.is_element_present(*SettingsLocators.Extension_version), "Extension_version is not presented"
+        if tab == setting_tabs[0]:
+            assert self.is_element_present(*SettingsLocators.Extension_version_general_tab), "Extension_version is not presented"
+        if tab == setting_tabs[1]:
+            assert self.is_element_present(
+                *SettingsLocators.Extension_version_search_by_image_tab), "Extension_version is not presented"
+
+    def open_search_by_image_tab(self):
+        tab_search_by_image = self.browser.find_element(*SettingsLocators.Tab_search_by_image)
+        tab_search_by_image.click()
+
+    def should_be_button_on_the_picture(self):
+        assert self.is_element_present(*SettingsLocators.Button_on_the_picture), "block button_on_the_picture is not presented"
+
+    def checkbox_button_on_the_picture_should_be_on(self):
+        checkbox = self.browser.find_element(*SettingsLocators.Checkbox_button_on_the_picture_value)
+        attr_value = checkbox.get_attribute("class")
+        assert attr_value == SettingsLocators.checkbox_on, f"The light_theme is not switched on"
+
+    def should_be_sites_with_disabled_button(self):
+        text = "САЙТЫ С ВЫКЛЮЧЕННОЙ КНОПКОЙ"
+        sites_with_disabled_button = self.browser.find_element(*SettingsLocators.Sites_with_disabled_button).text
+        assert sites_with_disabled_button == text, f"Отображается: '{sites_with_disabled_button}'текст, вместо: '{text}'"
+
+    def get_list_disabled_site(self):
+        disabled_site_list = []
+        disabled_sites = self.browser.find_elements(*SettingsLocators.Disabled_site)
+        for i in disabled_sites:
+            disabled_site_list.append(i.text)
+        return disabled_site_list
+
 
 

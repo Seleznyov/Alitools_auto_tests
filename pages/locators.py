@@ -41,14 +41,19 @@ class SettingsLocators:
     option_languages = widget+"//div[@class ='_1mJSj']/*[1]/div[@class ='_36pFQ']/div[1]/select[1]/option"
     option_currency = widget+"//div[@class ='_1mJSj']/*[2]/div[@class ='_36pFQ']/div[1]/select[1]/option"
     checkbox_on = "at-checkbox__control at-checkbox__control--checked"
+    theme_on = "_3hBHw CaRjS"
+    Tabs = (By.XPATH, "//div[@class ='_2fg_j']/a/div")
+    active_tab = "h0isI _3DJWM"
 
     Widget_settings_currency_list = (By.XPATH, widget+currency_list)
     Currency_list_option = (By.XPATH, option_currency)
     Languages_list_option = (By.XPATH, option_languages)
     Widget_settings_button_cross = (By.XPATH, widget+button_cross)
 
+
     # Локаторы для настроек
     # Вкладка "Общее"
+    Tab_general = (By.XPATH, "//div[@class ='_2fg_j']/a[1]")
     Languages_text = (By.XPATH, "//div[@class ='_1mJSj']/*[1]/div[@class ='_2s2Fd']")
     Settings_languages_list = (By.XPATH, languages_list)
     Currency_text = (By.XPATH, "//div[@class ='_1mJSj']/*[2]/div[@class ='_2s2Fd']")
@@ -65,7 +70,15 @@ class SettingsLocators:
     Text_color_scheme = (By.XPATH, "//div[@class ='_3s4F_']")
     Light_theme = (By.XPATH, "//div[@class ='aXt0T']/label[1]")
     Dark_theme = (By.XPATH, "//div[@class ='aXt0T']/label[2]")
-    Extension_version = (By.XPATH, "//div[@class ='UxYkK']")
+    Extension_version_general_tab = (By.XPATH, "//div[@class ='UxYkK']")
+
+    # Вкладка "Поиск по картинке"
+    Tab_search_by_image = (By.XPATH, "//div[@class ='_2fg_j']/a[2]")
+    Button_on_the_picture = (By.XPATH, "//label[@class ='_3g_v7']")
+    Checkbox_button_on_the_picture_value = (By.XPATH, "//label[@class ='_3g_v7']/span/div")
+    Sites_with_disabled_button = (By.XPATH, "//div[@class ='_327b9']")
+    Disabled_site = (By.XPATH, "//div[@class ='JvDO_']//div[@class ='BTOq4']")
+    Extension_version_search_by_image_tab = (By.XPATH, "//div[@class ='zcp1e']")
 
 
 class WidgetLocators:

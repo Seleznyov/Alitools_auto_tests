@@ -28,3 +28,9 @@ currencies = ["USD", "EUR", "RUB"]
 
 # ID_extension
 extension = {"id": "eenflijjbchafephdplkdmeenekabdfb"}
+
+# Поиск по картинке -> "САЙТЫ С ВЫКЛЮЧЕННОЙ КНОПКОЙ"
+disabled_site_list = ["youtube.com", "vk.com", "facebook.com", "instagram.com", "google.com", "twitch.tv", "wikipedia.org", "auto.ru",
+                      "letyshops.com"]
+
+setting_tabs = ["Общее","Поиск по картинке","Советник","История","Синхронизация"]
