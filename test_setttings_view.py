@@ -63,9 +63,23 @@ def test_image_search_tab_view(browser, ID=extension["id"]):
     time.sleep(1)
 
 
-
-def test_adviser_tab_view(browser):
-    pass
+def test_adviser_tab_view(browser, ID=extension["id"]):
+    url = f"chrome-extension://{ID}/settings.html"
+    browser.get(url)
+    page = SettingsPage(browser, browser.current_url)
+    active_tab = page.get_active_tab()
+    assert active_tab == setting_tabs[0], f"Активна вкладка {active_tab}, а не {setting_tabs[0]}"
+    page.open_adviser_tab()
+    time.sleep(1)
+    active_tab = page.get_active_tab()
+    assert active_tab == setting_tabs[2], f"Активна вкладка {active_tab}, а не {setting_tabs[2]}"
+    page.should_be_block_show_offers()
+    # Проверка активен ли чекбокс "Показывать предложения с AliExpress на сайтах других магазинов"
+    page.checkbox_show_offers_should_be_on()
+    page.should_be_block_sites_with_disabled_adviser()
+    page.should_be_block_text_if_you_disable_the_widget()
+    page.should_be_extension_version(active_tab)
+    time.sleep(1)
 
 
 def test_history_tab_view(browser):

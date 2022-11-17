@@ -9,9 +9,9 @@ class BasePageLocators:
     # Тестовый локатор
     # Cross_start_greeting = (By.XPATH, "//body/div[6]/div[2]/div[1]/div[1]/div[2]/div[2]/div[1]/*[1]")
     #  Прод локатор
-    # Cross_repeated_favorites = (By.XPATH, "//div[@class ='_29Pkd _1bFZv']/div[@class ='_26mJL']/*[1]")
+    Cross_repeated_favorites = (By.XPATH, "//div[@class ='_29Pkd _1bFZv']/div[@class ='_26mJL']/*[1]")
     # Тестовый локатор
-    Cross_repeated_favorites = (By.XPATH, "//body/div[6]/div[2]/div[1]/div[1]/div[2]/div[1]/div[2]/div[1]/*[1]")
+    # Cross_repeated_favorites = (By.XPATH, "//body/div[6]/div[2]/div[1]/div[1]/div[2]/div[1]/div[2]/div[1]/*[1]")
 
 
 class ProductPageLocators:
@@ -79,6 +79,15 @@ class SettingsLocators:
     Sites_with_disabled_button = (By.XPATH, "//div[@class ='_327b9']")
     Disabled_site = (By.XPATH, "//div[@class ='JvDO_']//div[@class ='BTOq4']")
     Extension_version_search_by_image_tab = (By.XPATH, "//div[@class ='zcp1e']")
+
+    # Вкладка "Советник"
+    Tab_adviser = (By.XPATH, "//div[@class ='_2fg_j']/a[3]")
+    Block_show_offers = (By.XPATH, "//label[@class ='_1v2vb']")
+    Checkbox_show_offers_value = (By.XPATH, "//label[@class ='_1v2vb']/span/div")
+    Block_sites_with_disabled_adviser = (By.XPATH, "//div[@class ='_2u4Wd']")
+    Block_text_if_you_disable_the_widget = (By.XPATH, "//div[@class ='tbPpP']")
+    Extension_version_adviser_tab = (By.XPATH, "//div[@class ='_2WEHj']")
+
 
 
 class WidgetLocators:

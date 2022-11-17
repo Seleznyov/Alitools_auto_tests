@@ -117,6 +117,9 @@ class SettingsPage(BasePage):
         if tab == setting_tabs[1]:
             assert self.is_element_present(
                 *SettingsLocators.Extension_version_search_by_image_tab), "Extension_version is not presented"
+        if tab == setting_tabs[2]:
+            assert self.is_element_present(
+                *SettingsLocators.Extension_version_adviser_tab), "Extension_version is not presented"
 
     def open_search_by_image_tab(self):
         tab_search_by_image = self.browser.find_element(*SettingsLocators.Tab_search_by_image)
@@ -142,5 +145,22 @@ class SettingsPage(BasePage):
             disabled_site_list.append(i.text)
         return disabled_site_list
 
+    def open_adviser_tab(self):
+        tab_adviser = self.browser.find_element(*SettingsLocators.Tab_adviser)
+        tab_adviser.click()
+
+    def should_be_block_show_offers(self):
+        assert self.is_element_present(*SettingsLocators.Block_show_offers), "Block_show_offers is not presented"
+
+    def checkbox_show_offers_should_be_on(self):
+        checkbox = self.browser.find_element(*SettingsLocators.Checkbox_show_offers_value)
+        attr_value = checkbox.get_attribute("class")
+        assert attr_value == SettingsLocators.checkbox_on, f"checkbox show_offers is not switched on"
+
+    def should_be_block_sites_with_disabled_adviser(self):
+        assert self.is_element_present(*SettingsLocators.Block_sites_with_disabled_adviser), "block  is not presented"
+
+    def should_be_block_text_if_you_disable_the_widget(self):
+        assert self.is_element_present(*SettingsLocators.Block_text_if_you_disable_the_widget), "block  is not presented"
 
 

@@ -8,6 +8,7 @@ pytest = "*"
 selenium = "*"
 nums-from-string = "*"
 allure-pytest = "*"
+selenium-stealth = "*"
 
 [dev-packages]
 
