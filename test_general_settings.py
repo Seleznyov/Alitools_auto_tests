@@ -1,5 +1,4 @@
 import time
-
 import pytest
 from .pages.widget_page import WidgetPage
 from .pages.setting_page import SettingsPage
@@ -24,7 +23,8 @@ def test_displaying_a_list_of_languages(browser):
     page = SettingsPage(browser, browser.current_url)
     list_of_extension = page.get_languages_list()
     # сравниваем списки
-    assert list_of_extension == language, f" 'Список расширения': {list_of_extension} не равен 'эталонному списку': {language}. "
+    assert list_of_extension == language, \
+        f" 'Список расширения': {list_of_extension} не равен 'эталонному списку': {language}. "
 
 
 def test_displaying_a_list_of_currency(browser):
@@ -37,4 +37,20 @@ def test_displaying_a_list_of_currency(browser):
     page = SettingsPage(browser, browser.current_url)
     list_of_extension = page.get_currency_list()
     # сравниваем списки
-    assert list_of_extension == currency_list, f" 'Список расширения': {list_of_extension} не равен 'эталонному списку': {currency_list}. "
+    assert list_of_extension == currency_list, \
+        f" 'Список расширения': {list_of_extension} не равен 'эталонному списку': {currency_list}. "
+
+
+def test_theme_change(browser, directory_name="settings"):
+    page = WidgetPage(browser, browser.current_url)
+    page.should_be_option_start()
+    page.click_on_cross_start_greeting()
+    page.open_price_widget()
+    page.open_price_settings()
+    page = SettingsPage(browser, browser.current_url)
+    page.choose_dark_theme()
+    page.should_be_dark_theme_active()
+    active_tab = page.get_active_tab()
+    page.should_be_extension_version(active_tab)
+    page.screenshot_page(directory_name)
+    time.sleep(1)

@@ -12,6 +12,8 @@ class BasePageLocators:
     Cross_repeated_favorites = (By.XPATH, "//div[@class ='_29Pkd _1bFZv']/div[@class ='_26mJL']/*[1]")
     # Тестовый локатор
     # Cross_repeated_favorites = (By.XPATH, "//body/div[6]/div[2]/div[1]/div[1]/div[2]/div[1]/div[2]/div[1]/*[1]")
+    Slider = (By.XPATH, "//span[@id='nc_1_n1z']")
+    Warning_text = (By.XPATH, "//div[@class='warnning-text']")
 
 
 class ProductPageLocators:
@@ -49,6 +51,8 @@ class SettingsLocators:
     Currency_list_option = (By.XPATH, option_currency)
     Languages_list_option = (By.XPATH, option_languages)
     Widget_settings_button_cross = (By.XPATH, widget+button_cross)
+    Widget_dark_theme = (By.XPATH, widget+"//div[@class ='aXt0T']/label[2]")
+    Widget_value_theme = (By.XPATH, "//body/div[6]/div[2]")
 
 
     # Локаторы для настроек
@@ -87,6 +91,21 @@ class SettingsLocators:
     Block_sites_with_disabled_adviser = (By.XPATH, "//div[@class ='_2u4Wd']")
     Block_text_if_you_disable_the_widget = (By.XPATH, "//div[@class ='tbPpP']")
     Extension_version_adviser_tab = (By.XPATH, "//div[@class ='_2WEHj']")
+    Image_adviser = (By.XPATH, "//img")
+
+    # Вкладка "История"
+    Tab_history = (By.XPATH, "//div[@class ='_2fg_j']/a[4]")
+    Block_sites_with_history_enabled = (By.XPATH, "//div[@class ='_2u4Wd']")
+    Block_text_disable_the_widget = (By.XPATH, "//div[@class ='_9EXxv']")
+    Extension_version_history_tab = (By.XPATH, "//div[@class ='_3MMFq']")
+    Image_history = (By.XPATH, "//img")
+
+    # Вкладка "Синхронизация"
+    Tab_synchronization = (By.XPATH, "//div[@class ='_2fg_j']/a[5]")
+    Icon_cloud = (By.XPATH, "//div[@class ='KMEiY']/*[1]/*[1]")
+    Text_create_or_sign_in_account = (By.XPATH, "//div[@class ='fi3Dt']")
+    Create_account_button = (By.XPATH, "//button[1]")
+    Log_in_button = (By.XPATH, "//button[2]")
 
 
 
@@ -119,7 +138,7 @@ class WidgetLocators:
     Value_inside_the_card = (By.XPATH, "//div[@class ='at-seller-check__main']/*[2]")
 
 # --------------------------------------------------------------------------------------------------------------
-#   обзоры
+    # обзоры
     Reviews_widget_button = (By.XPATH, "//div[contains(text(),'обзоры')]")
     Card_name_reviews = (By.XPATH, "//div[contains(text(),'Обзоры')]")
     Reviews_button_settings = (By.XPATH, "//div[@class ='at-body__controls']/*[1]")
@@ -131,7 +150,7 @@ class WidgetLocators:
 
 
 # --------------------------------------------------------------------------------------------------------------
-#   похожие
+    # похожие
     Similar_widget_button = (By.XPATH, "//div[contains(text(),'похожие')]")
     Card_name_similar = (By.XPATH, "//div[contains(text(),'Похожие')]")
     Similar_drop_down_sort = (By.CSS_SELECTOR, ".at-drop-down__label")
@@ -151,7 +170,7 @@ class WidgetLocators:
 
 
 # --------------------------------------------------------------------------------------------------------------
-#   история
+    # история
     History_widget_button = (By.CSS_SELECTOR, ".at-widget-all-history")
     History_widget_collapse_button = (By.XPATH, "//div[@class ='at-widgets-panel at-widgets-history']/div[@class ='at-widgets-panel__arrow-wrapper']")
     History_widget_expand_button = (By.XPATH, "//div[@class ='at-widgets-panel at-widgets-history']/div[@class ='at-widgets-panel__arrow-wrapper at-widgets-panel__arrow-wrapper--open']")

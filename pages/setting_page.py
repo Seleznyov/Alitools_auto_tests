@@ -68,13 +68,15 @@ class SettingsPage(BasePage):
         assert self.is_element_present(*SettingsLocators.Extension_text), "Extension text is not presented"
 
     def should_be_checkbox_seller_verification(self):
-        assert self.is_element_present(*SettingsLocators.Checkbox_seller_verification), "Checkbox seller verification is not presented"
+        assert self.is_element_present(*SettingsLocators.Checkbox_seller_verification), \
+            "Checkbox seller verification is not presented"
 
     def should_be_notifications_text(self):
         assert self.is_element_present(*SettingsLocators.Notifications_text), "Notifications text is not presented"
 
     def should_be_checkbox_notification_counter(self):
-        assert self.is_element_present(*SettingsLocators.Checkbox_notification_counter), "Checkbox_notification_counter is not presented"
+        assert self.is_element_present(*SettingsLocators.Checkbox_notification_counter), \
+            "Checkbox_notification_counter is not presented"
 
     def checkbox_notification_counter_should_be_on(self):
         checkbox_notification_counter = self.browser.find_element(*SettingsLocators.Checkbox_notification_counter_value)
@@ -82,7 +84,8 @@ class SettingsPage(BasePage):
         assert attr_value == SettingsLocators.checkbox_on, f"checkbox is not active"
 
     def should_be_checkbox_push_notifications(self):
-        assert self.is_element_present(*SettingsLocators.Checkbox_push_notifications), "Checkbox_push_notifications is not presented"
+        assert self.is_element_present(*SettingsLocators.Checkbox_push_notifications), \
+            "Checkbox_push_notifications is not presented"
 
     def checkbox_push_notifications_should_be_on(self):
         checkbox_notification_counter = self.browser.find_element(*SettingsLocators.Checkbox_push_notifications_value)
@@ -90,7 +93,8 @@ class SettingsPage(BasePage):
         assert attr_value == SettingsLocators.checkbox_on, f"checkbox is not active"
 
     def should_be_message_describing_the_fall(self):
-        assert self.is_element_present(*SettingsLocators.Message_describing_the_fall), "Message_describing_the_fall is not presented"
+        assert self.is_element_present(*SettingsLocators.Message_describing_the_fall), \
+            "Message_describing_the_fall is not presented"
 
     def should_be_text_color_scheme(self):
         assert self.is_element_present(*SettingsLocators.Text_color_scheme), "Text_color_scheme is not presented"
@@ -113,20 +117,25 @@ class SettingsPage(BasePage):
         scroll_origin = ScrollOrigin.from_element(tab_general)
         ActionChains(self.browser).scroll_from_origin(scroll_origin, 0, 300).perform()
         if tab == setting_tabs[0]:
-            assert self.is_element_present(*SettingsLocators.Extension_version_general_tab), "Extension_version is not presented"
+            assert self.is_element_present(*SettingsLocators.Extension_version_general_tab), \
+                "Extension_version is not presented"
         if tab == setting_tabs[1]:
             assert self.is_element_present(
                 *SettingsLocators.Extension_version_search_by_image_tab), "Extension_version is not presented"
         if tab == setting_tabs[2]:
             assert self.is_element_present(
                 *SettingsLocators.Extension_version_adviser_tab), "Extension_version is not presented"
+        if tab == setting_tabs[3]:
+            assert self.is_element_present(
+                *SettingsLocators.Extension_version_history_tab), "Extension_version is not presented"
 
     def open_search_by_image_tab(self):
         tab_search_by_image = self.browser.find_element(*SettingsLocators.Tab_search_by_image)
         tab_search_by_image.click()
 
     def should_be_button_on_the_picture(self):
-        assert self.is_element_present(*SettingsLocators.Button_on_the_picture), "block button_on_the_picture is not presented"
+        assert self.is_element_present(*SettingsLocators.Button_on_the_picture), \
+            "block button_on_the_picture is not presented"
 
     def checkbox_button_on_the_picture_should_be_on(self):
         checkbox = self.browser.find_element(*SettingsLocators.Checkbox_button_on_the_picture_value)
@@ -136,7 +145,7 @@ class SettingsPage(BasePage):
     def should_be_sites_with_disabled_button(self):
         text = "САЙТЫ С ВЫКЛЮЧЕННОЙ КНОПКОЙ"
         sites_with_disabled_button = self.browser.find_element(*SettingsLocators.Sites_with_disabled_button).text
-        assert sites_with_disabled_button == text, f"Отображается: '{sites_with_disabled_button}'текст, вместо: '{text}'"
+        assert sites_with_disabled_button == text, f"Отображается:'{sites_with_disabled_button}'текст, вместо: '{text}'"
 
     def get_list_disabled_site(self):
         disabled_site_list = []
@@ -161,6 +170,53 @@ class SettingsPage(BasePage):
         assert self.is_element_present(*SettingsLocators.Block_sites_with_disabled_adviser), "block  is not presented"
 
     def should_be_block_text_if_you_disable_the_widget(self):
-        assert self.is_element_present(*SettingsLocators.Block_text_if_you_disable_the_widget), "block  is not presented"
+        assert self.is_element_present(*SettingsLocators.Block_text_if_you_disable_the_widget), "block is not presented"
+
+    def should_be_image_adviser(self):
+        image_adviser = self.browser.find_element(*SettingsLocators.Image_adviser)
+        src = image_adviser.get_attribute("src")
+        assert src == "https://alitools-static.s3-eu-west-1.amazonaws.com/extension/sovetnik-widget-light-ru.png", \
+            f"image_adviser is not presented"
+
+    def open_tab_history(self):
+        tab_history = self.browser.find_element(*SettingsLocators.Tab_history)
+        tab_history.click()
+
+    def should_be_block_sites_with_history_enabled(self):
+        assert self.is_element_present(*SettingsLocators.Block_sites_with_history_enabled), "block  is not presented"
+
+    def should_be_block_text_disable_the_widget(self):
+        assert self.is_element_present(*SettingsLocators.Block_text_disable_the_widget), "block  is not presented"
+
+    def should_be_image_history(self):
+        image_history = self.browser.find_element(*SettingsLocators.Image_history)
+        src = image_history.get_attribute("src")
+        assert src == "https://alitools-static.s3-eu-west-1.amazonaws.com/extension/history_settings_light_empty_ru.png", \
+            f"image_history is not presented"
+
+    def open_tab_synchronization(self):
+        tab_synchronization = self.browser.find_element(*SettingsLocators.Tab_synchronization)
+        tab_synchronization.click()
+
+    def should_be_icon_cloud(self):
+        assert self.is_element_present(*SettingsLocators.Icon_cloud), "Icon_cloud is not presented"
+
+    def should_be_text_create_or_sign_in_account(self):
+        assert self.is_element_present(*SettingsLocators.Text_create_or_sign_in_account), "Text is not presented"
+
+    def should_be_create_account_button(self):
+        assert self.is_element_present(*SettingsLocators.Create_account_button), \
+            "Create_account_button is not presented"
+
+    def should_be_log_in_button(self):
+        assert self.is_element_present(*SettingsLocators.Log_in_button), "Log_in_button is not presented"
+
+    def choose_dark_theme(self):
+        dark_theme = self.browser.find_element(*SettingsLocators.Widget_dark_theme)
+        dark_theme.click()
+
+    def should_be_dark_theme_active(self):
+        assert self.is_element_present(*SettingsLocators.Widget_value_theme)
+
 
 
