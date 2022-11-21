@@ -145,7 +145,7 @@ class SettingsPage(BasePage):
     def should_be_sites_with_disabled_button(self):
         text = "САЙТЫ С ВЫКЛЮЧЕННОЙ КНОПКОЙ"
         sites_with_disabled_button = self.browser.find_element(*SettingsLocators.Sites_with_disabled_button).text
-        assert sites_with_disabled_button == text, f"Отображается:'{sites_with_disabled_button}'текст, вместо: '{text}'"
+        assert sites_with_disabled_button == text, f"Отображается:'{sites_with_disabled_button}'текст, вместо:'{text}'"
 
     def get_list_disabled_site(self):
         disabled_site_list = []
@@ -217,6 +217,3 @@ class SettingsPage(BasePage):
 
     def should_be_dark_theme_active(self):
         assert self.is_element_present(*SettingsLocators.Widget_value_theme)
-
-
-

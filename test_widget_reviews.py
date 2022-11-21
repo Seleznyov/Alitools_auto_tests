@@ -40,7 +40,8 @@ def test_number_of_reviews(browser):
     quantity_reviews_images = page.value_reviews_images()
     print(display_quantity_on_widget, quantity_reviews_images)
     assert display_quantity_on_widget == quantity_reviews_images, \
-        f"Ошибка -> значение количества обзоров виджета : {display_quantity_on_widget} не равно количеству изображений: {quantity_reviews_images} "
+        f"Ошибка -> значение количества обзоров виджета : {display_quantity_on_widget} " \
+        f"не равно количеству изображений: {quantity_reviews_images} "
 
 
 def test_open_random_card_of_reviews(browser):

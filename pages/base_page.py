@@ -58,3 +58,14 @@ class BasePage:
         now_date = datetime.datetime.utcnow().strftime("%Y.%m.%d.%H.%M.%S")
         name_screenshot = "screenshot" + now_date + ".png"
         self.browser.save_screenshot("D:\\Alitools_auto_tests\\screenshot\\" + directory_name + "\\" + name_screenshot)
+
+    def get_usd_course(self):
+        url = "https://moneyfromnothing.ru/blog/aliexpress-kurs-dollara/"
+        self.browser.get(url)
+        usd_courses = self.browser.find_elements(*BasePageLocators.Usd_course_aliExpress_global)
+        for i in range(len(usd_courses)):
+            actions = ActionChains(self.browser)
+            actions.move_to_element(usd_courses[1]).perform()
+            usd_course = usd_courses[1].text
+            usd_course = usd_course[:5]
+            return float(usd_course)

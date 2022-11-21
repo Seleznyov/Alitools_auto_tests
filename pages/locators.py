@@ -14,6 +14,8 @@ class BasePageLocators:
     # Cross_repeated_favorites = (By.XPATH, "//body/div[6]/div[2]/div[1]/div[1]/div[2]/div[1]/div[2]/div[1]/*[1]")
     Slider = (By.XPATH, "//span[@id='nc_1_n1z']")
     Warning_text = (By.XPATH, "//div[@class='warnning-text']")
+    # Взять курс USD для "aliexpress"
+    Usd_course_aliExpress_global = (By.XPATH, "//div[@class='rate-value-value'][1]")
 
 
 class ProductPageLocators:
@@ -30,8 +32,10 @@ class ProductPageLocators:
     Regional_currency_USD = (By.XPATH, "//li[@id='downshift-2-item-139']")
     Regional_currency_RUB = (By.XPATH, "//li[@id='downshift-2-item-68']")
     Regional_currency_EUR = (By.XPATH, "//li[@id='downshift-2-item-36']")
-    Save_settings_button = (By.XPATH, "//div[@class='snow-scrolling-header_SnowScrollingHeader__buttonGroup__1uifpm']")
-    Logo_link = (By.XPATH, "//div[@class='SnowCommonHeader_SnowCommonHeader__logo__okk9w']/a")
+    # Написать лучше
+    Save_settings_button = (By.XPATH,
+                            "//div[@class='snow-scrolling-header_SnowScrollingHeader__buttonGroup__16wax0']/button")
+    Logo_link = (By.XPATH, "//div[@class='SnowCommonHeader_SnowCommonHeader__logo__8pz08']/a")
 
 
 class SettingsLocators:
@@ -125,7 +129,6 @@ class WidgetLocators:
     Price_button_info = (By.XPATH, "//div[@class ='at-body__controls']/*[1]")
     Price_button_settings = (By.XPATH, "//div[@class ='at-body__controls']/*[3]")
     Price_button_cross = (By.XPATH, "//div[@class ='at-body__controls']/*[4]")
-
     Exact_price = (By.XPATH, "//div[@class ='_1aBUH']")
 
 # --------------------------------------------------------------------------------------------------------------

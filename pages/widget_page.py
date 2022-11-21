@@ -60,9 +60,9 @@ class WidgetPage(BasePage):
 # Значение точной цены на графике
     def exact_price(self):
         exact_price = self.browser.find_element(*WidgetLocators.Exact_price).text
-        exact_price = exact_price.partition('.')[0]
-        exact_price = "".join(c for c in exact_price if c.isdecimal())
-        return int(exact_price)
+        exact_price = exact_price.translate({ord(i): None for i in ' руб$€¥₽'})
+        exact_price = exact_price.replace(' ', '')
+        return float(exact_price)
 
 # Получить количество месяцев на графике
     def get_value_months(self):
@@ -262,8 +262,15 @@ class WidgetPage(BasePage):
                 actions = ActionChains(self.browser)
                 actions.move_to_element(prices[i]).perform()
                 price = prices[i].text
-                price = "".join(c for c in price if c.isdecimal())
-                return int(price)
+                if "US" in price:
+                    price = price.translate({ord(i): None for i in ' руб$€¥₽US'})
+                if "руб" in price:
+                    price = price.translate({ord(i): None for i in ' руб.$€¥₽US'})
+                    price = price.replace(",", ".")
+                if "€" in price:
+                    price = price.translate({ord(i): None for i in ' руб$€¥₽US'})
+                    price = price.replace(",", ".")
+                return float(price)
 
 # Проверка сортировки по цене
     def check_sorting_by_price(self):
@@ -278,7 +285,7 @@ class WidgetPage(BasePage):
             # print(price0,price1)
             assert int(price0) <= int(price1), f"Ошибка сортировки цене товара, {price0} не меньше {price1} "
 
-#Проверка сортировки по заказам
+# Проверка сортировки по заказам
     def check_sorting_by_orders(self):
         message = self.is_not_element_present(*WidgetLocators.Similar_message_displayed)
         if message is True:

@@ -1,7 +1,6 @@
 import pytest
 from .pages.widget_page import WidgetPage
 from .pages.base_page import BasePage
-# import time
 
 
 @pytest.fixture(scope="function", autouse=True)

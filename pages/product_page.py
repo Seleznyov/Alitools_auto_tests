@@ -10,16 +10,10 @@ class ProductPage(BasePage):
 
     # цена продукта на странице магазина али
     def product_price(self):
-        # Нужно придумать проверку на валюту товара на странице, передавать в функцию
         product_price = self.browser.find_element(*ProductPageLocators.Product_price).text
-        product_price = product_price.partition(',')[0]
-        product_price = "".join(c for c in product_price if c.isdecimal())
-        return int(product_price)
-
-    def product_price_full(self):
-        product_price = self.browser.find_element(*ProductPageLocators.Product_price).text
-        product_price = "".join(c for c in product_price if c.isdecimal())
-        return int(product_price)
+        product_price = product_price.translate({ord(i): None for i in ' руб.$€¥US'})
+        product_price = product_price.replace(",", ".")
+        return float(product_price)
 
     def open_profile(self):
         icon_login = self.browser.find_element(*ProductPageLocators.Icon_login)

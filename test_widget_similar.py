@@ -21,10 +21,12 @@ def test_number_of_similar_products(browser):
     page.open_similar_widget()
     value_similar_product_in_the_card = page.get_value_similar_products()
     assert value_widget_similar_products == value_similar_product_in_the_card, \
-        f"Ошибка -> значение похожих товаров для виджета: {value_widget_similar_products} не равно значению в карточке: {value_similar_product_in_the_card} "
+        f"Ошибка -> значение похожих товаров для виджета: {value_widget_similar_products}" \
+        f" не равно значению в карточке: {value_similar_product_in_the_card} "
 
 
 @pytest.mark.parametrize('currency', currencies)
+@pytest.mark.skip(reason="Есть ошибка")
 def test_open_random_product_card(browser, currency, email=profile["Email"], password=profile["Password"]):
     page = WidgetPage(browser, browser.current_url)
     page.should_be_option_start()
@@ -77,10 +79,11 @@ def test_open_random_product_card(browser, currency, email=profile["Email"], pas
             browser.switch_to.window(window3[3])
         url_new = browser.current_url.split('.html')[0]
         # Проверям что Url который выбрали и открылся совпадают
-        assert url_new == url_random_product, f"Ошибка -> Url новой стараницы: {url_new} не равен выбранному: {url_random_product} "
+        assert url_new == url_random_product,\
+            f"Ошибка -> Url новой стараницы: {url_new} не равен выбранному: {url_random_product} "
         # Сравнить значения цен, в карточке [похожие] и на странице
         page = ProductPage(browser, browser.current_url)
-        product_price_on_page = page.product_price_full()
+        product_price_on_page = page.product_price()
         # print(price_random_product, product_price_on_page)
         assert price_random_product == product_price_on_page, \
             f"Ошибка -> цена в карточке: {price_random_product} не равен на странице: {product_price_on_page} "

@@ -26,7 +26,7 @@ profile = {"Email": "stanislav.seleznev@bdtech.by", "Password": "Stefler_1992"}
 currency_processing = {"US": "USD", "€": "EUR", "руб": "RUB"}
 currencies = ["USD", "EUR", "RUB"]
 
-# ID_extension
+# ID_extension тестовая "ibocngjdimaiblnckndicocclenmnmjo", прод "eenflijjbchafephdplkdmeenekabdfb"
 extension = {"id": "eenflijjbchafephdplkdmeenekabdfb"}
 
 # Поиск по картинке -> "САЙТЫ С ВЫКЛЮЧЕННОЙ КНОПКОЙ"
