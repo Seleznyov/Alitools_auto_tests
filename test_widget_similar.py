@@ -26,7 +26,7 @@ def test_number_of_similar_products(browser):
 
 
 @pytest.mark.parametrize('currency', currencies)
-@pytest.mark.skip(reason="Есть ошибка")
+# @pytest.mark.skip(reason="Есть ошибка")
 def test_open_random_product_card(browser, currency, email=profile["Email"], password=profile["Password"]):
     page = WidgetPage(browser, browser.current_url)
     page.should_be_option_start()
@@ -45,6 +45,7 @@ def test_open_random_product_card(browser, currency, email=profile["Email"], pas
         page.click_on_cress_repeated_favorites()
         page.open_profile()
         page.open_regional_settings()
+        page.country_check()
         page.open_regional_currency_list()
         page.select_currency(currency)
         # Сохранение выбранной валюты

@@ -1,3 +1,5 @@
+import time
+
 from .base_page import BasePage
 from .locators import ProductPageLocators
 from selenium.webdriver.common.action_chains import ActionChains
@@ -36,22 +38,26 @@ class ProductPage(BasePage):
     # Изменить функицю и локатор -> [regional_country_currency_language]
     def open_regional_currency_list(self):
         regional_currency = self.browser.find_elements(*ProductPageLocators.Regional_country_currency_language)
-        x = 1
-        for currency in regional_currency:
-            if x == 3:
-                regional_currency = currency
-                regional_currency.click()
-            x += 1
+        regional_currency = regional_currency[2]
+        regional_currency.click()
 
     # Изменить функицю и локатор -> [regional_country_currency_language]
     def open_regional_language_list(self):
         regional_language = self.browser.find_elements(*ProductPageLocators.Regional_country_currency_language)
-        x = 1
-        for language in regional_language:
-            if x == 2:
-                regional_currency = language
-                regional_currency.click()
-            x += 1
+        regional_language = regional_language[1]
+        regional_language.click()
+
+    def country_check(self):
+        values_country = self.browser.find_elements(*ProductPageLocators.Value_country)
+        value_country = values_country[0].get_attribute("value")
+        if value_country != "Беларусь":
+            regional_country = self.browser.find_elements(*ProductPageLocators.Regional_country_currency_language)
+            regional_country = regional_country[0]
+            regional_country.click()
+            time.sleep(1)
+            country_bel = self.browser.find_element(*ProductPageLocators.Regional_country_BEL)
+            country_bel.click()
+            time.sleep(1)
 
     def select_currency(self, currency):
         # Подумать как улучшить эту функцию

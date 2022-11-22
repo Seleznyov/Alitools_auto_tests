@@ -28,14 +28,16 @@ class ProductPageLocators:
     Regional_settings = (By.XPATH, "//div[@class ='SnowMenu_FlagBlock__wrapper__i513w']/a[1]")
     # Переписать этот локатор сделать три разных вместо одного
     Regional_country_currency_language = (By.XPATH, "//div[@class='RegionalSettings_RegionalSettings__select__ieug1']")
+    Value_country = (By.XPATH, "//div[@class='RegionalSettings_RegionalSettings__select__ieug1']//input")
     Regional_currency_list = (By.CSS_SELECTOR, ".RegionalSettings_RegionalSettings__item__ieug1")
+    Regional_country_BEL = (By.XPATH, "//li[@id='downshift-0-item-20']")
     Regional_currency_USD = (By.XPATH, "//li[@id='downshift-2-item-139']")
     Regional_currency_RUB = (By.XPATH, "//li[@id='downshift-2-item-68']")
     Regional_currency_EUR = (By.XPATH, "//li[@id='downshift-2-item-36']")
     # Написать лучше
     Save_settings_button = (By.XPATH,
                             "//div[@class='snow-scrolling-header_SnowScrollingHeader__buttonGroup__16wax0']/button")
-    Logo_link = (By.XPATH, "//div[@class='SnowCommonHeader_SnowCommonHeader__logo__8pz08']/a")
+    Logo_link = (By.XPATH, "//div[@class='SnowCommonHeader_SnowCommonHeader__logo__ih4vk']/a")
 
 
 class SettingsLocators:
