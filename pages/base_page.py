@@ -1,4 +1,5 @@
 import datetime
+
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
@@ -33,7 +34,7 @@ class BasePage:
     def should_be_option_start(self):
         questionnaire = self.is_not_element_present(*BasePageLocators.Possible_answer)
         if questionnaire is False:
-            cross_option_start = self.browser.find_element(*BasePageLocators.Possible_answer)
+            cross_option_start = self.browser.find_element(*BasePageLocators.Cross_start_greeting)
             cross_option_start.click()
 
     def should_be_greetings(self):

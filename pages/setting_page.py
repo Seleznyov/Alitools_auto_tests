@@ -217,3 +217,7 @@ class SettingsPage(BasePage):
 
     def should_be_dark_theme_active(self):
         assert self.is_element_present(*SettingsLocators.Widget_value_theme)
+
+    def turn_on_widget_checkbox_seller_verification(self):
+        checkbox_seller_verification = self.browser.find_element(*SettingsLocators.Widget_checkbox_seller_verification)
+        checkbox_seller_verification.click()

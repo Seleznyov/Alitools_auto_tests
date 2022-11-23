@@ -54,6 +54,10 @@ class WidgetPage(BasePage):
         price_settings = self.browser.find_element(*WidgetLocators.Price_button_settings)
         price_settings.click()
 
+    def close_price_card(self):
+        price_card = self.browser.find_element(*WidgetLocators.Price_button_cross)
+        price_card.click()
+
     def should_be_price_button_cross(self):
         assert self.is_element_present(*WidgetLocators.Price_button_cross), "element is not presented"
 

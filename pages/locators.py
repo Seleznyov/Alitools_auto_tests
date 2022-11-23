@@ -5,7 +5,7 @@ class BasePageLocators:
     Possible_answer = (By.XPATH, "//div[contains(text(),'Друзья или коллеги')]")
     Starting_greeting = (By.XPATH, "//div[contains(text(),'Alitools готов к работе')]")
     #  Прод локатор
-    Cross_start_greeting = (By.XPATH, "//div[@class ='_2GJWf']/div[@class ='_2CcGF']/*[1]")
+    Cross_start_greeting = (By.XPATH, "//div[@class ='_2GJWf']/div/*[1]")
     # Тестовый локатор
     # Cross_start_greeting = (By.XPATH, "//body/div[6]/div[2]/div[1]/div[1]/div[2]/div[2]/div[1]/*[1]")
     #  Прод локатор
@@ -35,9 +35,20 @@ class ProductPageLocators:
     Regional_currency_RUB = (By.XPATH, "//li[@id='downshift-2-item-68']")
     Regional_currency_EUR = (By.XPATH, "//li[@id='downshift-2-item-36']")
     # Написать лучше
+    # Save_settings_button = (By.XPATH,
+    #                         "//div[@class='snow-scrolling-header_SnowScrollingHeader__buttonGroup__16wax0']/button")
     Save_settings_button = (By.XPATH,
-                            "//div[@class='snow-scrolling-header_SnowScrollingHeader__buttonGroup__16wax0']/button")
-    Logo_link = (By.XPATH, "//div[@class='SnowCommonHeader_SnowCommonHeader__logo__ih4vk']/a")
+                            "//div[@id='__aer_root__']/div[1]/div[4]/div[1]/div[1]/div[1]/div[2]/div[1]/div[2]/div[2]/button")
+    # Logo_link = (By.XPATH, "//div[@class='SnowCommonHeader_SnowCommonHeader__logo__ih4vk']/a")
+    Logo_link = (By.XPATH,
+                 "//div[@id='__aer_root__']/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/a")
+    # Блок проверки продавца на странице товара
+    Seller_trust_level_title = (By.CSS_SELECTOR, ".at-legacy-seller-check__title")
+    # Доставка и возврат - текст
+    Delivery_and_returns = (By.XPATH, "//h2[contains(text(),'Доставка и возврат')]")
+    # Кнопка "Прекрасно"
+    Button_wonderful = (By.XPATH, "//div[@class='snow-ali-kit_Informer__flexAligner__8lq3ka']/button")
+    # Button_wonderful = (By.XPATH, "//button[contains(text(),'Прекрасно')]")
 
 
 class SettingsLocators:
@@ -46,20 +57,20 @@ class SettingsLocators:
     button_cross = "//a[@class ='_1OWT-']"
     languages_list = "//div[@class ='_1mJSj']/*[1]/div[@class ='_36pFQ']/*/select"
     currency_list = "//div[@class ='_1mJSj']/*[2]/div[@class ='_36pFQ']/*/select"
-    option_languages = widget+"//div[@class ='_1mJSj']/*[1]/div[@class ='_36pFQ']/div[1]/select[1]/option"
-    option_currency = widget+"//div[@class ='_1mJSj']/*[2]/div[@class ='_36pFQ']/div[1]/select[1]/option"
+    option_languages = widget + "//div[@class ='_1mJSj']/*[1]/div[@class ='_36pFQ']/div[1]/select[1]/option"
+    option_currency = widget + "//div[@class ='_1mJSj']/*[2]/div[@class ='_36pFQ']/div[1]/select[1]/option"
     checkbox_on = "at-checkbox__control at-checkbox__control--checked"
     theme_on = "_3hBHw CaRjS"
     Tabs = (By.XPATH, "//div[@class ='_2fg_j']/a/div")
     active_tab = "h0isI _3DJWM"
 
-    Widget_settings_currency_list = (By.XPATH, widget+currency_list)
+    Widget_settings_currency_list = (By.XPATH, widget + currency_list)
     Currency_list_option = (By.XPATH, option_currency)
     Languages_list_option = (By.XPATH, option_languages)
-    Widget_settings_button_cross = (By.XPATH, widget+button_cross)
-    Widget_dark_theme = (By.XPATH, widget+"//div[@class ='aXt0T']/label[2]")
+    Widget_settings_button_cross = (By.XPATH, widget + button_cross)
+    Widget_dark_theme = (By.XPATH, widget + "//div[@class ='aXt0T']/label[2]")
     Widget_value_theme = (By.XPATH, "//body/div[6]/div[2]")
-
+    Widget_checkbox_seller_verification = (By.XPATH, widget+"//label[@class ='_2eD5O']/span")
 
     # Локаторы для настроек
     # Вкладка "Общее"
@@ -114,15 +125,16 @@ class SettingsLocators:
     Log_in_button = (By.XPATH, "//button[2]")
 
 
-
 class WidgetLocators:
     # цена
     # Проблемы с поиском этого локатора есть задрежка попробую через CSS
     Price_widget_button = (By.CSS_SELECTOR, ".at-widget-price__label")
 
     Card_name_price = (By.XPATH, "//div[contains(text(),'История цены')]")
-    Price_drop_down_for_3_months = (By.XPATH, "//div[@class ='at-drop-down__open-button']/div[contains(text(), 'за 3 месяца')]")
-    Value_months = (By.XPATH, "//div[@class ='_2UY5W _31scG']/div[@class ='_3mN4L']/div[@class ='_14xnt']/div[@class ='_1QkN1']/div[@class ='_1BnRS']/*[1]")
+    Price_drop_down_for_3_months = (
+        By.XPATH, "//div[@class ='at-drop-down__open-button']/div[contains(text(), 'за 3 месяца')]")
+    Value_months = (By.XPATH,
+                    "//div[@class ='_2UY5W _31scG']/div[@class ='_3mN4L']/div[@class ='_14xnt']/div[@class ='_1QkN1']/div[@class ='_1BnRS']/*[1]")
     Drop_down_value_for_3_months = (By.XPATH, "//div[@class ='at-drop-down__menu']/*[1]/*[1]")
     Drop_down_value_for_half_a_year = (By.XPATH, "//div[@class ='at-drop-down__menu']/*[2]/*[1]")
     Price_button_accurate = (By.XPATH, "//div[contains(text(),'Точная')]")
@@ -130,10 +142,10 @@ class WidgetLocators:
     Price_button_Follow_the_item = (By.XPATH, "//span[contains(text(), 'Следить за товаром')]")
     Price_button_info = (By.XPATH, "//div[@class ='at-body__controls']/*[1]")
     Price_button_settings = (By.XPATH, "//div[@class ='at-body__controls']/*[3]")
-    Price_button_cross = (By.XPATH, "//div[@class ='at-body__controls']/*[4]")
+    Price_button_cross = (By.XPATH, "//div[@class ='at-body__controls']/a[2]/*[1]")
     Exact_price = (By.XPATH, "//div[@class ='_1aBUH']")
 
-# --------------------------------------------------------------------------------------------------------------
+    # --------------------------------------------------------------------------------------------------------------
     # продавец
     Seller_widget_button = (By.XPATH, "//div[contains(text(),'продавец')]")
     Card_name_seller = (By.XPATH, "//div[contains(text(),'Рейтинг продавца')]")
@@ -142,7 +154,7 @@ class WidgetLocators:
     Percentage_value = (By.XPATH, "//div[@class ='at-widget-seller-check']/*[1]/*[1]")
     Value_inside_the_card = (By.XPATH, "//div[@class ='at-seller-check__main']/*[2]")
 
-# --------------------------------------------------------------------------------------------------------------
+    # --------------------------------------------------------------------------------------------------------------
     # обзоры
     Reviews_widget_button = (By.XPATH, "//div[contains(text(),'обзоры')]")
     Card_name_reviews = (By.XPATH, "//div[contains(text(),'Обзоры')]")
@@ -153,8 +165,7 @@ class WidgetLocators:
     Value_Reviews_Images = (By.CSS_SELECTOR, ".at-photo-reviews-list__item")
     Overview_is_displayed = (By.CSS_SELECTOR, ".at-gallery__current-image")
 
-
-# --------------------------------------------------------------------------------------------------------------
+    # --------------------------------------------------------------------------------------------------------------
     # похожие
     Similar_widget_button = (By.XPATH, "//div[contains(text(),'похожие')]")
     Card_name_similar = (By.XPATH, "//div[contains(text(),'Похожие')]")
@@ -173,15 +184,16 @@ class WidgetLocators:
     # + Дополнительный для функции
     Similar_message_displayed = (By.CSS_SELECTOR, ".at-similar-list__best-offer-message")
 
-
-# --------------------------------------------------------------------------------------------------------------
+    # --------------------------------------------------------------------------------------------------------------
     # история
     History_widget_button = (By.CSS_SELECTOR, ".at-widget-all-history")
-    History_widget_collapse_button = (By.XPATH, "//div[@class ='at-widgets-panel at-widgets-history']/div[@class ='at-widgets-panel__arrow-wrapper']")
-    History_widget_expand_button = (By.XPATH, "//div[@class ='at-widgets-panel at-widgets-history']/div[@class ='at-widgets-panel__arrow-wrapper at-widgets-panel__arrow-wrapper--open']")
+    History_widget_collapse_button = (
+        By.XPATH, "//div[@class ='at-widgets-panel at-widgets-history']/div[@class ='at-widgets-panel__arrow-wrapper']")
+    History_widget_expand_button = (By.XPATH,
+                                    "//div[@class ='at-widgets-panel at-widgets-history']/div[@class ='at-widgets-panel__arrow-wrapper at-widgets-panel__arrow-wrapper--open']")
     Card_name_history = (By.XPATH, "//div[contains(text(),'История просмотров')]")
-    History_widget_control_context_menu = (By.XPATH, "//div[@class ='at-body__controls']/a/div[@class ='at-body__controls-context-menu']")
+    History_widget_control_context_menu = (
+        By.XPATH, "//div[@class ='at-body__controls']/a/div[@class ='at-body__controls-context-menu']")
     History_button_cross = (By.XPATH, "//a[@class ='at-body__controls-item']/*[1]")
     History_text_today = (By.XPATH, "//div[contains(text(),'Сегодня')]")
     Product_in_history_for_widget = (By.CSS_SELECTOR, ".at-widgets-history-mask")
-
