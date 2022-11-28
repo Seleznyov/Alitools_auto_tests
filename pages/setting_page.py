@@ -65,19 +65,79 @@ class SettingsPage(BasePage):
         if language == "en":
             text_settings = self.browser.find_element(*SettingsLocators.Widget_text_settings).text
             assert text_settings == "Settings", f"Ошибка, вернулось название настроек {text_settings}, для {language}"
+            tab_general = self.browser.find_element(*SettingsLocators.Widget_tab_general).text
+            assert tab_general == "General", f"Ошибка, в названии вкладки {tab_general}, для {language}"
+            tab_search_by_image = self.browser.find_element(*SettingsLocators.Widget_tab_search_by_image).text
+            assert tab_search_by_image == "Search by image",\
+                f"Ошибка, в названии вкладки {tab_search_by_image}, для {language}"
+            tab_adviser = self.browser.find_element(*SettingsLocators.Widget_tab_adviser).text
+            assert tab_adviser == "Adviser", f"Ошибка, в названии вкладки {tab_adviser}, для {language}"
+            tab_history = self.browser.find_element(*SettingsLocators.Widget_tab_history).text
+            assert tab_history == "History", f"Ошибка, в названии вкладки {tab_history}, для {language}"
+            tab_synchronization = self.browser.find_element(*SettingsLocators.Widget_tab_synchronization).text
+            assert tab_synchronization == "Synchronization", \
+                f"Ошибка, в названии вкладки {tab_synchronization}, для {language}"
         if language == "pl":
             text_settings = self.browser.find_element(*SettingsLocators.Widget_text_settings).text
             assert text_settings == "Ustawienia", f"Ошибка, вернулось название настроек {text_settings}, для {language}"
+            tab_general = self.browser.find_element(*SettingsLocators.Widget_tab_general).text
+            assert tab_general == "Ogólne", f"Ошибка, в названии вкладки {tab_general}, для {language}"
+            tab_search_by_image = self.browser.find_element(*SettingsLocators.Widget_tab_search_by_image).text
+            assert tab_search_by_image == "Search by image", \
+                f"Ошибка, в названии вкладки {tab_search_by_image}, для {language} "
+            tab_adviser = self.browser.find_element(*SettingsLocators.Widget_tab_adviser).text
+            assert tab_adviser == "Adviser", f"Ошибка, в названии вкладки {tab_adviser}, для {language}"
+            tab_history = self.browser.find_element(*SettingsLocators.Widget_tab_history).text
+            assert tab_history == "History", f"Ошибка, в названии вкладки {tab_history}, для {language}"
+            tab_synchronization = self.browser.find_element(*SettingsLocators.Widget_tab_synchronization).text
+            assert tab_synchronization == "Synchronization", \
+                f"Ошибка, в названии вкладки {tab_synchronization}, для {language}"
         if language == "es":
             text_settings = self.browser.find_element(*SettingsLocators.Widget_text_settings).text
             assert text_settings == "Ajustes", f"Ошибка, вернулось название настроек {text_settings}, для {language}"
+            tab_general = self.browser.find_element(*SettingsLocators.Widget_tab_general).text
+            assert tab_general == "General", f"Ошибка, в названии вкладки {tab_general}, для {language}"
+            tab_search_by_image = self.browser.find_element(*SettingsLocators.Widget_tab_search_by_image).text
+            assert tab_search_by_image == "Search by image", \
+                f"Ошибка, в названии вкладки {tab_search_by_image}, для {language} "
+            tab_adviser = self.browser.find_element(*SettingsLocators.Widget_tab_adviser).text
+            assert tab_adviser == "Adviser", f"Ошибка, в названии вкладки {tab_adviser}, для {language}"
+            tab_history = self.browser.find_element(*SettingsLocators.Widget_tab_history).text
+            assert tab_history == "History", f"Ошибка, в названии вкладки {tab_history}, для {language}"
+            tab_synchronization = self.browser.find_element(*SettingsLocators.Widget_tab_synchronization).text
+            assert tab_synchronization == "Synchronization", \
+                f"Ошибка, в названии вкладки {tab_synchronization}, для {language}"
         if language == "fr":
             text_settings = self.browser.find_element(*SettingsLocators.Widget_text_settings).text
             assert text_settings == "Paramètres", f"Ошибка, вернулось название настроек {text_settings}, для {language}"
+            tab_general = self.browser.find_element(*SettingsLocators.Widget_tab_general).text
+            assert tab_general == "Général", f"Ошибка, в названии вкладки {tab_general}, для {language}"
+            tab_search_by_image = self.browser.find_element(*SettingsLocators.Widget_tab_search_by_image).text
+            assert tab_search_by_image == "Search by image", \
+                f"Ошибка, в названии вкладки {tab_search_by_image}, для {language}"
+            tab_adviser = self.browser.find_element(*SettingsLocators.Widget_tab_adviser).text
+            assert tab_adviser == "Adviser", f"Ошибка, в названии вкладки {tab_adviser}, для {language}"
+            tab_history = self.browser.find_element(*SettingsLocators.Widget_tab_history).text
+            assert tab_history == "History", f"Ошибка, в названии вкладки {tab_history}, для {language}"
+            tab_synchronization = self.browser.find_element(*SettingsLocators.Widget_tab_synchronization).text
+            assert tab_synchronization == "Synchronization", \
+                f"Ошибка, в названии вкладки {tab_synchronization}, для {language}"
         if language == "pt":
             text_settings = self.browser.find_element(*SettingsLocators.Widget_text_settings).text
             assert text_settings == "Configurações", \
                 f"Ошибка, вернулось название настроек {text_settings}, для {language} "
+            tab_general = self.browser.find_element(*SettingsLocators.Widget_tab_general).text
+            assert tab_general == "Gerais", f"Ошибка, в названии вкладки {tab_general}, для {language}"
+            tab_search_by_image = self.browser.find_element(*SettingsLocators.Widget_tab_search_by_image).text
+            assert tab_search_by_image == "Buscar por imagem", \
+                f"Ошибка, в названии вкладки {tab_search_by_image}, для {language} "
+            tab_adviser = self.browser.find_element(*SettingsLocators.Widget_tab_adviser).text
+            assert tab_adviser == "Consultor", f"Ошибка, в названии вкладки {tab_adviser}, для {language}"
+            tab_history = self.browser.find_element(*SettingsLocators.Widget_tab_history).text
+            assert tab_history == "Histórico", f"Ошибка, в названии вкладки {tab_history}, для {language}"
+            tab_synchronization = self.browser.find_element(*SettingsLocators.Widget_tab_synchronization).text
+            assert tab_synchronization == "Sincronização", \
+                f"Ошибка, в названии вкладки {tab_synchronization}, для {language}"
 
     def close_settings(self):
         settings_button_cross = self.browser.find_element(*SettingsLocators.Widget_settings_button_cross)

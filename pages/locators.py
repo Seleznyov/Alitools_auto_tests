@@ -75,6 +75,11 @@ class SettingsLocators:
     Widget_value_theme = (By.XPATH, "//body/div[6]/div[2]")
     Widget_checkbox_seller_verification = (By.XPATH, widget+"//label[@class ='_2eD5O']/span")
     Widget_text_settings = (By.XPATH, widget + "//div[@class ='_8cmLo']")
+    Widget_tab_general = (By.XPATH, widget + "//div[@class ='_2fg_j']/a[1]")
+    Widget_tab_search_by_image = (By.XPATH, widget + "//div[@class ='_2fg_j']/a[2]")
+    Widget_tab_adviser = (By.XPATH, widget + "//div[@class ='_2fg_j']/a[3]")
+    Widget_tab_history = (By.XPATH, widget + "//div[@class ='_2fg_j']/a[4]")
+    Widget_tab_synchronization = (By.XPATH, widget + "//div[@class ='_2fg_j']/a[5]")
     Widget_extension_text_dark = (By.XPATH, "//div[@class ='at-theme-dark'][2]//div[@class ='_1LiA_']")
 
     # Локаторы для настроек
