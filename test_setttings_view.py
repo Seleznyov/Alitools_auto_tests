@@ -10,6 +10,8 @@ def setup(browser):
     browser.get(url)
     window1 = browser.window_handles
     browser.switch_to.window(window1[1])
+    if browser.name == "firefox":
+        pytest.skip("firefox browser is used")
 
 
 def test_general_tab_view(browser, ID=extension["id"]):

@@ -88,25 +88,26 @@ class ProductPage(BasePage):
 
     # Определяем валюту старницы
     def get_currency_page(self):
-        product_price = self.browser.find_element(*ProductPageLocators.Product_price).text
+        product_price = self.browser.find_elements(*ProductPageLocators.Product_price)
         for currency in currency_processing:
-            if currency in product_price:
+            if currency in product_price[0].text:
                 value = currency_processing[currency]
                 return value
 
     def should_be_seller_trust_level_title(self):
         title = self.browser.find_element(*ProductPageLocators.Seller_trust_level_title)
-        actions = ActionChains(self.browser)
-        actions.move_to_element(title).perform()
-        assert self.is_element_present(*ProductPageLocators.Seller_trust_level_title), "title is not presented "
+        assert title, "title is not presented "
 
     def should_not_be_seller_trust_level_title(self):
         assert self.is_not_element_present(*ProductPageLocators.Seller_trust_level_title), "title is presented"
 
     def scroll_to_text_delivery_and_returns(self):
         delivery_and_returns = self.browser.find_element(*ProductPageLocators.Delivery_and_returns)
-        scroll_origin = ScrollOrigin.from_element(delivery_and_returns)
-        ActionChains(self.browser).scroll_from_origin(scroll_origin, 0, 500).perform()
+        if self.browser.name == "firefox":
+            self.browser.execute_script("arguments[0].scrollIntoView(true);", delivery_and_returns)
+        else:
+            scroll_origin = ScrollOrigin.from_element(delivery_and_returns)
+            ActionChains(self.browser).scroll_from_origin(scroll_origin, 0, 500).perform()
 
     def click_on_button_wonderful(self):
         button_wonderful = self.browser.find_element(*ProductPageLocators.Button_wonderful)

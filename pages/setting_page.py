@@ -22,6 +22,10 @@ class SettingsPage(BasePage):
         currency_list = self.browser.find_element(*SettingsLocators.Widget_settings_currency_list)
         currency_list.click()
 
+    def open_language_list(self):
+        language_list = self.browser.find_element(*SettingsLocators.Widget_settings_language_list)
+        language_list.click()
+
     def get_languages_list(self):
         languages_list = []
         Languages_list_option = self.browser.find_elements(*SettingsLocators.Languages_list_option)
@@ -44,6 +48,36 @@ class SettingsPage(BasePage):
                 currency = self.browser.find_element(By.XPATH, SettingsLocators.option_currency + str([r]))
                 currency.click()
             r += 1
+
+    def choose_language(self, language):
+        Languages_list_option = self.browser.find_elements(*SettingsLocators.Languages_list_option)
+        r = 1
+        for value in Languages_list_option:
+            if value.get_attribute('value') == language:
+                currency = self.browser.find_element(By.XPATH, SettingsLocators.option_languages + str([r]))
+                currency.click()
+            r += 1
+
+    def translation_check_for_settings(self, language):
+        if language == "ru":
+            text_settings = self.browser.find_element(*SettingsLocators.Widget_text_settings).text
+            assert text_settings == "Настройки", f"Ошибка, вернулось название настроек {text_settings}, для {language}"
+        if language == "en":
+            text_settings = self.browser.find_element(*SettingsLocators.Widget_text_settings).text
+            assert text_settings == "Settings", f"Ошибка, вернулось название настроек {text_settings}, для {language}"
+        if language == "pl":
+            text_settings = self.browser.find_element(*SettingsLocators.Widget_text_settings).text
+            assert text_settings == "Ustawienia", f"Ошибка, вернулось название настроек {text_settings}, для {language}"
+        if language == "es":
+            text_settings = self.browser.find_element(*SettingsLocators.Widget_text_settings).text
+            assert text_settings == "Ajustes", f"Ошибка, вернулось название настроек {text_settings}, для {language}"
+        if language == "fr":
+            text_settings = self.browser.find_element(*SettingsLocators.Widget_text_settings).text
+            assert text_settings == "Paramètres", f"Ошибка, вернулось название настроек {text_settings}, для {language}"
+        if language == "pt":
+            text_settings = self.browser.find_element(*SettingsLocators.Widget_text_settings).text
+            assert text_settings == "Configurações", \
+                f"Ошибка, вернулось название настроек {text_settings}, для {language} "
 
     def close_settings(self):
         settings_button_cross = self.browser.find_element(*SettingsLocators.Widget_settings_button_cross)
@@ -216,8 +250,14 @@ class SettingsPage(BasePage):
         dark_theme.click()
 
     def should_be_dark_theme_active(self):
-        assert self.is_element_present(*SettingsLocators.Widget_value_theme)
+        dark_theme = self.browser.find_element(*SettingsLocators.Dark_theme)
+        attr_value = dark_theme.get_attribute("class")
+        assert attr_value == SettingsLocators.theme_on, f"The dark_theme is not switched on"
 
     def turn_on_widget_checkbox_seller_verification(self):
         checkbox_seller_verification = self.browser.find_element(*SettingsLocators.Widget_checkbox_seller_verification)
         checkbox_seller_verification.click()
+
+    def scroll_to_general_settings(self):
+        text_color_scheme = self.browser.find_element(*SettingsLocators.Widget_extension_text_dark)
+        self.browser.execute_script("arguments[0].scrollIntoView(true);", text_color_scheme)

@@ -11,6 +11,11 @@ def setup(browser):
     browser.get(url)
     window1 = browser.window_handles
     browser.switch_to.window(window1[1])
+    if browser.name == "firefox":
+        page = WidgetPage(browser, browser.current_url)
+        page.setup_firefox()
+        window2 = browser.window_handles
+        browser.switch_to.window(window2[1])
 
 
 def test_zero_reviews(browser):
@@ -27,6 +32,8 @@ def test_zero_reviews(browser):
 
 
 def test_number_of_reviews(browser):
+    if browser.name == "firefox":
+        pytest.skip("firefox browser is used")
     # url = "https://aliexpress.ru/item/32910454019.html"
     # url = "https://aliexpress.ru/item/32974708727.html"
     # browser.get(url)
@@ -44,6 +51,7 @@ def test_number_of_reviews(browser):
         f"не равно количеству изображений: {quantity_reviews_images} "
 
 
+# Для firefox сделал обход открывать первый
 def test_open_random_card_of_reviews(browser):
     page = WidgetPage(browser, browser.current_url)
     page.should_be_option_start()
@@ -52,9 +60,15 @@ def test_open_random_card_of_reviews(browser):
     # Выбор случайного обзора
     random_review = page.choose_random_review()
     # Поиск обзора
-    review = page.scroll_to_random_review(random_review)
-    # Открыть случайным обзор
-    page.open_random_review(review)
-    # Проверка что обзор открыт и  отображается
-    page.should_be_displayed_overview()
-    time.sleep(1)
+    if browser.name == "firefox":
+        review = page.scroll_to_random_review(1)
+        page.open_random_review(review)
+        page.should_be_displayed_overview()
+        time.sleep(1)
+    else:
+        review = page.scroll_to_random_review(random_review)
+        # Открыть случайным обзор
+        page.open_random_review(review)
+        # Проверка что обзор открыт и  отображается
+        page.should_be_displayed_overview()
+        time.sleep(1)

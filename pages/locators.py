@@ -16,6 +16,8 @@ class BasePageLocators:
     Warning_text = (By.XPATH, "//div[@class='warnning-text']")
     # Взять курс USD для "aliexpress"
     Usd_course_aliExpress_global = (By.XPATH, "//div[@class='rate-value-value'][1]")
+    # Установка firefox
+    Setup_firefox = (By.XPATH, "//button[contains(text(),'Всё понятно, включить Alitools!')]")
 
 
 class ProductPageLocators:
@@ -65,12 +67,15 @@ class SettingsLocators:
     active_tab = "h0isI _3DJWM"
 
     Widget_settings_currency_list = (By.XPATH, widget + currency_list)
+    Widget_settings_language_list = (By.XPATH, widget + languages_list)
     Currency_list_option = (By.XPATH, option_currency)
     Languages_list_option = (By.XPATH, option_languages)
     Widget_settings_button_cross = (By.XPATH, widget + button_cross)
     Widget_dark_theme = (By.XPATH, widget + "//div[@class ='aXt0T']/label[2]")
     Widget_value_theme = (By.XPATH, "//body/div[6]/div[2]")
     Widget_checkbox_seller_verification = (By.XPATH, widget+"//label[@class ='_2eD5O']/span")
+    Widget_text_settings = (By.XPATH, widget + "//div[@class ='_8cmLo']")
+    Widget_extension_text_dark = (By.XPATH, "//div[@class ='at-theme-dark'][2]//div[@class ='_1LiA_']")
 
     # Локаторы для настроек
     # Вкладка "Общее"
@@ -184,9 +189,10 @@ class WidgetLocators:
     # + Дополнительный для функции
     Similar_message_displayed = (By.CSS_SELECTOR, ".at-similar-list__best-offer-message")
 
+
     # --------------------------------------------------------------------------------------------------------------
     # история
-    History_widget_button = (By.CSS_SELECTOR, ".at-widget-all-history")
+    History_widget_button = (By.CSS_SELECTOR, ".at-widget-all-history__label")
     History_widget_collapse_button = (
         By.XPATH, "//div[@class ='at-widgets-panel at-widgets-history']/div[@class ='at-widgets-panel__arrow-wrapper']")
     History_widget_expand_button = (By.XPATH,

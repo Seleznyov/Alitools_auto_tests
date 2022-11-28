@@ -1,9 +1,10 @@
 import time
+
 from .base_page import BasePage
 from .locators import WidgetLocators
 import nums_from_string
 from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.common.actions.wheel_input import ScrollOrigin
+# from selenium.webdriver.common.actions.wheel_input import ScrollOrigin
 import random
 
 
@@ -160,16 +161,18 @@ class WidgetPage(BasePage):
         reviews_images = self.browser.find_elements(*WidgetLocators.Value_Reviews_Images)
         while index >= len(reviews_images):
             image = reviews_images[-1]
-            actions = ActionChains(self.browser)
-            actions.move_to_element(image).perform()
-            scroll_origin = ScrollOrigin.from_element(image)
-            ActionChains(self.browser).scroll_from_origin(scroll_origin, 0, 100).perform()
+            self.browser.execute_script("arguments[0].scrollIntoView(true);", image)
+            # actions = ActionChains(self.browser)
+            # actions.move_to_element(image).perform()
+            # scroll_origin = ScrollOrigin.from_element(image)
+            # ActionChains(self.browser).scroll_from_origin(scroll_origin, 0, 100).perform()
             time.sleep(2)
             reviews_images = self.browser.find_elements(*WidgetLocators.Value_Reviews_Images)
         if index in range(len(reviews_images)):
             image = reviews_images[index]
-            actions = ActionChains(self.browser)
-            actions.move_to_element(image).perform()
+            self.browser.execute_script("arguments[0].scrollIntoView(true);", image)
+            # actions = ActionChains(self.browser)
+            # actions.move_to_element(image).perform()
             random_review = reviews_images[index-1]
             # random_review.click()
             return random_review
@@ -201,10 +204,11 @@ class WidgetPage(BasePage):
         while x <= iteration_value:
             for image in reviews_images:
                 if image == reviews_images[-1]:
-                    actions = ActionChains(self.browser)
-                    actions.move_to_element(image).perform()
-                    scroll_origin = ScrollOrigin.from_element(image)
-                    ActionChains(self.browser).scroll_from_origin(scroll_origin, 0, 100).perform()
+                    self.browser.execute_script("arguments[0].scrollIntoView(true);", image)
+                    # actions = ActionChains(self.browser)
+                    # actions.move_to_element(image).perform()
+                    # scroll_origin = ScrollOrigin.from_element(image)
+                    # ActionChains(self.browser).scroll_from_origin(scroll_origin, 0, 100).perform()
                     time.sleep(2)
             reviews_images = self.browser.find_elements(*WidgetLocators.Value_Reviews_Images)
             x += 1
@@ -282,11 +286,12 @@ class WidgetPage(BasePage):
         for i in range(len(prices) - 1):
             price0 = prices[i].text
             price0 = "".join(c for c in price0 if c.isdecimal())
-            actions = ActionChains(self.browser)
-            actions.move_to_element(prices[i + 1]).perform()
+            self.browser.execute_script("arguments[0].scrollIntoView(true);", prices[i + 1])
+            # actions = ActionChains(self.browser)
+            # actions.move_to_element(prices[i + 1]).perform()
             price1 = prices[i + 1].text
             price1 = "".join(c for c in price1 if c.isdecimal())
-            # print(price0,price1)
+            print(price0, price1)
             assert int(price0) <= int(price1), f"Ошибка сортировки цене товара, {price0} не меньше {price1} "
 
 # Проверка сортировки по заказам
@@ -301,11 +306,12 @@ class WidgetPage(BasePage):
         for i in range(len(orders) - 1):
             orders0 = orders[i].text
             orders0 = "".join(c for c in orders0 if c.isdecimal())
-            actions = ActionChains(self.browser)
-            actions.move_to_element(orders[i + 1]).perform()
+            self.browser.execute_script("arguments[0].scrollIntoView(true);", orders[i + 1])
+            # actions = ActionChains(self.browser)
+            # actions.move_to_element(orders[i + 1]).perform()
             orders1 = orders[i + 1].text
             orders1 = "".join(c for c in orders1 if c.isdecimal())
-            # print(orders0,orders1)
+            print(orders0, orders1)
             assert int(orders0) >= int(
                 orders1), f"Ошибка сортировки по количеству заказов, {orders0} меньше чем {orders1} "
 

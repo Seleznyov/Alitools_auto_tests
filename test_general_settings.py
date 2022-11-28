@@ -12,6 +12,12 @@ def setup(browser):
     browser.get(url)
     window1 = browser.window_handles
     browser.switch_to.window(window1[1])
+    if browser.name == "firefox":
+        page = WidgetPage(browser, browser.current_url)
+        page.setup_firefox()
+        window2 = browser.window_handles
+        browser.switch_to.window(window2[1])
+        time.sleep(2)
 
 
 def test_displaying_a_list_of_languages(browser):
@@ -51,10 +57,9 @@ def test_theme_change(browser, directory_name="settings"):
     page = SettingsPage(browser, browser.current_url)
     page.choose_dark_theme()
     page.should_be_dark_theme_active()
-    active_tab = page.get_active_tab()
-    page.should_be_extension_version(active_tab)
+    page.scroll_to_general_settings()
+    time.sleep(2)
     page.screenshot_page(directory_name)
-    time.sleep(1)
 
 
 def test_turn_on_seller_trust_level(browser):
@@ -76,5 +81,18 @@ def test_turn_on_seller_trust_level(browser):
     time.sleep(2)
     page_widget.close_price_card()
     page_product = ProductPage(browser, browser.current_url)
-    time.sleep(2)
     page_product.should_be_seller_trust_level_title()
+
+
+@pytest.mark.parametrize('languages', language)
+def test_language_change(browser, languages):
+    page = WidgetPage(browser, browser.current_url)
+    page.should_be_option_start()
+    page.click_on_cross_start_greeting()
+    page.open_price_widget()
+    page.open_price_settings()
+    page = SettingsPage(browser, browser.current_url)
+    page.open_language_list()
+    page.choose_language(languages)
+    page.translation_check_for_settings(languages)
+    time.sleep(1)

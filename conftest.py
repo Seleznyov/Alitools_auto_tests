@@ -2,6 +2,7 @@ import pytest
 from selenium import webdriver
 from selenium_stealth import stealth
 from selenium.webdriver.chrome.options import Options
+# from selenium.webdriver.firefox.options import Options
 
 
 def pytest_addoption(parser):
@@ -33,6 +34,15 @@ def browser(request):
                 renderer="Intel Iris OpenGL Engine",
                 fix_hairline=True,
                 )
+    elif browser_name == "firefox":
+        # options.set_preference("dom.webdriver.enabled", False)
+        # options.set_preference('dom.webnotifications.enabled', False)
+        # options.set_preference('useAutomationExtension', False)
+        ex = "alitools13897.xpi"
+        ex_dir = "C:\\Users\\HP\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\4d9syyxl.default\\extensions\\"
+        browser = webdriver.Firefox()
+        browser.install_addon(ex_dir + ex, temporary=True)
+        browser.maximize_window()
     else:
         raise pytest.UsageError("--browser_name should be chrome or firefox")
     yield browser

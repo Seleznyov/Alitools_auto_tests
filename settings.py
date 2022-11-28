@@ -18,7 +18,7 @@ url_zero_reviews = ['https://aliexpress.ru/item/1005004774771440.html',
 # Урлы с разным рейтингом
 url_seller_rating = {"High": "4001294911152.html",
                      "Medium": "1005003710294306.html",
-                     "Low": "1005004855892920.html"}
+                     "Low": "4001156333583.html"}
 
 profile = {"Email": "stanislav.seleznev@bdtech.by", "Password": "Stefler_1992"}
 

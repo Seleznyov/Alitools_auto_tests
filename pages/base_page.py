@@ -1,5 +1,4 @@
 import datetime
-
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
@@ -9,7 +8,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 
 
 class BasePage:
-    def __init__(self, browser, url, timeout=5):
+    def __init__(self, browser, url, timeout=6):
         self.browser = browser
         self.url = url
         self.browser.implicitly_wait(timeout)
@@ -24,7 +23,7 @@ class BasePage:
             return False
         return True
 
-    def is_not_element_present(self, how, what, timeout=3):
+    def is_not_element_present(self, how, what, timeout=4):
         try:
             WebDriverWait(self.browser, timeout).until(EC.presence_of_element_located((how, what)))
         except TimeoutException:
@@ -65,8 +64,14 @@ class BasePage:
         self.browser.get(url)
         usd_courses = self.browser.find_elements(*BasePageLocators.Usd_course_aliExpress_global)
         for i in range(len(usd_courses)):
-            actions = ActionChains(self.browser)
-            actions.move_to_element(usd_courses[1]).perform()
+            self.browser.execute_script("arguments[0].scrollIntoView(true);", usd_courses[1])
             usd_course = usd_courses[1].text
             usd_course = usd_course[:5]
             return float(usd_course)
+
+    def setup_firefox(self):
+        setup_firefox = self.browser.find_element(*BasePageLocators.Setup_firefox)
+        setup_firefox.click()
+
+    def refresh_page(self):
+        self.browser.refresh()

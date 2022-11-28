@@ -11,6 +11,11 @@ def setup(browser):
     browser.get(url)
     window1 = browser.window_handles
     browser.switch_to.window(window1[1])
+    if browser.name == "firefox":
+        page = WidgetPage(browser, browser.current_url)
+        page.setup_firefox()
+        window2 = browser.window_handles
+        browser.switch_to.window(window2[1])
 
 
 def test_number_of_similar_products(browser):
@@ -28,6 +33,8 @@ def test_number_of_similar_products(browser):
 @pytest.mark.parametrize('currency', currencies)
 # @pytest.mark.skip(reason="Есть ошибка")
 def test_open_random_product_card(browser, currency, email=profile["Email"], password=profile["Password"]):
+    if browser.name == "firefox":
+        pytest.skip("firefox browser is used")
     page = WidgetPage(browser, browser.current_url)
     page.should_be_option_start()
     page.click_on_cross_start_greeting()
