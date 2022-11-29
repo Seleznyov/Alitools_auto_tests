@@ -1,5 +1,5 @@
 import time
-
+from selenium.common.exceptions import ElementNotInteractableException
 from .base_page import BasePage
 from .locators import WidgetLocators
 import nums_from_string
@@ -366,6 +366,25 @@ class WidgetPage(BasePage):
     def open_product_from_history_widget(self):
         product_one = self.browser.find_element(*WidgetLocators.Product_in_history_for_widget)
         product_one.click()
+
+    def should_be_card_of_product(self):
+        assert self.is_element_present(*WidgetLocators.Product_in_history_for_widget), f"Карточка товара не отображается"
+
+    def collapse_history(self):
+        collapse_history_button = self.browser.find_element(*WidgetLocators.History_widget_collapse_button)
+        collapse_history_button.click()
+
+    def expand_history(self):
+        expand_history_button = self.browser.find_element(*WidgetLocators.History_widget_expand_button)
+        expand_history_button.click()
+
+    def product_from_history_widget_not_displayed(self):
+        product_one = self.browser.find_element(*WidgetLocators.Product_in_history_for_widget)
+        assert product_one.is_displayed() is False, f"Карточка товара отображается"
+
+    def product_from_history_widget_displayed(self):
+        product_one = self.browser.find_element(*WidgetLocators.Product_in_history_for_widget)
+        assert product_one.is_displayed() is True, f"Карточка товара не отображается"
 
 # ======================================================================================================================
 # Переводы кнопок виджета
