@@ -157,7 +157,7 @@ class WidgetLocators:
 
     # --------------------------------------------------------------------------------------------------------------
     # продавец
-    Seller_widget_button = (By.XPATH, "//div[contains(text(),'продавец')]")
+    Seller_widget_button = (By.CSS_SELECTOR, ".at-widget-seller-check__percentage__label")
     Card_name_seller = (By.XPATH, "//div[contains(text(),'Рейтинг продавца')]")
     Seller_button_settings = (By.XPATH, "//div[@class ='at-body__controls']/*[1]")
     Seller_button_cross = (By.XPATH, "//div[@class ='at-body__controls']/*[2]")
@@ -166,7 +166,7 @@ class WidgetLocators:
 
     # --------------------------------------------------------------------------------------------------------------
     # обзоры
-    Reviews_widget_button = (By.XPATH, "//div[contains(text(),'обзоры')]")
+    Reviews_widget_button = (By.CSS_SELECTOR, ".at-widget-reviews__label")
     Card_name_reviews = (By.XPATH, "//div[contains(text(),'Обзоры')]")
     Reviews_button_settings = (By.XPATH, "//div[@class ='at-body__controls']/*[1]")
     Reviews_button_cross = (By.XPATH, "//div[@class ='at-body__controls']/*[2]")
@@ -177,7 +177,7 @@ class WidgetLocators:
 
     # --------------------------------------------------------------------------------------------------------------
     # похожие
-    Similar_widget_button = (By.XPATH, "//div[contains(text(),'похожие')]")
+    Similar_widget_button = (By.CSS_SELECTOR, ".at-widget-similars__label")
     Card_name_similar = (By.XPATH, "//div[contains(text(),'Похожие')]")
     Similar_drop_down_sort = (By.CSS_SELECTOR, ".at-drop-down__label")
     Drop_down_values_1_2_3 = (By.XPATH, "//div[@class ='at-drop-down__menu']/div[@class ='at-drop-down__item']")

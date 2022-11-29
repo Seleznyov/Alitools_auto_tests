@@ -96,3 +96,8 @@ def test_language_change(browser, languages):
     page.choose_language(languages)
     page.translation_check_for_settings(languages)
     time.sleep(1)
+    page.close_settings()
+    page = WidgetPage(browser, browser.current_url)
+    page.close_price_card()
+    page.translation_check_for_widget(languages)
+    time.sleep(1)

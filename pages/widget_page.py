@@ -368,3 +368,70 @@ class WidgetPage(BasePage):
         product_one.click()
 
 # ======================================================================================================================
+# Переводы кнопок виджета
+    def translation_check_for_widget(self, language):
+        if language == "ru":
+            price_button = self.browser.find_element(*WidgetLocators.Price_widget_button).text
+            assert price_button == "цена", f"Ошибка, вернулось название кнопки {price_button}, для {language}"
+        if language == "en":
+            price_button = self.browser.find_element(*WidgetLocators.Price_widget_button).text
+            assert price_button == "price", f"Ошибка, вернулось название кнопки {price_button}, для {language}"
+            seller_button = self.browser.find_element(*WidgetLocators.Seller_widget_button).text
+            assert seller_button == "seller", f"Ошибка, вернулось название кнопки {seller_button}, для {language}"
+            reviews_button = self.browser.find_element(*WidgetLocators.Reviews_widget_button).text
+            assert reviews_button == "reviews", f"Ошибка, вернулось название кнопки {reviews_button}, для {language}"
+            similar_button = self.browser.find_element(*WidgetLocators.Similar_widget_button).text
+            assert similar_button == "similar", f"Ошибка, вернулось название кнопки {similar_button}, для {language}"
+            history_button = self.browser.find_element(*WidgetLocators.History_widget_button).text
+            assert history_button == "history", f"Ошибка, вернулось название кнопки {history_button}, для {language}"
+
+        if language == "pl":
+            price_button = self.browser.find_element(*WidgetLocators.Price_widget_button).text
+            assert price_button == "cena", f"Ошибка, вернулось название кнопки {price_button}, для {language}"
+            seller_button = self.browser.find_element(*WidgetLocators.Seller_widget_button).text
+            assert seller_button == "sprzedawca", f"Ошибка, вернулось название кнопки {seller_button}, для {language}"
+            reviews_button = self.browser.find_element(*WidgetLocators.Reviews_widget_button).text
+            assert reviews_button == "recenzje", f"Ошибка, вернулось название кнопки {reviews_button}, для {language}"
+            similar_button = self.browser.find_element(*WidgetLocators.Similar_widget_button).text
+            assert similar_button == "podobne", f"Ошибка, вернулось название кнопки {similar_button}, для {language}"
+            history_button = self.browser.find_element(*WidgetLocators.History_widget_button).text
+            assert history_button == "history", f"Ошибка, вернулось название кнопки {history_button}, для {language}"
+
+        if language == "es":
+            price_button = self.browser.find_element(*WidgetLocators.Price_widget_button).text
+            assert price_button == "precio", f"Ошибка, вернулось название кнопки {price_button}, для {language}"
+            seller_button = self.browser.find_element(*WidgetLocators.Seller_widget_button).text
+            assert seller_button == "vendedor", f"Ошибка, вернулось название кнопки {seller_button}, для {language}"
+            reviews_button = self.browser.find_element(*WidgetLocators.Reviews_widget_button).text
+            assert reviews_button == "opiniones", f"Ошибка, вернулось название кнопки {reviews_button}, для {language}"
+            similar_button = self.browser.find_element(*WidgetLocators.Similar_widget_button).text
+            assert similar_button == "similares", f"Ошибка, вернулось название кнопки {similar_button}, для {language}"
+            history_button = self.browser.find_element(*WidgetLocators.History_widget_button).text
+            assert history_button == "history", f"Ошибка, вернулось название кнопки {history_button}, для {language}"
+
+        if language == "fr":
+            price_button = self.browser.find_element(*WidgetLocators.Price_widget_button).text
+            assert price_button == "prix", f"Ошибка, вернулось название кнопки {price_button}, для {language}"
+            seller_button = self.browser.find_element(*WidgetLocators.Seller_widget_button).text
+            assert seller_button == "vendeur", f"Ошибка, вернулось название кнопки {seller_button}, для {language}"
+            reviews_button = self.browser.find_element(*WidgetLocators.Reviews_widget_button).text
+            assert reviews_button == "revues", f"Ошибка, вернулось название кнопки {reviews_button}, для {language}"
+            similar_button = self.browser.find_element(*WidgetLocators.Similar_widget_button).text
+            assert similar_button == "similaires", f"Ошибка, вернулось название кнопки {similar_button}, для {language}"
+            history_button = self.browser.find_element(*WidgetLocators.History_widget_button).text
+            assert history_button == "history", f"Ошибка, вернулось название кнопки {history_button}, для {language}"
+
+        if language == "pt":
+            price_button = self.browser.find_element(*WidgetLocators.Price_widget_button).text
+            assert price_button == "preço", \
+                f"Ошибка, вернулось название кнопки {price_button}, для {language} "
+            seller_button = self.browser.find_element(*WidgetLocators.Seller_widget_button).text
+            assert seller_button == "vendedor", f"Ошибка, вернулось название кнопки {seller_button}, для {language}"
+            reviews_button = self.browser.find_element(*WidgetLocators.Reviews_widget_button).text
+            assert reviews_button == "comentários", f"Ошибка, вернулось название кнопки {reviews_button}, для {language}"
+            similar_button = self.browser.find_element(*WidgetLocators.Similar_widget_button).text
+            assert similar_button == "semelhantes", f"Ошибка, вернулось название кнопки {similar_button}, для {language}"
+            history_button = self.browser.find_element(*WidgetLocators.History_widget_button).text
+            assert history_button == "histórico", f"Ошибка, вернулось название кнопки {history_button}, для {language}"
+
+# ======================================================================================================================
