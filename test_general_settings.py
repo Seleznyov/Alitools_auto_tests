@@ -17,7 +17,7 @@ def setup(browser):
         page.setup_firefox()
         window2 = browser.window_handles
         browser.switch_to.window(window2[1])
-        time.sleep(2)
+        time.sleep(1)
 
 
 def test_displaying_a_list_of_languages(browser):
@@ -58,7 +58,7 @@ def test_theme_change(browser, directory_name="settings"):
     page.choose_dark_theme()
     page.should_be_dark_theme_active()
     page.scroll_to_general_settings()
-    time.sleep(2)
+    time.sleep(0.5)
     page.screenshot_page(directory_name)
 
 
@@ -67,18 +67,18 @@ def test_turn_on_seller_trust_level(browser):
     page_widget.should_be_option_start()
     page_widget.click_on_cross_start_greeting()
     page_product = ProductPage(browser, browser.current_url)
-    time.sleep(2)
+    time.sleep(0.7)
     page_product.scroll_to_text_delivery_and_returns()
     page_product.should_not_be_seller_trust_level_title()
     page_widget = WidgetPage(browser, browser.current_url)
-    time.sleep(2)
+    time.sleep(0.7)
     page_widget.open_price_widget()
     page_widget.open_price_settings()
     page_settings = SettingsPage(browser, browser.current_url)
     page_settings.turn_on_widget_checkbox_seller_verification()
     page_settings.close_settings()
     page_widget = WidgetPage(browser, browser.current_url)
-    time.sleep(2)
+    time.sleep(0.7)
     page_widget.close_price_card()
     page_product = ProductPage(browser, browser.current_url)
     page_product.should_be_seller_trust_level_title()
@@ -95,9 +95,10 @@ def test_language_change(browser, languages):
     page.open_language_list()
     page.choose_language(languages)
     page.translation_check_for_settings(languages)
-    time.sleep(1)
+    time.sleep(0.7)
     page.close_settings()
+    time.sleep(0.5)
     page = WidgetPage(browser, browser.current_url)
     page.close_price_card()
     page.translation_check_for_widget(languages)
-    time.sleep(1)
+    time.sleep(0.5)

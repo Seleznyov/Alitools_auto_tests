@@ -31,6 +31,7 @@ def test_zero_reviews(browser):
     page.should_be_displayed_text()
 
 
+# Для firefox пока skip а так вроде работает
 def test_number_of_reviews(browser):
     if browser.name == "firefox":
         pytest.skip("firefox browser is used")
@@ -51,8 +52,9 @@ def test_number_of_reviews(browser):
         f"не равно количеству изображений: {quantity_reviews_images} "
 
 
-# Для firefox сделал обход открывать первый
 def test_open_random_card_of_reviews(browser):
+    if browser.name == "firefox":
+        pytest.skip("firefox browser is used")
     page = WidgetPage(browser, browser.current_url)
     page.should_be_option_start()
     page.click_on_cross_start_greeting()
@@ -60,15 +62,10 @@ def test_open_random_card_of_reviews(browser):
     # Выбор случайного обзора
     random_review = page.choose_random_review()
     # Поиск обзора
-    if browser.name == "firefox":
-        review = page.scroll_to_random_review(1)
-        page.open_random_review(review)
-        page.should_be_displayed_overview()
-        time.sleep(1)
-    else:
-        review = page.scroll_to_random_review(random_review)
-        # Открыть случайным обзор
-        page.open_random_review(review)
-        # Проверка что обзор открыт и  отображается
-        page.should_be_displayed_overview()
-        time.sleep(1)
+    review = page.scroll_to_random_review(random_review)
+    time.sleep(0.2)
+    # Открыть случайным обзор
+    page.open_random_review(review)
+    # Проверка что обзор открыт и  отображается
+    page.should_be_displayed_overview()
+    time.sleep(0.7)

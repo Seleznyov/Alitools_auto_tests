@@ -47,24 +47,25 @@ def test_open_random_product_card(browser, currency, email=profile["Email"], pas
         pass
     else:
         # Выполням логин
-        time.sleep(1)
+        time.sleep(0.7)
         page.log_in_aliexpress(email, password)
-        time.sleep(2)
+        time.sleep(1)
         page.click_on_cress_repeated_favorites()
         page.open_profile()
         page.open_regional_settings()
         page.country_check()
         page.open_regional_currency_list()
+        time.sleep(0.5)
         page.select_currency(currency)
-        # Сохранение выбранной валюты
+        # Сохранение настроек
         page.save_settings()
-        time.sleep(2)
+        time.sleep(1)
         page.click_on_logo()
         page = WidgetPage(browser, browser.current_url)
-        time.sleep(1)
+        time.sleep(0.5)
         # Открываем товар из истории с новой уже валютой
         page.open_product_from_history_widget()
-        time.sleep(1)
+        time.sleep(0.5)
         window2 = browser.window_handles
         browser.switch_to.window(window2[2])
     if value_widget_products > 0:
@@ -78,12 +79,12 @@ def test_open_random_product_card(browser, currency, email=profile["Email"], pas
         price_random_product = page.get_price_random_product(choose_rand_prod)
         # Открыть случайный продукт
         page.open_random_product(choose_rand_prod)
-        time.sleep(1)
+        time.sleep(0.5)
         window3 = browser.window_handles
         if len(window3) == 3:
             browser.switch_to.window(window3[2])
             page.click_on_cress_repeated_favorites()
-            time.sleep(1)
+            time.sleep(0.5)
         else:
             browser.switch_to.window(window3[3])
         url_new = browser.current_url.split('.html')[0]

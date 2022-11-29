@@ -41,7 +41,7 @@ def test_general_tab_view(browser, ID=extension["id"]):
     page.light_theme_should_be_on()
     page.should_be_dark_theme()
     page.should_be_extension_version(active_tab)
-    time.sleep(1)
+    time.sleep(0.5)
 
 
 def test_image_search_tab_view(browser, ID=extension["id"]):
@@ -51,7 +51,7 @@ def test_image_search_tab_view(browser, ID=extension["id"]):
     active_tab = page.get_active_tab()
     assert active_tab == setting_tabs[0], f"Активна вкладка {active_tab}, а не {setting_tabs[0]}"
     page.open_search_by_image_tab()
-    time.sleep(1)
+    time.sleep(0.7)
     active_tab = page.get_active_tab()
     assert active_tab == setting_tabs[1], f"Активна вкладка {active_tab}, а не {setting_tabs[1]}"
     active_tab = page.get_active_tab()
@@ -63,7 +63,7 @@ def test_image_search_tab_view(browser, ID=extension["id"]):
     assert list_disabled_site == disabled_site_list, \
         f"'Список расширения': {list_disabled_site} не равен 'эталонному списку': {disabled_site_list}. "
     page.should_be_extension_version(active_tab)
-    time.sleep(1)
+    time.sleep(0.5)
 
 
 def test_adviser_tab_view(browser, ID=extension["id"]):
@@ -73,7 +73,7 @@ def test_adviser_tab_view(browser, ID=extension["id"]):
     active_tab = page.get_active_tab()
     assert active_tab == setting_tabs[0], f"Активна вкладка {active_tab}, а не {setting_tabs[0]}"
     page.open_adviser_tab()
-    time.sleep(1)
+    time.sleep(0.7)
     active_tab = page.get_active_tab()
     assert active_tab == setting_tabs[2], f"Активна вкладка {active_tab}, а не {setting_tabs[2]}"
     page.should_be_block_show_offers()
@@ -83,7 +83,7 @@ def test_adviser_tab_view(browser, ID=extension["id"]):
     page.should_be_block_text_if_you_disable_the_widget()
     page.should_be_image_adviser()
     page.should_be_extension_version(active_tab)
-    time.sleep(1)
+    time.sleep(0.5)
 
 
 def test_history_tab_view(browser, ID=extension["id"], directory_name="settings"):
@@ -93,7 +93,7 @@ def test_history_tab_view(browser, ID=extension["id"], directory_name="settings"
     active_tab = page.get_active_tab()
     assert active_tab == setting_tabs[0], f"Активна вкладка {active_tab}, а не {setting_tabs[0]}"
     page.open_tab_history()
-    time.sleep(1)
+    time.sleep(0.7)
     active_tab = page.get_active_tab()
     assert active_tab == setting_tabs[3], f"Активна вкладка {active_tab}, а не {setting_tabs[3]}"
     page.should_be_block_sites_with_history_enabled()
@@ -101,7 +101,7 @@ def test_history_tab_view(browser, ID=extension["id"], directory_name="settings"
     page.should_be_image_history()
     page.should_be_extension_version(active_tab)
     page.screenshot_page(directory_name)
-    time.sleep(1)
+    time.sleep(0.5)
 
 
 def test_synchronization_tab_view(browser, ID=extension["id"]):
@@ -111,7 +111,7 @@ def test_synchronization_tab_view(browser, ID=extension["id"]):
     active_tab = page.get_active_tab()
     assert active_tab == setting_tabs[0], f"Активна вкладка {active_tab}, а не {setting_tabs[0]}"
     page.open_tab_synchronization()
-    time.sleep(1)
+    time.sleep(0.7)
     active_tab = page.get_active_tab()
     assert active_tab == setting_tabs[4], f"Активна вкладка {active_tab}, а не {setting_tabs[4]}"
     page.should_be_icon_cloud()
