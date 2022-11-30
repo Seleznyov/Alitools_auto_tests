@@ -3,7 +3,7 @@ currency_list = ["USD", "EUR", "RUB", "UAH", "PLN", "GBP", "BRL", "CAD", "SGD", 
 
 language = ["ru", "en", "pl", "es", "fr", "pt"]
 
-# Стартовые урыл "Расширения"
+# Стартовые урлы "Расширения"
 recommendedProductUrls = ['https://www.aliexpress.com/item/4000203522848.html',
                           'https://www.aliexpress.com/item/4001294911152.html',
                           'https://www.aliexpress.com/item/32855791603.html',
@@ -14,6 +14,12 @@ recommendedProductUrls = ['https://www.aliexpress.com/item/4000203522848.html',
 url_zero_reviews = ['https://aliexpress.ru/item/1005004774771440.html',
                     'https://aliexpress.ru/item/1005004720630952.html',
                     'https://aliexpress.ru/item/1005004242353824.html']
+
+# Урлы случайных товаров
+url_random_four_product = {"1": "1005004946487223.html",
+                           "2": "1005001883884598.html",
+                           "3": "32949830845.html",
+                           "4": "4000238008009.html"}
 
 # Урлы с разным рейтингом
 url_seller_rating = {"High": "4001294911152.html",

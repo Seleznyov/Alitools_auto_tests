@@ -385,6 +385,26 @@ class WidgetPage(BasePage):
         product_one = self.browser.find_element(*WidgetLocators.Product_in_history_for_widget)
         assert product_one.is_displayed() is True, f"Карточка товара не отображается"
 
+    def list_products_from_history_widget(self):
+        list_of_products = []
+        products = self.browser.find_elements(*WidgetLocators.Product_in_history_for_widget)
+        for product in products:
+            product = product.get_attribute("href")
+            list_of_products.append(product.split('?')[0])
+        return list_of_products
+
+    def open_product_list(self, list_product):
+        for i in list_product:
+            url = list_product[i]
+            self.browser.get("https://www.aliexpress.com/item/" + url)
+            window = self.browser.window_handles
+            self.browser.switch_to.window(window[1])
+            time.sleep(1.2)
+
+    def max_number_of_products_in_history_widget(self, list_product):
+        maximum_number_of_products = len(list_product)
+        assert maximum_number_of_products == 4, f"Количетсво товаров равно: {maximum_number_of_products}, а не 4"
+
 # ======================================================================================================================
 # Переводы кнопок виджета
     def translation_check_for_widget(self, language):

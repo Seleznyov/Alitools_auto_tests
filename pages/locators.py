@@ -13,7 +13,10 @@ class BasePageLocators:
     # Тестовый локатор
     # Cross_repeated_favorites = (By.XPATH, "//body/div[6]/div[2]/div[1]/div[1]/div[2]/div[1]/div[2]/div[1]/*[1]")
     Slider = (By.XPATH, "//span[@id='nc_1_n1z']")
-    Warning_text = (By.XPATH, "//div[@class='warnning-text']")
+    Errloading = (By.XPATH, "//*[@class='errloading']")
+    Warning_text_close = (By.XPATH, "//div[@class='warnning-text']")
+    Dialog_close = (By.XPATH, "//div[@class='baxia-dialog-close']")
+    Warning_text = (By.XPATH, "//div[contains(text(),'Пройдите проверку')]")
     # Взять курс USD для "aliexpress"
     Usd_course_aliExpress_global = (By.XPATH, "//div[@class='rate-value-value'][1]")
     # Установка firefox
@@ -207,4 +210,4 @@ class WidgetLocators:
         By.XPATH, "//div[@class ='at-body__controls']/a/div[@class ='at-body__controls-context-menu']")
     History_button_cross = (By.XPATH, "//a[@class ='at-body__controls-item']/*[1]")
     History_text_today = (By.XPATH, "//div[contains(text(),'Сегодня')]")
-    Product_in_history_for_widget = (By.CSS_SELECTOR, ".at-widgets-history-mask")
+    Product_in_history_for_widget = (By.CSS_SELECTOR, ".at-widgets-history__item")
