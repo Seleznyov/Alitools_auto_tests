@@ -429,6 +429,14 @@ class WidgetPage(BasePage):
         customize_history_button = self.browser.find_element(*WidgetLocators.Customize_history_button)
         customize_history_button.click()
 
+    def do_not_show_history_on_this_site(self):
+        do_not_show_on_this_site_button = self.browser.find_element(*WidgetLocators.Do_not_show_on_this_site_button)
+        do_not_show_on_this_site_button.click()
+
+    def not_should_be_history_widget_button(self):
+        history_widget_button = self.is_not_element_present(*WidgetLocators.History_widget_button)
+        assert history_widget_button is True, f"Виджет [История] отображается"
+
 # ======================================================================================================================
 # Переводы кнопок виджета
     def translation_check_for_widget(self, language):

@@ -79,3 +79,10 @@ def test_open_settings_history(browser):
     active_tab = page.get_active_tab()
     assert active_tab == "История", f"Актиавна вкладка: {active_tab}, a не [История]"
 
+
+def test_do_not_show_on_this_site(browser):
+    page = WidgetPage(browser, browser.current_url)
+    page.open_history_widget()
+    page.open_history_widget_context_menu()
+    page.do_not_show_history_on_this_site()
+    page.not_should_be_history_widget_button()

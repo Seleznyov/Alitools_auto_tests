@@ -215,4 +215,5 @@ class WidgetLocators:
     Button_cross_for_history_card = (By.XPATH, "//div[@class ='W92R1']/*[1]")
     Empty_title_history_card = (By.CSS_SELECTOR, ".at-tab-empty__title")
     Customize_history_button = (By.XPATH, "//div[@class ='_2tt2W HRySV']/div[2]")
+    Do_not_show_on_this_site_button = (By.XPATH, "//div[@class ='_2tt2W HRySV']/div[1]")
 
