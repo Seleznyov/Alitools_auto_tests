@@ -42,41 +42,41 @@ class BasePage:
         assert self.is_element_present(*BasePageLocators.Starting_greeting), "element is not presented"
 
     def click_on_cross_start_greeting(self):
-        cross_start_greeting_el = self.is_element_present(*BasePageLocators.Cross_start_greeting)
-        if cross_start_greeting_el is True:
-            cross_start_greeting = self.browser.find_element(*BasePageLocators.Cross_start_greeting)
-            cross_start_greeting.click()
-        else:
-            assert cross_start_greeting_el is True, f"Не отображается 'cross_start_greeting'"
+        # cross_start_greeting_el = self.is_element_present(*BasePageLocators.Cross_start_greeting)
+        # if cross_start_greeting_el is True:
+        cross_start_greeting = self.browser.find_element(*BasePageLocators.Cross_start_greeting)
+        cross_start_greeting.click()
+        # else:
+        #     assert cross_start_greeting_el is True, f"Не отображается 'cross_start_greeting'"
 
     def click_on_cress_repeated_favorites(self):
         cross_repeated_favorites = self.browser.find_element(*BasePageLocators.Cross_repeated_favorites)
         cross_repeated_favorites.click()
 
     # Добработать
-    def hold_and_move_section_to_down(self):
-        warning_text = self.is_not_element_present(*BasePageLocators.Warning_text_close)
-        if warning_text is False:
-            close = self.browser.find_element(*BasePageLocators.Dialog_close)
-            close.click()
-            # ActionChains(self.browser).click_and_hold(source).move_by_offset(300, 0)
-            # ActionChains(self.browser).drag_and_drop_by_offset(source, 300, 0).perform()
+    def close_warning(self):
+        close = self.browser.find_element(*BasePageLocators.Dialog_close)
+        close.click()
+        # ActionChains(self.browser).click_and_hold(source).move_by_offset(300, 0)
+        # ActionChains(self.browser).drag_and_drop_by_offset(source, 300, 0).perform()
 
         # Добработать
-    def hold_and_move_section_to_down_new(self):
-        warning_text = self.is_not_element_present(*BasePageLocators.Warning_text)
-        if warning_text is False:
+    def hold_and_move_section_to_down(self):
+        source = self.browser.find_element(*BasePageLocators.Slider)
+        ActionChains(self.browser).drag_and_drop_by_offset(source, 300, 0).perform()
+        # Второй вариант
+        # ActionChains(self.browser).click_and_hold(source).move_by_offset(300, 0)
+        errloading = self.is_not_element_present(*BasePageLocators.Errloading)
+        if errloading is False:
+            err = self.browser.find_element(*BasePageLocators.Errloading)
+            err.click()
+            time.sleep(1)
             source = self.browser.find_element(*BasePageLocators.Slider)
             ActionChains(self.browser).drag_and_drop_by_offset(source, 300, 0).perform()
-            # Второй вариант
-            # ActionChains(self.browser).click_and_hold(source).move_by_offset(300, 0)
-            errloading = self.is_not_element_present(*BasePageLocators.Errloading)
-            if errloading is False:
-                err = self.browser.find_element(*BasePageLocators.Errloading)
-                err.click()
-                time.sleep(1)
-                source = self.browser.find_element(*BasePageLocators.Slider)
-                ActionChains(self.browser).drag_and_drop_by_offset(source, 300, 0).perform()
+
+    def check_warning_text(self):
+        warning_text = self.is_not_element_present(*BasePageLocators.Warning_text)
+        return warning_text
 
     def screenshot_page(self, directory_name):
         now_date = datetime.datetime.utcnow().strftime("%Y.%m.%d.%H.%M.%S")

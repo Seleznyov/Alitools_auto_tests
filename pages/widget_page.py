@@ -399,11 +399,35 @@ class WidgetPage(BasePage):
             self.browser.get("https://www.aliexpress.com/item/" + url)
             window = self.browser.window_handles
             self.browser.switch_to.window(window[1])
-            time.sleep(1.2)
+            time.sleep(2)
 
     def max_number_of_products_in_history_widget(self, list_product):
         maximum_number_of_products = len(list_product)
-        assert maximum_number_of_products == 4, f"Количетсво товаров равно: {maximum_number_of_products}, а не 4"
+        assert maximum_number_of_products == 4, f"Количеcтсво товаров равно: {maximum_number_of_products}, а не 4"
+
+    def hover_on_product_card(self):
+        product_card = self.browser.find_element(*WidgetLocators.Product_card_from_the_history)
+        hover = ActionChains(self.browser).move_to_element(product_card)
+        hover.perform()
+
+    def should_be_button_cross(self):
+        assert self.is_element_present(*WidgetLocators.Button_cross_for_history_card), f"Иконка крестик не отображается"
+
+    def remove_product_card_from_history(self):
+        cross = self.browser.find_element(*WidgetLocators.Button_cross_for_history_card)
+        cross.click()
+
+    def should_be_empty_text(self):
+        empty_text = self.browser.find_element(*WidgetLocators.Empty_title_history_card).text
+        assert empty_text == "Здесь будут товары,\nкоторые вы просматривали\nна AliExpress.", f"Тексты не совпадают"
+
+    def open_history_widget_context_menu(self):
+        history_widget_context_menu = self.browser.find_element(*WidgetLocators.History_widget_control_context_menu)
+        history_widget_context_menu.click()
+
+    def open_history_settings(self):
+        customize_history_button = self.browser.find_element(*WidgetLocators.Customize_history_button)
+        customize_history_button.click()
 
 # ======================================================================================================================
 # Переводы кнопок виджета

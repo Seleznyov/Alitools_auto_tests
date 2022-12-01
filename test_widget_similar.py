@@ -19,13 +19,10 @@ def setup(browser):
         browser.switch_to.window(window2[1])
 
 
-# Для обхода капчи тестовая функция
 def test_number_of_similar_products(browser):
     page = WidgetPage(browser, browser.current_url)
-    # page.hold_and_move_section_to_down_new()
     page.should_be_option_start()
     page.click_on_cross_start_greeting()
-    # page.hold_and_move_section_to_down()
     value_widget_similar_products = page.value_similar_products()
     page.open_similar_widget()
     value_similar_product_in_the_card = page.get_value_similar_products()

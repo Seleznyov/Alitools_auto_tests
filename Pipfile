@@ -10,6 +10,7 @@ nums-from-string = "*"
 allure-pytest = "*"
 selenium-stealth = "*"
 datetime = "*"
+undetected-chromedriver = "*"
 
 [dev-packages]
 

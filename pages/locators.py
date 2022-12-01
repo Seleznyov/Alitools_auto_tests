@@ -211,3 +211,8 @@ class WidgetLocators:
     History_button_cross = (By.XPATH, "//a[@class ='at-body__controls-item']/*[1]")
     History_text_today = (By.XPATH, "//div[contains(text(),'Сегодня')]")
     Product_in_history_for_widget = (By.CSS_SELECTOR, ".at-widgets-history__item")
+    Product_card_from_the_history = (By.CSS_SELECTOR, ".W92R1")
+    Button_cross_for_history_card = (By.XPATH, "//div[@class ='W92R1']/*[1]")
+    Empty_title_history_card = (By.CSS_SELECTOR, ".at-tab-empty__title")
+    Customize_history_button = (By.XPATH, "//div[@class ='_2tt2W HRySV']/div[2]")
+
