@@ -361,7 +361,7 @@ class WidgetPage(BasePage):
     def should_be_history_text_today(self):
         assert self.is_element_present(*WidgetLocators.History_text_today), "element is not presented"
 
-# Открыть продукт из виджета "История"
+    #  Открыть продукт из виджета "История"
     def open_product_from_history_widget(self):
         product_one = self.browser.find_element(*WidgetLocators.Product_in_history_for_widget)
         product_one.click()
@@ -436,6 +436,11 @@ class WidgetPage(BasePage):
     def not_should_be_history_widget_button(self):
         history_widget_button = self.is_not_element_present(*WidgetLocators.History_widget_button)
         assert history_widget_button is True, f"Виджет [История] отображается"
+
+    # Открыть продукт из карточки виджета "История"
+    def open_product_from_card_of_widget_history(self):
+        product_card = self.browser.find_element(*WidgetLocators.Product_card_from_the_history)
+        product_card.click()
 
 # ======================================================================================================================
 # Переводы кнопок виджета

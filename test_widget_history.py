@@ -5,6 +5,7 @@ from .pages.setting_page import SettingsPage
 from .settings import url_random_four_product
 
 
+warning = False
 @pytest.fixture(scope="function", autouse=True)
 def setup(browser):
     url = "https://alitools.io/ru"
@@ -16,15 +17,17 @@ def setup(browser):
         page.setup_firefox()
         window2 = browser.window_handles
         browser.switch_to.window(window2[1])
-        time.sleep(0.5)
+        time.sleep(2)
         page.should_be_option_start()
-        time.sleep(1.5)
+        time.sleep(0.7)
         page.click_on_cross_start_greeting()
         time.sleep(0.3)
     else:
         page = WidgetPage(browser, browser.current_url)
         result_warning = page.check_warning_text()
         if result_warning is False:
+            global warning
+            warning = True
             page.hold_and_move_section_to_down()
             page.should_be_option_start()
             time.sleep(0.5)
@@ -86,3 +89,27 @@ def test_do_not_show_on_this_site(browser):
     page.open_history_widget_context_menu()
     page.do_not_show_history_on_this_site()
     page.not_should_be_history_widget_button()
+
+
+def test_open_product_card_from_widget_history(browser):
+    page = WidgetPage(browser, browser.current_url)
+    time.sleep(0.5)
+    page.open_product_from_history_widget()
+    time.sleep(0.5)
+    window2 = browser.window_handles
+    browser.switch_to.window(window2[2])
+    if warning is False:
+        page.click_on_cress_repeated_favorites()
+    product_url_from_widget = page.list_products_from_history_widget()
+    product_url_from_current_page = browser.current_url
+    # Тут проверка, что наш товар открылся
+    assert product_url_from_current_page.split('?')[0] == product_url_from_widget[0], f"URL не совподает"
+    time.sleep(0.2)
+    page.open_history_widget()
+    time.sleep(0.2)
+    page.open_product_from_card_of_widget_history()
+    time.sleep(0.5)
+    window2 = browser.window_handles
+    browser.switch_to.window(window2[3])
+    # Тут проверка, что наш товар открылся
+    assert product_url_from_current_page.split('?')[0] == product_url_from_widget[0], f"URL не совподает"
