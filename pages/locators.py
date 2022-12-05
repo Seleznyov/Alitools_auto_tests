@@ -54,6 +54,12 @@ class ProductPageLocators:
     # Кнопка "Прекрасно"
     Button_wonderful = (By.XPATH, "//div[@class='snow-ali-kit_Informer__flexAligner__8lq3ka']/button")
     # Button_wonderful = (By.XPATH, "//button[contains(text(),'Прекрасно')]")
+    Product_image = (By.XPATH, "//div[@class='gallery_Gallery__picListWrapper__re6q0q']/div/div")
+    Find_on_aliexpress_icon = (By.XPATH, "//div[@class='_3Q0G5']")
+    Find_on_aliexpress_button = (By.XPATH, "//div[@class='_2Nj_w VRH7i']")
+    Find_on_aliexpress_drop_down = (By.XPATH, "//div[@class='_1pe-u VRH7i']")
+    Product_search_by_image_text = (By.CSS_SELECTOR, ".ssdMT")
+    Image_search_result = (By.CSS_SELECTOR, ".h1ISG")
 
 
 class SettingsLocators:

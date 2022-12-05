@@ -112,3 +112,33 @@ class ProductPage(BasePage):
     def click_on_button_wonderful(self):
         button_wonderful = self.browser.find_element(*ProductPageLocators.Button_wonderful)
         button_wonderful.click()
+
+    def hover_on_product_main_image(self):
+        product_image = self.browser.find_element(*ProductPageLocators.Product_image)
+        action = ActionChains(self.browser)
+        action.move_to_element(product_image)
+        action.perform()
+        action.move_to_element(product_image)
+        action.perform()
+
+    def should_be_icon_find_on_aliexpress(self):
+        icon = self.is_element_present(*ProductPageLocators.Find_on_aliexpress_icon)
+        assert icon, f"Иконка не отображается"
+
+    def hover_on_icon_find_on_aliexpress(self):
+        icon = self.browser.find_element(*ProductPageLocators.Find_on_aliexpress_icon)
+        action = ActionChains(self.browser)
+        action.move_to_element(icon)
+        action.perform()
+
+    def find_on_aliexpress(self):
+        find_on_aliexpress_button = self.browser.find_element(*ProductPageLocators.Find_on_aliexpress_button)
+        find_on_aliexpress_button.click()
+
+    def should_be_text_product_search_by_image(self):
+        text = self.browser.find_element(*ProductPageLocators.Product_search_by_image_text).text
+        assert text == "Поиск товара по картинке", f"Текст {text} не отображается"
+
+    def should_be_search_results(self):
+        result = self.is_element_present(*ProductPageLocators.Image_search_result)
+        assert result, f"Результат поиска не отображается"

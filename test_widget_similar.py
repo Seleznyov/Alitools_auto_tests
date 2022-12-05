@@ -48,7 +48,7 @@ def test_open_random_product_card(browser, currency, email=profile["Email"], pas
         pass
     else:
         # Выполням логин
-        time.sleep(0.7)
+        time.sleep(1.5)
         page.log_in_aliexpress(email, password)
         time.sleep(1)
         page.click_on_cress_repeated_favorites()

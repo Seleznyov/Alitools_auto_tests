@@ -69,6 +69,7 @@ def test_period_display(browser):
     assert value_months_for_3_months in [3, 4], \
         f"Ошибка -> количество месяцев равно: {value_months_for_3_months} a не : '3 или 4' "
     page.open_price_drop_down_for_3_months()
+    time.sleep(0.5)
     page.select_value_for_half_a_year()
     value_months_for_half_a_year = page.get_value_months()
     assert value_months_for_half_a_year in [6, 7], \

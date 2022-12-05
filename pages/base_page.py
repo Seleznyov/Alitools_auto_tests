@@ -25,7 +25,7 @@ class BasePage:
             return False
         return True
 
-    def is_not_element_present(self, how, what, timeout=3):
+    def is_not_element_present(self, how, what, timeout=4):
         try:
             WebDriverWait(self.browser, timeout).until(EC.presence_of_element_located((how, what)))
         except TimeoutException:
@@ -78,9 +78,9 @@ class BasePage:
         warning_text = self.is_not_element_present(*BasePageLocators.Warning_text)
         return warning_text
 
-    def screenshot_page(self, directory_name):
+    def screenshot_page(self, directory_name, name="test"):
         now_date = datetime.datetime.utcnow().strftime("%Y.%m.%d.%H.%M.%S")
-        name_screenshot = "screenshot" + now_date + ".png"
+        name_screenshot = name+"_screenshot_" + now_date + ".png"
         self.browser.save_screenshot("D:\\Alitools_auto_tests\\screenshot\\" + directory_name + "\\" + name_screenshot)
 
     def get_usd_course(self):

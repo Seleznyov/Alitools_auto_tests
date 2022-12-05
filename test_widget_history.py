@@ -4,8 +4,9 @@ from .pages.widget_page import WidgetPage
 from .pages.setting_page import SettingsPage
 from .settings import url_random_four_product
 
-
 warning = False
+
+
 @pytest.fixture(scope="function", autouse=True)
 def setup(browser):
     url = "https://alitools.io/ru"
@@ -19,7 +20,7 @@ def setup(browser):
         browser.switch_to.window(window2[1])
         time.sleep(2)
         page.should_be_option_start()
-        time.sleep(0.7)
+        time.sleep(1)
         page.click_on_cross_start_greeting()
         time.sleep(0.3)
     else:
@@ -38,7 +39,7 @@ def setup(browser):
             page.click_on_cress_repeated_favorites()
         else:
             page.should_be_option_start()
-            time.sleep(0.5)
+            time.sleep(1)
             page.click_on_cross_start_greeting()
 
 
