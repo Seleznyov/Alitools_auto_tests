@@ -60,6 +60,7 @@ class ProductPageLocators:
     Find_on_aliexpress_drop_down = (By.XPATH, "//div[@class='_1pe-u VRH7i']")
     Product_search_by_image_text = (By.CSS_SELECTOR, ".ssdMT")
     Image_search_result = (By.CSS_SELECTOR, ".h1ISG")
+    Find_on_aliexpress_drop_down_values = (By.CSS_SELECTOR, "._3vAZ7")
 
 
 class SettingsLocators:

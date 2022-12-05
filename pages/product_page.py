@@ -142,3 +142,19 @@ class ProductPage(BasePage):
     def should_be_search_results(self):
         result = self.is_element_present(*ProductPageLocators.Image_search_result)
         assert result, f"Результат поиска не отображается"
+
+    def open_drop_down_find_on_aliexpress(self):
+        drop_down = self.browser.find_element(*ProductPageLocators.Find_on_aliexpress_drop_down)
+        drop_down.click()
+
+    def should_be_text_do_not_show(self):
+        texts = self.browser.find_elements(*ProductPageLocators.Find_on_aliexpress_drop_down_values)
+        text_do_not_show = texts[0].text
+        print(text_do_not_show)
+        assert text_do_not_show == "Не показывать на этом сайте", f"Отображается текст: {text_do_not_show} "
+
+    def should_be_text_configure_search(self):
+        texts = self.browser.find_elements(*ProductPageLocators.Find_on_aliexpress_drop_down_values)
+        text_configure_search = texts[1].text
+        print(text_configure_search)
+        assert text_configure_search == "Настроить поиск по картинке", f"Отображается текст: {text_configure_search} "

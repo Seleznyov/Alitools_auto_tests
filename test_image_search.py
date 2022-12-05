@@ -39,7 +39,7 @@ def setup(browser):
             page.click_on_cross_start_greeting()
 
 
-def test_icon_display_find_on_aliexpress(browser, directory_name="widget"):
+def test_icon_display_find_on_aliexpress(browser, directory_name="product_page"):
     name = "Icon_find_on_aliexpress"
     page = ProductPage(browser, browser.current_url)
     time.sleep(1)
@@ -49,7 +49,7 @@ def test_icon_display_find_on_aliexpress(browser, directory_name="widget"):
     page.screenshot_page(directory_name, name)
 
 
-def test_find_on_aliexpress(browser, directory_name="widget"):
+def test_find_on_aliexpress(browser, directory_name="product_page"):
     name = "Find_on_aliexpress"
     page = ProductPage(browser, browser.current_url)
     time.sleep(1)
@@ -63,4 +63,18 @@ def test_find_on_aliexpress(browser, directory_name="widget"):
     page.should_be_text_product_search_by_image()
     time.sleep(0.5)
     page.screenshot_page(directory_name, name)
+
+
+def test_open_find_dropdown(browser, directory_name="product_page"):
+    name = "Open_find_dropdown"
+    page = ProductPage(browser, browser.current_url)
+    time.sleep(1)
+    page.hover_on_product_main_image()
+    time.sleep(0.5)
+    page.hover_on_icon_find_on_aliexpress()
+    page.open_drop_down_find_on_aliexpress()
+    page.should_be_text_do_not_show()
+    page.should_be_text_configure_search()
+    page.screenshot_page(directory_name, name)
+
 
