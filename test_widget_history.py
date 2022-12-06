@@ -16,9 +16,9 @@ def setup(browser):
     if browser.name == "firefox":
         page = WidgetPage(browser, browser.current_url)
         page.setup_firefox()
+        time.sleep(3.5)
         window2 = browser.window_handles
         browser.switch_to.window(window2[1])
-        time.sleep(2)
         page.should_be_option_start()
         time.sleep(1)
         page.click_on_cross_start_greeting()

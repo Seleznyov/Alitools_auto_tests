@@ -113,13 +113,21 @@ class ProductPage(BasePage):
         button_wonderful = self.browser.find_element(*ProductPageLocators.Button_wonderful)
         button_wonderful.click()
 
-    def hover_on_product_main_image(self):
-        product_image = self.browser.find_element(*ProductPageLocators.Product_image)
-        action = ActionChains(self.browser)
-        action.move_to_element(product_image)
-        action.perform()
-        action.move_to_element(product_image)
-        action.perform()
+    def hover_on_product_main_image(self, url="ru"):
+        if "com" in url or "us" in url:
+            product_image = self.browser.find_element(*ProductPageLocators.Product_image_com)
+            action = ActionChains(self.browser)
+            action.move_to_element(product_image)
+            action.perform()
+            action.move_to_element(product_image)
+            action.perform()
+        else:
+            product_image = self.browser.find_element(*ProductPageLocators.Product_image)
+            action = ActionChains(self.browser)
+            action.move_to_element(product_image)
+            action.perform()
+            action.move_to_element(product_image)
+            action.perform()
 
     def should_be_icon_find_on_aliexpress(self):
         icon = self.is_element_present(*ProductPageLocators.Find_on_aliexpress_icon)
@@ -150,11 +158,14 @@ class ProductPage(BasePage):
     def should_be_text_do_not_show(self):
         texts = self.browser.find_elements(*ProductPageLocators.Find_on_aliexpress_drop_down_values)
         text_do_not_show = texts[0].text
-        print(text_do_not_show)
         assert text_do_not_show == "Не показывать на этом сайте", f"Отображается текст: {text_do_not_show} "
 
     def should_be_text_configure_search(self):
         texts = self.browser.find_elements(*ProductPageLocators.Find_on_aliexpress_drop_down_values)
         text_configure_search = texts[1].text
-        print(text_configure_search)
         assert text_configure_search == "Настроить поиск по картинке", f"Отображается текст: {text_configure_search} "
+
+    def open_settings_history_from_icon(self):
+        buttons = self.browser.find_elements(*ProductPageLocators.Find_on_aliexpress_drop_down_values)
+        configure_search_button = buttons[1]
+        configure_search_button.click()
