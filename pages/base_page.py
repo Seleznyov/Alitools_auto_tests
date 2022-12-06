@@ -99,3 +99,11 @@ class BasePage:
 
     def refresh_page(self):
         self.browser.refresh()
+
+    def cleared_list(self, new_list):
+        list_without_dots = []
+        for i in new_list:
+            x = i.split(".")
+            list_without_dots.append(x[0])
+        return list_without_dots
+

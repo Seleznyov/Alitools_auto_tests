@@ -92,6 +92,8 @@ class SettingsLocators:
     Widget_tab_history = (By.XPATH, widget + "//div[@class ='_2fg_j']/a[4]")
     Widget_tab_synchronization = (By.XPATH, widget + "//div[@class ='_2fg_j']/a[5]")
     Widget_extension_text_dark = (By.XPATH, "//div[@class ='at-theme-dark'][2]//div[@class ='_1LiA_']")
+    Widget_disabled_site = (By.XPATH, widget + "//div[@class ='JvDO_']//div[@class ='BTOq4']")
+
 
     # Локаторы для настроек
     # Вкладка "Общее"

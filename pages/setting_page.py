@@ -227,6 +227,10 @@ class SettingsPage(BasePage):
         tab_search_by_image = self.browser.find_element(*SettingsLocators.Tab_search_by_image)
         tab_search_by_image.click()
 
+    def open_search_by_image_tab_from_widget(self):
+        tab_search_by_image = self.browser.find_element(*SettingsLocators.Widget_tab_search_by_image)
+        tab_search_by_image.click()
+
     def should_be_button_on_the_picture(self):
         assert self.is_element_present(*SettingsLocators.Button_on_the_picture), \
             "block button_on_the_picture is not presented"
@@ -241,9 +245,18 @@ class SettingsPage(BasePage):
         sites_with_disabled_button = self.browser.find_element(*SettingsLocators.Sites_with_disabled_button).text
         assert sites_with_disabled_button == text, f"Отображается:'{sites_with_disabled_button}'текст, вместо:'{text}'"
 
+    # Из настроек получаем список
     def get_list_disabled_site(self):
         disabled_site_list = []
         disabled_sites = self.browser.find_elements(*SettingsLocators.Disabled_site)
+        for i in disabled_sites:
+            disabled_site_list.append(i.text)
+        return disabled_site_list
+
+    # Из виджета получаем список
+    def get_list_disabled_site_from_widget(self):
+        disabled_site_list = []
+        disabled_sites = self.browser.find_elements(*SettingsLocators.Widget_disabled_site)
         for i in disabled_sites:
             disabled_site_list.append(i.text)
         return disabled_site_list

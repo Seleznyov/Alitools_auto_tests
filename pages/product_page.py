@@ -133,6 +133,10 @@ class ProductPage(BasePage):
         icon = self.is_element_present(*ProductPageLocators.Find_on_aliexpress_icon)
         assert icon, f"Иконка не отображается"
 
+    def should_not_be_icon_find_on_aliexpress(self):
+        icon = self.is_not_element_present(*ProductPageLocators.Find_on_aliexpress_icon)
+        assert icon, f"Иконка отображается"
+
     def hover_on_icon_find_on_aliexpress(self):
         icon = self.browser.find_element(*ProductPageLocators.Find_on_aliexpress_icon)
         action = ActionChains(self.browser)
@@ -169,3 +173,8 @@ class ProductPage(BasePage):
         buttons = self.browser.find_elements(*ProductPageLocators.Find_on_aliexpress_drop_down_values)
         configure_search_button = buttons[1]
         configure_search_button.click()
+
+    def disable_image_search_from_the_page(self):
+        buttons = self.browser.find_elements(*ProductPageLocators.Find_on_aliexpress_drop_down_values)
+        disable_image_search_button = buttons[0]
+        disable_image_search_button.click()
