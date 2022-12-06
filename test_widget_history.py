@@ -5,11 +5,13 @@ from .pages.setting_page import SettingsPage
 from .settings import url_random_four_product
 
 warning = False
+url_global = []
 
 
 @pytest.fixture(scope="function", autouse=True)
 def setup(browser):
     url = "https://alitools.io/ru"
+    global url_global
     browser.get(url)
     window1 = browser.window_handles
     browser.switch_to.window(window1[1])
@@ -19,6 +21,9 @@ def setup(browser):
         time.sleep(3.5)
         window2 = browser.window_handles
         browser.switch_to.window(window2[1])
+        time.sleep(1)
+        url_page = browser.current_url
+        url_global = url_page.split("/")
         page.should_be_option_start()
         time.sleep(1)
         page.click_on_cross_start_greeting()
@@ -26,6 +31,8 @@ def setup(browser):
     else:
         page = WidgetPage(browser, browser.current_url)
         result_warning = page.check_warning_text()
+        url_page = browser.current_url
+        url_global = url_page.split("/")
         if result_warning is False:
             global warning
             warning = True
@@ -93,6 +100,8 @@ def test_do_not_show_on_this_site(browser):
 
 
 def test_open_product_card_from_widget_history(browser):
+    if "com" in url_global[2] or "us" in url_global[2]:
+        pytest.skip("For com. and us. this test skip")
     page = WidgetPage(browser, browser.current_url)
     time.sleep(0.5)
     page.open_product_from_history_widget()
