@@ -2,6 +2,7 @@ import time
 import pytest
 from .pages.widget_page import WidgetPage
 from .pages.setting_page import SettingsPage
+from .pages.product_page import ProductPage
 from .settings import url_random_four_product
 
 warning = False
@@ -13,17 +14,15 @@ def setup(browser):
     url = "https://alitools.io/ru"
     global url_global
     browser.get(url)
-    window1 = browser.window_handles
-    browser.switch_to.window(window1[1])
+    page_product = ProductPage(browser, browser.current_url)
+    page_product.switch_to_window(1)
     if browser.name == "firefox":
         page = WidgetPage(browser, browser.current_url)
         page.setup_firefox()
         time.sleep(3.5)
-        window2 = browser.window_handles
-        browser.switch_to.window(window2[1])
+        page_product.switch_to_window(1)
         time.sleep(1)
-        url_page = browser.current_url
-        url_global = url_page.split("/")
+        url_global = page.page_domain()
         page.should_be_option_start()
         time.sleep(1)
         page.click_on_cross_start_greeting()
@@ -31,8 +30,7 @@ def setup(browser):
     else:
         page = WidgetPage(browser, browser.current_url)
         result_warning = page.check_warning_text()
-        url_page = browser.current_url
-        url_global = url_page.split("/")
+        url_global = page.page_domain()
         if result_warning is False:
             global warning
             warning = True
@@ -106,8 +104,7 @@ def test_open_product_card_from_widget_history(browser):
     time.sleep(0.5)
     page.open_product_from_history_widget()
     time.sleep(0.5)
-    window2 = browser.window_handles
-    browser.switch_to.window(window2[2])
+    page.switch_to_window(2)
     if warning is False:
         page.click_on_cress_repeated_favorites()
     product_url_from_widget = page.list_products_from_history_widget()

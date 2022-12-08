@@ -7,13 +7,12 @@ from .settings import url_seller_rating
 def setup(browser):
     url = "https://alitools.io/ru"
     browser.get(url)
-    window1 = browser.window_handles
-    browser.switch_to.window(window1[1])
+    page = WidgetPage(browser, browser.current_url)
+    page.switch_to_window(1)
     if browser.name == "firefox":
         page = WidgetPage(browser, browser.current_url)
         page.setup_firefox()
-        window2 = browser.window_handles
-        browser.switch_to.window(window2[1])
+        page.switch_to_window(1)
 
 
 def test_seller_display_the_same_rating(browser):

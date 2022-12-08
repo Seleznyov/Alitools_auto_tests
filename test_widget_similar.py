@@ -9,14 +9,13 @@ from .settings import profile, currencies
 def setup(browser):
     url = "https://alitools.io/ru"
     browser.get(url)
-    window1 = browser.window_handles
-    browser.switch_to.window(window1[1])
+    page = ProductPage(browser, browser.current_url)
+    page.switch_to_window(1)
     time.sleep(1)
     if browser.name == "firefox":
         page = WidgetPage(browser, browser.current_url)
         page.setup_firefox()
-        window2 = browser.window_handles
-        browser.switch_to.window(window2[1])
+        page.switch_to_window(1)
 
 
 def test_number_of_similar_products(browser):
@@ -38,6 +37,7 @@ def test_open_random_product_card(browser, currency, email=profile["Email"], pas
         pytest.skip("firefox browser is used")
     page = WidgetPage(browser, browser.current_url)
     page.should_be_option_start()
+    time.sleep(1)
     page.click_on_cross_start_greeting()
     # Получаем количество похожих продуктов
     value_widget_products = page.value_similar_products()
@@ -48,7 +48,7 @@ def test_open_random_product_card(browser, currency, email=profile["Email"], pas
         pass
     else:
         # Выполням логин
-        time.sleep(1.5)
+        time.sleep(2)
         page.log_in_aliexpress(email, password)
         time.sleep(1)
         page.click_on_cress_repeated_favorites()
@@ -67,8 +67,7 @@ def test_open_random_product_card(browser, currency, email=profile["Email"], pas
         # Открываем товар из истории с новой уже валютой
         page.open_product_from_history_widget()
         time.sleep(0.5)
-        window2 = browser.window_handles
-        browser.switch_to.window(window2[2])
+        page.switch_to_window(2)
     if value_widget_products > 0:
         page = WidgetPage(browser, browser.current_url)
         page.open_similar_widget()

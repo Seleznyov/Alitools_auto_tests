@@ -3,6 +3,7 @@ import pytest
 from .pages.widget_page import WidgetPage
 from .pages.product_page import ProductPage
 from .pages.setting_page import SettingsPage
+from .settings import sites_active
 
 
 url_global = []
@@ -13,17 +14,15 @@ def setup(browser):
     url = "https://alitools.io/ru"
     global url_global
     browser.get(url)
-    window1 = browser.window_handles
-    browser.switch_to.window(window1[1])
+    page_product = ProductPage(browser, browser.current_url)
+    page_product.switch_to_window(1)
     if browser.name == "firefox":
         page = WidgetPage(browser, browser.current_url)
         page.setup_firefox()
-        time.sleep(3.5)
-        window2 = browser.window_handles
-        browser.switch_to.window(window2[1])
+        time.sleep(5)
+        page_product.switch_to_window(1)
         time.sleep(1)
-        url_page = browser.current_url
-        url_global = url_page.split("/")
+        url_global = page.page_domain()
         page.should_be_option_start()
         # page_product = ProductPage(browser, browser.current_url)
         # page_product.click_on_button_wonderful()
@@ -33,8 +32,7 @@ def setup(browser):
     else:
         page = WidgetPage(browser, browser.current_url)
         result_warning = page.check_warning_text()
-        url_page = browser.current_url
-        url_global = url_page.split("/")
+        url_global = page.page_domain()
         if result_warning is False:
             page.hold_and_move_section_to_down()
             page.should_be_option_start()
@@ -130,3 +128,20 @@ def test_disable_image_search_for_aliexpress(browser):
     list_disabled_site = page_settings.get_list_disabled_site_from_widget()
     list_without_dots = page.cleared_list(list_disabled_site)
     assert "aliexpress" in list_without_dots, f"Сайт: 'aliexpress' не был добавлен в исключение"
+
+
+def test_image_search_on_a_random_site(browser, sites_act=sites_active):
+    page = ProductPage(browser, browser.current_url)
+    page.open_randon_site(sites_act)
+    time.sleep(1)
+    url = page.page_domain()
+    page.hover_on_product_main_image(url[2])
+    time.sleep(0.5)
+    page.hover_on_icon_find_on_aliexpress()
+    time.sleep(0.5)
+    page.find_on_aliexpress()
+    time.sleep(3)
+    page.should_be_search_results()
+    page.should_be_text_product_search_by_image()
+    time.sleep(4)
+

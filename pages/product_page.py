@@ -4,6 +4,7 @@ from .locators import ProductPageLocators
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.actions.wheel_input import ScrollOrigin
 from ..settings import currency_processing
+import random
 
 
 class ProductPage(BasePage):
@@ -114,8 +115,31 @@ class ProductPage(BasePage):
         button_wonderful.click()
 
     def hover_on_product_main_image(self, url="ru"):
-        if "com" in url or "us" in url:
+        if "aliexpress.com" in url or "aliexpress.us" in url:
             product_image = self.browser.find_element(*ProductPageLocators.Product_image_com)
+            action = ActionChains(self.browser)
+            action.move_to_element(product_image)
+            action.perform()
+            action.move_to_element(product_image)
+            action.perform()
+        elif "sportmaster" in url:
+            product_image = self.browser.find_elements(*ProductPageLocators.Product_image_from_sportmaster)
+            product_image = product_image[0]
+            action = ActionChains(self.browser)
+            action.move_to_element(product_image)
+            action.perform()
+            action.move_to_element(product_image)
+            action.perform()
+        elif "svyaznoy" in url:
+            product_image = self.browser.find_element(*ProductPageLocators.Product_image_from_svyaznoy)
+            self.browser.execute_script("arguments[0].scrollIntoView(true);", product_image)
+            action = ActionChains(self.browser)
+            action.move_to_element(product_image)
+            action.perform()
+            action.move_to_element(product_image)
+            action.perform()
+        elif "mvideo" in url:
+            product_image = self.browser.find_element(*ProductPageLocators.Product_image_from_mvideo)
             action = ActionChains(self.browser)
             action.move_to_element(product_image)
             action.perform()
@@ -178,3 +202,10 @@ class ProductPage(BasePage):
         buttons = self.browser.find_elements(*ProductPageLocators.Find_on_aliexpress_drop_down_values)
         disable_image_search_button = buttons[0]
         disable_image_search_button.click()
+
+    def open_randon_site(self, random_list):
+        random_list = list(random_list.values())
+        random_index = random.randrange(len(random_list))
+        random_site = random_list[random_index]
+        self.browser.get(random_site)
+

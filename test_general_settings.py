@@ -10,13 +10,12 @@ from .settings import currency_list, language
 def setup(browser):
     url = "https://alitools.io/ru"
     browser.get(url)
-    window1 = browser.window_handles
-    browser.switch_to.window(window1[1])
+    page_product = ProductPage(browser, browser.current_url)
+    page_product.switch_to_window(1)
     if browser.name == "firefox":
         page = WidgetPage(browser, browser.current_url)
         page.setup_firefox()
-        window2 = browser.window_handles
-        browser.switch_to.window(window2[1])
+        page_product.switch_to_window(1)
         time.sleep(1)
 
 
@@ -78,7 +77,7 @@ def test_turn_on_seller_trust_level(browser):
     page_settings.turn_on_widget_checkbox_seller_verification()
     page_settings.close_settings()
     page_widget = WidgetPage(browser, browser.current_url)
-    time.sleep(0.7)
+    time.sleep(1)
     page_widget.close_price_card()
     page_product = ProductPage(browser, browser.current_url)
     page_product.should_be_seller_trust_level_title()

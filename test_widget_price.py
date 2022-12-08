@@ -10,13 +10,12 @@ from .settings import profile
 def setup(browser):
     url = "https://alitools.io/ru"
     browser.get(url)
-    window1 = browser.window_handles
-    browser.switch_to.window(window1[1])
+    page = ProductPage(browser, browser.current_url)
+    page.switch_to_window(1)
     if browser.name == "firefox":
         page = WidgetPage(browser, browser.current_url)
         page.setup_firefox()
-        window2 = browser.window_handles
-        browser.switch_to.window(window2[1])
+        page.switch_to_window(1)
 
 
 # Как показала практика целесообразно запускать несколько раз его, оставлю значение- 3
@@ -109,8 +108,7 @@ def test_widget_course_usd_check(browser, directory_name="widget", email=profile
         page = WidgetPage(browser, browser.current_url)
         # Открываем товар из истории с новой уже валютой
         page.open_product_from_history_widget()
-        window2 = browser.window_handles
-        browser.switch_to.window(window2[2])
+        page.switch_to_window(2)
         page = ProductPage(browser, browser.current_url)
         price_page = page.product_price()
         page = WidgetPage(browser, browser.current_url)

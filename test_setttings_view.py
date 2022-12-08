@@ -8,8 +8,8 @@ from .settings import extension, disabled_site_list, setting_tabs
 def setup(browser):
     url = "https://alitools.io/ru"
     browser.get(url)
-    window1 = browser.window_handles
-    browser.switch_to.window(window1[1])
+    page = SettingsPage(browser, browser.current_url)
+    page.switch_to_window(1)
     if browser.name == "firefox":
         pytest.skip("firefox browser is used")
 

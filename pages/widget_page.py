@@ -11,7 +11,7 @@ class WidgetPage(BasePage):
     def __init__(self, *args, **kwargs):
         super(WidgetPage, self).__init__(*args, **kwargs)
 
-# ======================================================================================================================
+    # ======================================================================================================================
     # цена
     def open_price_widget(self):
         price_widget_button = self.browser.find_element(*WidgetLocators.Price_widget_button)
@@ -61,14 +61,14 @@ class WidgetPage(BasePage):
     def should_be_price_button_cross(self):
         assert self.is_element_present(*WidgetLocators.Price_button_cross), "element is not presented"
 
-# Значение точной цены на графике
+    # Значение точной цены на графике
     def exact_price(self):
         exact_price = self.browser.find_element(*WidgetLocators.Exact_price).text
         exact_price = exact_price.translate({ord(i): None for i in ' руб$€¥₽'})
         exact_price = exact_price.replace(' ', '')
         return float(exact_price)
 
-# Получить количество месяцев на графике
+    # Получить количество месяцев на графике
     def get_value_months(self):
         months_list = []
         months = self.browser.find_elements(*WidgetLocators.Value_months)
@@ -81,7 +81,7 @@ class WidgetPage(BasePage):
         for_half_a_year = self.browser.find_element(*WidgetLocators.Drop_down_value_for_half_a_year)
         for_half_a_year.click()
 
-# ======================================================================================================================
+    # ======================================================================================================================
     # продавец
     def open_seller_widget(self):
         seller_widget_button = self.browser.find_element(*WidgetLocators.Seller_widget_button)
@@ -106,7 +106,7 @@ class WidgetPage(BasePage):
         percentage_value = nums_from_string.get_nums(percentage_value)[0]
         return percentage_value
 
-# Проверка рейтинга продовца
+    # Проверка рейтинга продовца
     def check_rating_seller(self):
         value = self.browser.find_element(*WidgetLocators.Value_inside_the_card).text
         value_rating = ''.join(c for c in value if c.isalpha())
@@ -120,7 +120,7 @@ class WidgetPage(BasePage):
             assert percentage_value in range(0, 50)
         return value_rating, percentage_value
 
-# ======================================================================================================================
+    # ======================================================================================================================
     #  обзоры
     def open_reviews_widget(self):
         reviews_widget_button = self.browser.find_element(*WidgetLocators.Reviews_widget_button)
@@ -135,27 +135,27 @@ class WidgetPage(BasePage):
     def should_be_reviews_button_cross(self):
         assert self.is_element_present(*WidgetLocators.Reviews_button_cross), "element is not presented"
 
-# Отображается текст для обзоров если в карточке их "0"
+    # Отображается текст для обзоров если в карточке их "0"
     def should_be_displayed_text(self):
         assert self.is_element_present(*WidgetLocators.Reviews_displayed_text), "text is not presented"
 
-# Возвращает текст для карточки у которой "0" обзоров
+    # Возвращает текст для карточки у которой "0" обзоров
     def reviews_return_text_zero_reviews(self):
         text_zero_reviews = self.browser.find_element(*WidgetLocators.Reviews_displayed_text).text
         return text_zero_reviews
 
-# Количество обзоров - виджет
+    # Количество обзоров - виджет
     def value_reviews(self):
         value_reviews = self.browser.find_element(*WidgetLocators.Value_Reviews).text
         return int(value_reviews)
 
-# Выбрать случайный обзор
+    # Выбрать случайный обзор
     def choose_random_review(self):
         value_reviews = self.browser.find_element(*WidgetLocators.Value_Reviews).text
         random_index = random.randrange(int(value_reviews))
         return random_index
 
-# Найти в списке случайный обзор
+    # Найти в списке случайный обзор
     def scroll_to_random_review(self, index):
         reviews_images = self.browser.find_elements(*WidgetLocators.Value_Reviews_Images)
         while index >= len(reviews_images):
@@ -172,7 +172,7 @@ class WidgetPage(BasePage):
             # self.browser.execute_script("arguments[0].scrollIntoView(true);", image)
             actions = ActionChains(self.browser)
             actions.move_to_element(image).perform()
-            random_review = reviews_images[index-1]
+            random_review = reviews_images[index - 1]
             # random_review.click()
             return random_review
 
@@ -182,7 +182,7 @@ class WidgetPage(BasePage):
     def should_be_displayed_overview(self):
         assert self.is_element_present(*WidgetLocators.Overview_is_displayed), "Overview is not displayed"
 
-# Количество изображений обзоров в карточке [Обзоры]
+    # Количество изображений обзоров в карточке [Обзоры]
     def value_reviews_images(self):
         images_list = []
         reviews_images = self.browser.find_elements(*WidgetLocators.Value_Reviews_Images)
@@ -190,7 +190,7 @@ class WidgetPage(BasePage):
             images_list.append(image)
         return len(images_list)
 
-# Количество итераций для функции "scroll_reviews"
+    # Количество итераций для функции "scroll_reviews"
     def value_iterations(self):
         value_reviews = self.browser.find_element(*WidgetLocators.Value_Reviews).text
         value = int(value_reviews)
@@ -213,7 +213,7 @@ class WidgetPage(BasePage):
             x += 1
         return len(reviews_images)
 
-# ======================================================================================================================
+    # ======================================================================================================================
     #  похожие
     def open_similar_widget(self):
         similar_widget_button = self.browser.find_element(*WidgetLocators.Similar_widget_button)
@@ -231,12 +231,12 @@ class WidgetPage(BasePage):
     def should_be_similar_button_cross(self):
         assert self.is_element_present(*WidgetLocators.Similar_button_cross), "element is not presented"
 
-# Значение похожих товаров на виджите
+    # Значение похожих товаров на виджите
     def value_similar_products(self):
         value_similar_products = self.browser.find_element(*WidgetLocators.Value_similar_products).text
         return int(value_similar_products)
 
-# Количество продуктов в карточке [Похожие]
+    # Количество продуктов в карточке [Похожие]
     def get_value_similar_products(self):
         similar_products = self.browser.find_elements(*WidgetLocators.Similar_products)
         return len(similar_products)
@@ -279,7 +279,7 @@ class WidgetPage(BasePage):
                     price = price.replace(",", ".")
                 return float(price)
 
-# Проверка сортировки по цене
+    # Проверка сортировки по цене
     def check_sorting_by_price(self):
         prices = self.browser.find_elements(*WidgetLocators.Products_price_sorted_by_price)
         for i in range(len(prices) - 1):
@@ -291,9 +291,9 @@ class WidgetPage(BasePage):
             price1 = prices[i + 1].text
             price1 = "".join(c for c in price1 if c.isdecimal())
             # print(price0, price1)
-            assert int(price0) <= int(price1), f"Ошибка сортировки цене товара, {price0} не меньше {price1} "
+            assert int(price0) <= int(price1), f"Ошибка сортировки цены товара, {price0} не меньше {price1} "
 
-# Проверка сортировки по заказам
+    # Проверка сортировки по заказам
     def check_sorting_by_orders(self):
         message = self.is_not_element_present(*WidgetLocators.Similar_message_displayed)
         if message is True:
@@ -314,7 +314,7 @@ class WidgetPage(BasePage):
             assert int(orders0) >= int(
                 orders1), f"Ошибка сортировки по количеству заказов, {orders0} меньше чем {orders1} "
 
-# Открыть drop_down "Сортировать"
+    # Открыть drop_down "Сортировать"
     def open_drop_down_for_similar(self):
         drop_down_sort = self.browser.find_element(*WidgetLocators.Similar_drop_down_sort)
         drop_down_sort.click()
@@ -340,7 +340,7 @@ class WidgetPage(BasePage):
                 without_sorting = drop_down_values[0]
                 without_sorting.click()
 
-# ======================================================================================================================
+    # ======================================================================================================================
     #   история
     def open_history_widget(self):
         history_widget_button = self.browser.find_element(*WidgetLocators.History_widget_button)
@@ -367,7 +367,8 @@ class WidgetPage(BasePage):
         product_one.click()
 
     def should_be_card_of_product(self):
-        assert self.is_element_present(*WidgetLocators.Product_in_history_for_widget), f"Карточка товара не отображается"
+        assert self.is_element_present(
+            *WidgetLocators.Product_in_history_for_widget), f"Карточка товара не отображается"
 
     def collapse_history(self):
         collapse_history_button = self.browser.find_element(*WidgetLocators.History_widget_collapse_button)
@@ -442,8 +443,8 @@ class WidgetPage(BasePage):
         product_card = self.browser.find_element(*WidgetLocators.Product_card_from_the_history)
         product_card.click()
 
-# ======================================================================================================================
-# Переводы кнопок виджета
+    # ======================================================================================================================
+    # Переводы кнопок виджета
     def translation_check_for_widget(self, language):
         if language == "ru":
             price_button = self.browser.find_element(*WidgetLocators.Price_widget_button).text
@@ -508,5 +509,4 @@ class WidgetPage(BasePage):
             assert similar_button == "semelhantes", f"Ошибка, вернулось название кнопки {similar_button}, для {language}"
             history_button = self.browser.find_element(*WidgetLocators.History_widget_button).text
             assert history_button == "histórico", f"Ошибка, вернулось название кнопки {history_button}, для {language}"
-
-# ======================================================================================================================
+            # ======================================================================================================================

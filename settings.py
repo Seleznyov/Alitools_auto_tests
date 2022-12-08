@@ -24,7 +24,7 @@ url_random_four_product = {"1": "1005004946487223.html",
 # Урлы с разным рейтингом
 url_seller_rating = {"High": "4001294911152.html",
                      "Medium": "1005003710294306.html",
-                     "Low": "4001156333583.html"}
+                     "Low": "1005003982735469.html"}
 
 profile = {"Email": "stanislav.seleznev@bdtech.by", "Password": "Stefler_1992"}
 
@@ -41,3 +41,12 @@ disabled_site_list = ["youtube.com", "vk.com", "facebook.com", "instagram.com", 
                       "letyshops.com"]
 
 setting_tabs = ["Общее", "Поиск по картинке", "Советник", "История", "Синхронизация"]
+
+# Страницы разных товаров для разных магазинов- для которых поиск активен по умолчанию
+# "sportmaster": "https://www.sportmaster.ru/product/18138670299/",
+# svyaznoy": "https://www.svyaznoy.ru/catalog/accessories/8936/7721411",
+sites_active = {"mvideo": "https://www.mvideo.ru/products/stiralnaya-mashina-uzkaya-daewoo-wm610t2wu9ru-20084006"}
+
+# Страницы разных товаров для разных магазинов- для которых поиск не активен по умолчанию
+sites_not_active = {"youtube": "https://www.youtube.com/",
+                    "wikipedia": "https://en.wikipedia.org/wiki/Alexander_the_Great"}

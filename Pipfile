@@ -11,6 +11,7 @@ allure-pytest = "*"
 selenium-stealth = "*"
 datetime = "*"
 undetected-chromedriver = "*"
+webdriver-manager = "*"
 
 [dev-packages]
 

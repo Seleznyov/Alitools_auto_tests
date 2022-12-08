@@ -21,6 +21,8 @@ class BasePageLocators:
     Usd_course_aliExpress_global = (By.XPATH, "//div[@class='rate-value-value'][1]")
     # Установка firefox
     Setup_firefox = (By.XPATH, "//button[contains(text(),'Всё понятно, включить Alitools!')]")
+    # Товар уже разобрали (текст на странице)
+    Item_has_already_been_taken_apart_text = (By.XPATH, "//span[contains(text(),'Товар уже разобрали')]")
 
 
 class ProductPageLocators:
@@ -62,6 +64,13 @@ class ProductPageLocators:
     Product_search_by_image_text = (By.CSS_SELECTOR, ".ssdMT")
     Image_search_result = (By.CSS_SELECTOR, ".h1ISG")
     Find_on_aliexpress_drop_down_values = (By.CSS_SELECTOR, "._3vAZ7")
+    # Локаторы продуктов
+    # sportmaster
+    Product_image_from_sportmaster = (By.XPATH, "//div/img[@data-selenium='image']")
+    # svyaznoy
+    Product_image_from_svyaznoy = (By.XPATH, "//div[2]/div[1]/div[2]/div[1]/div[1]/div[2]/img[1]")
+    # mvideo
+    Product_image_from_mvideo = (By.XPATH, "//button/picture/img")
 
 
 class SettingsLocators:
@@ -93,7 +102,6 @@ class SettingsLocators:
     Widget_tab_synchronization = (By.XPATH, widget + "//div[@class ='_2fg_j']/a[5]")
     Widget_extension_text_dark = (By.XPATH, "//div[@class ='at-theme-dark'][2]//div[@class ='_1LiA_']")
     Widget_disabled_site = (By.XPATH, widget + "//div[@class ='JvDO_']//div[@class ='BTOq4']")
-
 
     # Локаторы для настроек
     # Вкладка "Общее"
@@ -206,7 +214,6 @@ class WidgetLocators:
     Similar_products_orders2 = (By.XPATH, "//div[@class ='at-similar-list at-similar-list--small']/div/a/div/*[2]/span")
     # + Дополнительный для функции
     Similar_message_displayed = (By.CSS_SELECTOR, ".at-similar-list__best-offer-message")
-
 
     # --------------------------------------------------------------------------------------------------------------
     # история

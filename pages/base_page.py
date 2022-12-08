@@ -107,3 +107,11 @@ class BasePage:
             list_without_dots.append(x[0])
         return list_without_dots
 
+    def switch_to_window(self, number):
+        window2 = self.browser.window_handles
+        self.browser.switch_to.window(window2[number])
+
+    def page_domain(self):
+        url_page = self.browser.current_url
+        page_domain = url_page.split("/")
+        return page_domain
