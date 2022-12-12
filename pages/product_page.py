@@ -51,7 +51,7 @@ class ProductPage(BasePage):
     def country_check(self):
         values_country = self.browser.find_elements(*ProductPageLocators.Value_country)
         value_country = values_country[0].get_attribute("value")
-        if value_country != "Беларусь":
+        if value_country != "BY":
             regional_country = self.browser.find_elements(*ProductPageLocators.Regional_country_currency_language)
             regional_country = regional_country[0]
             regional_country.click()
@@ -62,21 +62,27 @@ class ProductPage(BasePage):
 
     def select_currency(self, currency):
         # Подумать как улучшить эту функцию
-        # get_regional_currency_list = self.browser.find_elements(*ProductPageLocators.Regional_currency_list)
+        get_regional_currency_list = self.browser.find_elements(*ProductPageLocators.Regional_currency_list)
         if currency == "USD":
-            currency = self.browser.find_element(*ProductPageLocators.Regional_currency_USD)
-            actions = ActionChains(self.browser)
-            actions.move_to_element(currency).perform()
+            currency = get_regional_currency_list[139]
+            # currency = self.browser.find_element(*ProductPageLocators.Regional_currency_USD)
+            # actions = ActionChains(self.browser)
+            # actions.move_to_element(currency).perform()
             currency.click()
         elif currency == "RUB":
-            currency = self.browser.find_element(*ProductPageLocators.Regional_currency_RUB)
-            actions = ActionChains(self.browser)
-            actions.move_to_element(currency).perform()
+            currency = get_regional_currency_list[68]
+            # currency = self.browser.find_element(*ProductPageLocators.Regional_currency_RUB)
+            # self.browser.execute_script("arguments[0].scrollIntoView(true);", currency)
+            # actions = ActionChains(self.browser)
+            # actions.move_to_element(currency).perform()
+            # scroll_origin = ScrollOrigin.from_element(currency)
+            # ActionChains(self.browser).scroll_from_origin(scroll_origin, 0, 15).perform()
             currency.click()
         elif currency == "EUR":
-            currency = self.browser.find_element(*ProductPageLocators.Regional_currency_EUR)
-            actions = ActionChains(self.browser)
-            actions.move_to_element(currency).perform()
+            currency = get_regional_currency_list[36]
+            # currency = self.browser.find_element(*ProductPageLocators.Regional_currency_EUR)
+            # actions = ActionChains(self.browser)
+            # actions.move_to_element(currency).perform()
             currency.click()
 
     def save_settings(self):
@@ -129,43 +135,49 @@ class ProductPage(BasePage):
         button_wonderful.click()
 
     def hover_on_product_main_image(self, url="ru"):
-        if "aliexpress.com" in url or "aliexpress.us" in url:
-            product_image = self.browser.find_element(*ProductPageLocators.Product_image_com)
-            action = ActionChains(self.browser)
-            action.move_to_element(product_image)
-            action.perform()
-            action.move_to_element(product_image)
-            action.perform()
-        elif "sportmaster" in url:
-            product_image = self.browser.find_elements(*ProductPageLocators.Product_image_from_sportmaster)
-            product_image = product_image[0]
-            action = ActionChains(self.browser)
-            action.move_to_element(product_image)
-            action.perform()
-            action.move_to_element(product_image)
-            action.perform()
-        elif "svyaznoy" in url:
-            product_image = self.browser.find_element(*ProductPageLocators.Product_image_from_svyaznoy)
-            self.browser.execute_script("arguments[0].scrollIntoView(true);", product_image)
-            action = ActionChains(self.browser)
-            action.move_to_element(product_image)
-            action.perform()
-            action.move_to_element(product_image)
-            action.perform()
-        elif "mvideo" in url:
-            product_image = self.browser.find_element(*ProductPageLocators.Product_image_from_mvideo)
-            action = ActionChains(self.browser)
-            action.move_to_element(product_image)
-            action.perform()
-            action.move_to_element(product_image)
-            action.perform()
-        else:
-            product_image = self.browser.find_element(*ProductPageLocators.Product_image)
-            action = ActionChains(self.browser)
-            action.move_to_element(product_image)
-            action.perform()
-            action.move_to_element(product_image)
-            action.perform()
+        for i in range(len(url)):
+            if "aliexpress.com" in url[i] or "aliexpress.us" in url[i]:
+                product_image = self.browser.find_element(*ProductPageLocators.Product_image_com)
+                action = ActionChains(self.browser)
+                action.move_to_element(product_image)
+                action.perform()
+                action.move_to_element(product_image)
+                action.perform()
+                break
+            elif "sportmaster" in url[i]:
+                product_image = self.browser.find_elements(*ProductPageLocators.Product_image_from_sportmaster)
+                product_image = product_image[0]
+                action = ActionChains(self.browser)
+                action.move_to_element(product_image)
+                action.perform()
+                action.move_to_element(product_image)
+                action.perform()
+                break
+            elif "svyaznoy" in url[i]:
+                product_image = self.browser.find_element(*ProductPageLocators.Product_image_from_svyaznoy)
+                self.browser.execute_script("arguments[0].scrollIntoView(true);", product_image)
+                action = ActionChains(self.browser)
+                action.move_to_element(product_image)
+                action.perform()
+                action.move_to_element(product_image)
+                action.perform()
+                break
+            elif "mvideo" in url[i]:
+                product_image = self.browser.find_element(*ProductPageLocators.Product_image_from_mvideo)
+                action = ActionChains(self.browser)
+                action.move_to_element(product_image)
+                action.perform()
+                action.move_to_element(product_image)
+                action.perform()
+                break
+            else:
+                if i == len(url) - 1:
+                    product_image = self.browser.find_element(*ProductPageLocators.Product_image)
+                    action = ActionChains(self.browser)
+                    action.move_to_element(product_image)
+                    action.perform()
+                    action.move_to_element(product_image)
+                    action.perform()
 
     def should_be_icon_find_on_aliexpress(self):
         icon = self.is_element_present(*ProductPageLocators.Find_on_aliexpress_icon)

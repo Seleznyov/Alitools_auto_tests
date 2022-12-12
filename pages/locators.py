@@ -35,13 +35,13 @@ class ProductPageLocators:
     Button_login = (By.XPATH, "//button[contains(text(),'Войти')]")
     Regional_settings = (By.XPATH, "//div[@class ='SnowMenu_FlagBlock__wrapper__i513w']/a[1]")
     # Переписать этот локатор сделать три разных вместо одного
-    Regional_country_currency_language = (By.XPATH, "//div[@class='RegionalSettings_RegionalSettings__select__ieug1']")
-    Value_country = (By.XPATH, "//div[@class='RegionalSettings_RegionalSettings__select__ieug1']//input")
-    Regional_currency_list = (By.CSS_SELECTOR, ".RegionalSettings_RegionalSettings__item__ieug1")
-    Regional_country_BEL = (By.XPATH, "//li[@id='downshift-0-item-20']")
-    Regional_currency_USD = (By.XPATH, "//li[@id='downshift-2-item-139']")
-    Regional_currency_RUB = (By.XPATH, "//li[@id='downshift-2-item-68']")
-    Regional_currency_EUR = (By.XPATH, "//li[@id='downshift-2-item-36']")
+    Regional_country_currency_language = (By.XPATH, "//div[@class='snow-ali-kit_Input__inputFieldWrapper__1aiyxh']")
+    Value_country = (By.XPATH, "//div[@class='snow-ali-kit_Input__inputFieldWrapper__1aiyxh']//input")
+    Regional_currency_list = (By.CSS_SELECTOR, ".snow-dropdown_ListElement__wrapper__ft25lq")
+    Regional_country_BEL = (By.XPATH, "//li/div[2]/img[@alt='BY']")
+    Regional_currency_USD = (By.XPATH, "//li/div[2]/img[@alt='USD']")
+    Regional_currency_RUB = (By.XPATH, "//li/div[2]/img[@alt='RUB']")
+    Regional_currency_EUR = (By.XPATH, "//li/div[2]/img[@alt='EUR']")
     # Написать лучше
     # Save_settings_button = (By.XPATH,
     #                         "//div[@class='snow-scrolling-header_SnowScrollingHeader__buttonGroup__16wax0']/button")

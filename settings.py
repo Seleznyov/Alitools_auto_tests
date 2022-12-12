@@ -47,8 +47,11 @@ setting_tabs = ["Общее", "Поиск по картинке", "Советн�
 
 # Страницы разных товаров для разных магазинов- для которых поиск активен по умолчанию
 # "sportmaster": "https://www.sportmaster.ru/product/18138670299/",
-# svyaznoy": "https://www.svyaznoy.ru/catalog/accessories/8936/7721411",
-sites_active = {"mvideo": "https://www.mvideo.ru/products/stiralnaya-mashina-uzkaya-daewoo-wm610t2wu9ru-20084006"}
+# "svyaznoy": "https://www.svyaznoy.ru/catalog/accessories/8936/7721411",
+clear = "https://webcache.googleusercontent.com/search?q=cache:"
+sites_active = {"mvideo": "https://www.mvideo.ru/products/stiralnaya-mashina-uzkaya-daewoo-wm610t2wu9ru-20084006",
+                "sportmaster": clear + "https://www.sportmaster.ru/product/18138670299/",
+                "svyaznoy": clear + "https://www.svyaznoy.ru/catalog/accessories/8936/7721411"}
 
 # Страницы разных товаров для разных магазинов- для которых поиск не активен по умолчанию
 sites_not_active = {"youtube": "https://www.youtube.com/",

@@ -135,7 +135,7 @@ def test_image_search_on_a_random_site(browser, sites_act=sites_active):
     page.open_randon_site(sites_act)
     time.sleep(1)
     url = page.page_domain()
-    page.hover_on_product_main_image(url[2])
+    page.hover_on_product_main_image(url)
     time.sleep(0.5)
     page.hover_on_icon_find_on_aliexpress()
     time.sleep(0.5)

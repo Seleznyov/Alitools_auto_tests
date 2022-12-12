@@ -79,13 +79,13 @@ def test_deleting_product_card_from_the_history(browser):
 
 
 def test_open_settings_history(browser):
-    page = WidgetPage(browser, browser.current_url)
-    page.open_history_widget()
-    page.open_history_widget_context_menu()
-    page.open_history_settings()
+    page_widget = WidgetPage(browser, browser.current_url)
+    page_widget.open_history_widget()
+    page_widget.open_history_widget_context_menu()
+    page_widget.open_history_settings()
     time.sleep(0.2)
-    page = SettingsPage(browser, browser.current_url)
-    active_tab = page.get_active_tab()
+    page_setting = SettingsPage(browser, browser.current_url)
+    active_tab = page_setting.get_active_tab()
     assert active_tab == "История", f"Актиавна вкладка: {active_tab}, a не [История]"
 
 
