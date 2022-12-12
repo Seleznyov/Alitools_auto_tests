@@ -95,6 +95,20 @@ class ProductPage(BasePage):
                 value = currency_processing[currency]
                 return value
 
+    # Возвращает активное  Sku страницы
+    def get_active_sku(self):
+        product_sku = self.browser.find_elements(*ProductPageLocators.Product_sku_picture)
+        for i in range(len(product_sku)):
+            if "active" in product_sku[i].get_attribute("class"):
+                return i
+
+    # Выбирает следущую sku
+    def select_next_sku(self, index):
+        product_sku = self.browser.find_elements(*ProductPageLocators.Product_sku_picture)
+        next_sku = product_sku[index+1]
+        next_sku.click()
+
+
     def should_be_seller_trust_level_title(self):
         title = self.browser.find_element(*ProductPageLocators.Seller_trust_level_title)
         assert title, "title is not presented "

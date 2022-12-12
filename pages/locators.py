@@ -27,6 +27,7 @@ class BasePageLocators:
 
 class ProductPageLocators:
     Product_price = (By.XPATH, "//div[@class ='snow-price_SnowPrice__mainS__18x8np']")
+    Product_sku_picture = (By.XPATH, "//div[@exp_page_area='sku_floor']/div[2]/div/div/div")
     Order_quantity = (By.XPATH, "//div[@class ='SnowProductDescription_ExtraInfo__wrap__193uk']/*[4]")
     Icon_login = (By.CSS_SELECTOR, ".SnowHeaderProfileItem_SnowHeaderProfileItem__item__1vsjg")
     Email_input = (By.CSS_SELECTOR, "#email")

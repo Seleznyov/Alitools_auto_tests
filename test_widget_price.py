@@ -3,7 +3,7 @@ import pytest
 from .pages.product_page import ProductPage
 from .pages.setting_page import SettingsPage
 from .pages.widget_page import WidgetPage
-from .settings import profile
+from .settings import profile, url_sku
 
 
 @pytest.fixture(scope="function", autouse=True)
@@ -119,3 +119,45 @@ def test_widget_course_usd_check(browser, directory_name="widget", email=profile
         aliexpress_global = page.get_usd_course()
         assert course_used == aliexpress_global, \
             f"Курс страницы:{course_used} не равен курсу 'AliExpress Global':{aliexpress_global} "
+
+
+# Готово проверить в новой сборке
+def test_different_sku(browser, url=url_sku):
+    browser.get(url[0])
+    page = WidgetPage(browser, browser.current_url)
+    page.should_be_option_start()
+    page.click_on_cross_start_greeting()
+    page_product = ProductPage(browser, browser.current_url)
+    product_page_price = page_product.product_price()
+    currency_page = page_product.get_currency_page()
+    page.open_price_widget()
+    page.open_price_settings()
+    page_settings = SettingsPage(browser, browser.current_url)
+    page_settings.open_currency_list()
+    page_settings.choose_currency(currency_page)
+    page_settings.close_settings()
+    extension_price = page.exact_price()
+    time.sleep(0.5)
+    page.close_price_card()
+    assert extension_price == int(product_page_price), \
+        f"Ошибка -> цена: {extension_price} не равна цене: {int(product_page_price)} "
+    time.sleep(1)
+    index_active_sku = page_product.get_active_sku()
+    page_product.select_next_sku(index_active_sku)
+    product_page_price = page_product.product_price()
+    page.open_price_widget()
+    extension_price = page.exact_price()
+    time.sleep(0.5)
+    page.close_price_card()
+    assert extension_price == int(product_page_price), \
+        f"Ошибка -> цена: {extension_price} не равна цене: {int(product_page_price)} "
+    time.sleep(1)
+    index_active_sku = page_product.get_active_sku()
+    page_product.select_next_sku(index_active_sku)
+    product_page_price = page_product.product_price()
+    page.open_price_widget()
+    extension_price = page.exact_price()
+    time.sleep(0.5)
+    page.close_price_card()
+    assert extension_price == int(product_page_price), \
+        f"Ошибка -> цена: {extension_price} не равна цене: {int(product_page_price)} "
