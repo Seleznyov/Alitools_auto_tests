@@ -60,8 +60,8 @@ class ProductPage(BasePage):
             country_bel.click()
             time.sleep(1)
 
+    # Подумать как улучшить эту функцию
     def select_currency(self, currency):
-        # Подумать как улучшить эту функцию
         get_regional_currency_list = self.browser.find_elements(*ProductPageLocators.Regional_currency_list)
         if currency == "USD":
             currency = get_regional_currency_list[139]
@@ -72,11 +72,8 @@ class ProductPage(BasePage):
         elif currency == "RUB":
             currency = get_regional_currency_list[68]
             # currency = self.browser.find_element(*ProductPageLocators.Regional_currency_RUB)
-            # self.browser.execute_script("arguments[0].scrollIntoView(true);", currency)
             # actions = ActionChains(self.browser)
             # actions.move_to_element(currency).perform()
-            # scroll_origin = ScrollOrigin.from_element(currency)
-            # ActionChains(self.browser).scroll_from_origin(scroll_origin, 0, 15).perform()
             currency.click()
         elif currency == "EUR":
             currency = get_regional_currency_list[36]

@@ -204,10 +204,6 @@ class WidgetPage(BasePage):
             for image in reviews_images:
                 if image == reviews_images[-1]:
                     self.browser.execute_script("arguments[0].scrollIntoView(true);", image)
-                    # actions = ActionChains(self.browser)
-                    # actions.move_to_element(image).perform()
-                    # scroll_origin = ScrollOrigin.from_element(image)
-                    # ActionChains(self.browser).scroll_from_origin(scroll_origin, 0, 100).perform()
                     time.sleep(0.5)
             reviews_images = self.browser.find_elements(*WidgetLocators.Value_Reviews_Images)
             x += 1
@@ -286,8 +282,6 @@ class WidgetPage(BasePage):
             price0 = prices[i].text
             price0 = "".join(c for c in price0 if c.isdecimal())
             self.browser.execute_script("arguments[0].scrollIntoView(true);", prices[i + 1])
-            # actions = ActionChains(self.browser)
-            # actions.move_to_element(prices[i + 1]).perform()
             price1 = prices[i + 1].text
             price1 = "".join(c for c in price1 if c.isdecimal())
             # print(price0, price1)
@@ -306,8 +300,6 @@ class WidgetPage(BasePage):
             orders0 = orders[i].text
             orders0 = "".join(c for c in orders0 if c.isdecimal())
             self.browser.execute_script("arguments[0].scrollIntoView(true);", orders[i + 1])
-            # actions = ActionChains(self.browser)
-            # actions.move_to_element(orders[i + 1]).perform()
             orders1 = orders[i + 1].text
             orders1 = "".join(c for c in orders1 if c.isdecimal())
             # print(orders0, orders1)
@@ -509,4 +501,4 @@ class WidgetPage(BasePage):
             assert similar_button == "semelhantes", f"Ошибка, вернулось название кнопки {similar_button}, для {language}"
             history_button = self.browser.find_element(*WidgetLocators.History_widget_button).text
             assert history_button == "histórico", f"Ошибка, вернулось название кнопки {history_button}, для {language}"
-            # ======================================================================================================================
+# ======================================================================================================================

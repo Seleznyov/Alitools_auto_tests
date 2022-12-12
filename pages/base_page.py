@@ -42,12 +42,8 @@ class BasePage:
         assert self.is_element_present(*BasePageLocators.Starting_greeting), "element is not presented"
 
     def click_on_cross_start_greeting(self):
-        # cross_start_greeting_el = self.is_element_present(*BasePageLocators.Cross_start_greeting)
-        # if cross_start_greeting_el is True:
         cross_start_greeting = self.browser.find_element(*BasePageLocators.Cross_start_greeting)
         cross_start_greeting.click()
-        # else:
-        #     assert cross_start_greeting_el is True, f"Не отображается 'cross_start_greeting'"
 
     def click_on_cress_repeated_favorites(self):
         cross_repeated_favorites = self.browser.find_element(*BasePageLocators.Cross_repeated_favorites)
