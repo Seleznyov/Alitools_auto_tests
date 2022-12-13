@@ -21,11 +21,10 @@ def setup(browser):
         page.setup_firefox()
         time.sleep(2)
         page_product.switch_to_window(1)
-        time.sleep(1)
+        time.sleep(0.5)
+        page.click_on_cross_start_greeting()
         url_global = page.page_domain()
         time.sleep(1)
-        page.click_on_cross_start_greeting()
-        time.sleep(0.3)
     else:
         page = WidgetPage(browser, browser.current_url)
         result_warning = page.check_warning_text()
