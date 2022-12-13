@@ -15,13 +15,12 @@ def setup(browser):
     if browser.name == "firefox":
         page = WidgetPage(browser, browser.current_url)
         page.setup_firefox()
+        time.sleep(2)
         page_product.switch_to_window(1)
-        time.sleep(1)
 
 
 def test_displaying_a_list_of_languages(browser):
     page = WidgetPage(browser, browser.current_url)
-    page.should_be_option_start()
     page.click_on_cross_start_greeting()
     page.open_price_widget()
     # открываем настройки
@@ -35,7 +34,6 @@ def test_displaying_a_list_of_languages(browser):
 
 def test_displaying_a_list_of_currency(browser):
     page = WidgetPage(browser, browser.current_url)
-    page.should_be_option_start()
     page.click_on_cross_start_greeting()
     page.open_price_widget()
     # открываем настройки
@@ -49,7 +47,6 @@ def test_displaying_a_list_of_currency(browser):
 
 def test_theme_change(browser, directory_name="settings"):
     page = WidgetPage(browser, browser.current_url)
-    page.should_be_option_start()
     page.click_on_cross_start_greeting()
     page.open_price_widget()
     page.open_price_settings()
@@ -63,7 +60,6 @@ def test_theme_change(browser, directory_name="settings"):
 
 def test_turn_on_seller_trust_level(browser):
     page_widget = WidgetPage(browser, browser.current_url)
-    page_widget.should_be_option_start()
     page_widget.click_on_cross_start_greeting()
     page_product = ProductPage(browser, browser.current_url)
     time.sleep(0.7)
@@ -83,7 +79,6 @@ def test_turn_on_seller_trust_level(browser):
 @pytest.mark.parametrize('languages', language)
 def test_language_change(browser, languages):
     page_widget = WidgetPage(browser, browser.current_url)
-    page_widget.should_be_option_start()
     page_widget.click_on_cross_start_greeting()
     page_widget.open_price_widget()
     page_widget.open_price_settings()

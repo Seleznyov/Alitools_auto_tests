@@ -15,6 +15,7 @@ def setup(browser):
     if browser.name == "firefox":
         page = WidgetPage(browser, browser.current_url)
         page.setup_firefox()
+        time.sleep(2)
         page.switch_to_window(1)
 
 
@@ -23,7 +24,6 @@ def setup(browser):
 @pytest.mark.skip(reason="there is an error")
 def test_exact_price_display(browser):
     page_widget = WidgetPage(browser, browser.current_url)
-    page_widget.should_be_option_start()
     page_widget.click_on_cross_start_greeting()
     page_product = ProductPage(browser, browser.current_url)
     # Получаем валюту страницы
@@ -49,7 +49,6 @@ def test_exact_price_display(browser):
 
 def test_open_dropdown(browser):
     page = WidgetPage(browser, browser.current_url)
-    page.should_be_option_start()
     page.click_on_cross_start_greeting()
     page.open_price_widget()
     page.open_price_drop_down_for_3_months()
@@ -59,7 +58,6 @@ def test_open_dropdown(browser):
 
 def test_period_display(browser):
     page = WidgetPage(browser, browser.current_url)
-    page.should_be_option_start()
     page.click_on_cross_start_greeting()
     page.open_price_widget()
     value_months_for_3_months = page.get_value_months()
@@ -76,7 +74,6 @@ def test_period_display(browser):
 # @pytest.mark.skip(reason="there is an error")
 def test_widget_course_usd_check(browser, directory_name="widget", email=profile["Email"], password=profile["Password"]):
     page_widget = WidgetPage(browser, browser.current_url)
-    page_widget.should_be_option_start()
     page_widget.click_on_cross_start_greeting()
     page_product = ProductPage(browser, browser.current_url)
     currency_page = page_product.get_currency_page()
@@ -119,7 +116,6 @@ def test_widget_course_usd_check(browser, directory_name="widget", email=profile
 def test_different_sku(browser, url=url_sku):
     browser.get(url[0])
     page = WidgetPage(browser, browser.current_url)
-    page.should_be_option_start()
     page.click_on_cross_start_greeting()
     page_product = ProductPage(browser, browser.current_url)
     product_page_price = page_product.product_price()

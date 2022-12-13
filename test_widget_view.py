@@ -1,3 +1,4 @@
+import time
 import pytest
 from .pages.widget_page import WidgetPage
 from .pages.base_page import BasePage
@@ -12,21 +13,25 @@ def setup(browser):
     if browser.name == "firefox":
         page = WidgetPage(browser, browser.current_url)
         page.setup_firefox()
+        time.sleep(1)
         page.switch_to_window(1)
+        # Проверка отображения приветствия
+        page.should_be_greetings()
+    else:
+        # Проверка отображения приветствия
+        page.should_be_greetings()
 
 
-def test_greetings(browser):
-    page = BasePage(browser, browser.current_url)
-    # Проверка откуда вы узнали о расширении
-    page.should_be_option_start()
-    # Проверка отображения приветствия
-    page.should_be_greetings()
+# def test_greetings(browser):
+#     page = BasePage(browser, browser.current_url)
+#     # # Проверка откуда вы узнали о расширении
+#     # page.should_be_option_start()
+#     # Проверка отображения приветствия
+#     page.should_be_greetings()
 
 
 def test_widget_price_view(browser):
     page = WidgetPage(browser, browser.current_url)
-    # Проверка откуда вы узнали о расширении
-    page.should_be_option_start()
     # Открыть "цена"
     page.open_price_widget()
     # Отображается ли имя карточки "История цены"
@@ -49,8 +54,6 @@ def test_widget_price_view(browser):
 
 def test_widget_seller_view(browser):
     page = WidgetPage(browser, browser.current_url)
-    # Проверка откуда вы узнали о расширении
-    page.should_be_option_start()
     # Открыть "продавец"
     page.open_seller_widget()
     # Отображается ли имя карточки "Рейтинг продавца"
@@ -63,8 +66,6 @@ def test_widget_seller_view(browser):
 
 def test_widget_reviews_view(browser):
     page = WidgetPage(browser, browser.current_url)
-    # Проверка откуда вы узнали о расширении
-    page.should_be_option_start()
     # Открыть "обзоры"
     page.open_reviews_widget()
     # Отображается ли имя карточки "Обзоры"
@@ -77,8 +78,6 @@ def test_widget_reviews_view(browser):
 
 def test_widget_similar_view(browser):
     page = WidgetPage(browser, browser.current_url)
-    # Проверка откуда вы узнали о расширении
-    page.should_be_option_start()
     # Открыть "похожие"
     page.open_similar_widget()
     # Отображается ли имя карточки "Похожие"
@@ -93,8 +92,6 @@ def test_widget_similar_view(browser):
 
 def test_widget_history_view(browser):
     page = WidgetPage(browser, browser.current_url)
-    # Проверка откуда вы узнали о расширении
-    page.should_be_option_start()
     # Закрываем приветствие
     page.click_on_cross_start_greeting()
     # Отображается ли кнопка "свернуть историю"

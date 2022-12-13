@@ -14,6 +14,7 @@ def setup(browser):
     if browser.name == "firefox":
         page = WidgetPage(browser, browser.current_url)
         page.setup_firefox()
+        time.sleep(2)
         page.switch_to_window(1)
 
 
@@ -22,7 +23,6 @@ def test_zero_reviews(browser):
     url = url_zero_reviews[random_index]
     browser.get(url)
     page = WidgetPage(browser, browser.current_url)
-    page.should_be_option_start()
     page.click_on_cross_start_greeting()
     val_reviews = page.value_reviews()
     assert val_reviews == 0, f"Ошибка -> количество обзоров равно : {val_reviews} a не : '0' "
@@ -38,7 +38,6 @@ def test_number_of_reviews(browser):
     # url = "https://aliexpress.ru/item/32974708727.html"
     # browser.get(url)
     page = WidgetPage(browser, browser.current_url)
-    page.should_be_option_start()
     page.click_on_cross_start_greeting()
     display_quantity_on_widget = page.value_reviews()
     page.open_reviews_widget()
@@ -55,7 +54,6 @@ def test_open_random_card_of_reviews(browser):
     if browser.name == "firefox":
         pytest.skip("firefox browser is used")
     page = WidgetPage(browser, browser.current_url)
-    page.should_be_option_start()
     page.click_on_cross_start_greeting()
     page.open_reviews_widget()
     # Выбор случайного обзора

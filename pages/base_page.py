@@ -1,16 +1,17 @@
 import datetime
 import time
-
+import pytest
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from .locators import BasePageLocators
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.by import By
 
 
 class BasePage:
-    def __init__(self, browser, url, timeout=7):
+    def __init__(self, browser, url, timeout=4):
         self.browser = browser
         self.url = url
         self.browser.implicitly_wait(timeout)
@@ -25,7 +26,7 @@ class BasePage:
             return False
         return True
 
-    def is_not_element_present(self, how, what, timeout=4):
+    def is_not_element_present(self, how, what, timeout=5):
         try:
             WebDriverWait(self.browser, timeout).until(EC.presence_of_element_located((how, what)))
         except TimeoutException:
@@ -39,9 +40,17 @@ class BasePage:
             cross_option_start.click()
 
     def should_be_greetings(self):
+        try:
+            WebDriverWait(self.browser, 20).until(EC.presence_of_element_located((By.XPATH, "//div[contains(text(),'Alitools готов к работе')]")))
+        except TimeoutException:
+            pytest.skip("Не успел отобразиться стартовый элемент")
         assert self.is_element_present(*BasePageLocators.Starting_greeting), "element is not presented"
 
     def click_on_cross_start_greeting(self):
+        try:
+            WebDriverWait(self.browser, 20).until(EC.presence_of_element_located((By.XPATH, "//div[@class ='_2GJWf']/div/*[1]")))
+        except TimeoutException:
+            pytest.skip("Не успел отобразиться стартовый элемент")
         cross_start_greeting = self.browser.find_element(*BasePageLocators.Cross_start_greeting)
         cross_start_greeting.click()
 

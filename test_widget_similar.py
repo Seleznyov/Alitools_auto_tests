@@ -11,16 +11,15 @@ def setup(browser):
     browser.get(url)
     page = ProductPage(browser, browser.current_url)
     page.switch_to_window(1)
-    time.sleep(1)
     if browser.name == "firefox":
         page = WidgetPage(browser, browser.current_url)
         page.setup_firefox()
+        time.sleep(2)
         page.switch_to_window(1)
 
 
 def test_number_of_similar_products(browser):
     page = WidgetPage(browser, browser.current_url)
-    page.should_be_option_start()
     page.click_on_cross_start_greeting()
     value_widget_similar_products = page.value_similar_products()
     page.open_similar_widget()
@@ -36,8 +35,6 @@ def test_open_random_product_card(browser, currency, email=profile["Email"], pas
     if browser.name == "firefox":
         pytest.skip("firefox browser is used")
     page = WidgetPage(browser, browser.current_url)
-    page.should_be_option_start()
-    time.sleep(1)
     page.click_on_cross_start_greeting()
     # Получаем количество похожих продуктов
     value_widget_products = page.value_similar_products()
@@ -104,7 +101,6 @@ def test_open_random_product_card(browser, currency, email=profile["Email"], pas
 
 def test_sort_by_price(browser):
     page = WidgetPage(browser, browser.current_url)
-    page.should_be_option_start()
     page.click_on_cross_start_greeting()
     page.open_similar_widget()
     page.open_drop_down_for_similar()
@@ -114,11 +110,11 @@ def test_sort_by_price(browser):
 
 
 def test_sort_by_orders(browser):
+    # Тестовые страницы
     # url = "https://www.aliexpress.com/item/4001294911152.html"
     # url = "https://www.aliexpress.com/item/4000203522848.html"
     # browser.get(url)
     page = WidgetPage(browser, browser.current_url)
-    page.should_be_option_start()
     page.click_on_cross_start_greeting()
     page.open_similar_widget()
     page.open_drop_down_for_similar()

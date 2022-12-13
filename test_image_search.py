@@ -19,11 +19,10 @@ def setup(browser):
     if browser.name == "firefox":
         page = WidgetPage(browser, browser.current_url)
         page.setup_firefox()
-        time.sleep(5)
+        time.sleep(2)
         page_product.switch_to_window(1)
         time.sleep(1)
         url_global = page.page_domain()
-        page.should_be_option_start()
         # page_product = ProductPage(browser, browser.current_url)
         # page_product.click_on_button_wonderful()
         time.sleep(1)
@@ -35,7 +34,6 @@ def setup(browser):
         url_global = page.page_domain()
         if result_warning is False:
             page.hold_and_move_section_to_down()
-            page.should_be_option_start()
             # page_product = ProductPage(browser, browser.current_url)
             # page_product.click_on_button_wonderful()
             time.sleep(0.5)
@@ -45,10 +43,9 @@ def setup(browser):
             time.sleep(0.5)
             page.click_on_cress_repeated_favorites()
         else:
-            page.should_be_option_start()
             # page_product = ProductPage(browser, browser.current_url)
             # page_product.click_on_button_wonderful()
-            time.sleep(1)
+            time.sleep(0.5)
             page.click_on_cross_start_greeting()
 
 
