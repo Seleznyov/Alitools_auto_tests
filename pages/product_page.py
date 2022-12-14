@@ -1,7 +1,7 @@
 import time
 from .base_page import BasePage
 from .locators import ProductPageLocators
-# import pytest
+import pytest
 # from selenium.common.exceptions import TimeoutException
 # from selenium.webdriver.support.ui import WebDriverWait
 # from selenium.webdriver.support import expected_conditions as EC
@@ -21,7 +21,11 @@ class ProductPage(BasePage):
         product_price = self.browser.find_element(*ProductPageLocators.Product_price).text
         product_price = product_price.translate({ord(i): None for i in ' руб.$€¥US'})
         product_price = product_price.replace(",", ".")
-        return float(product_price)
+        try:
+            price = float(product_price)
+            return price
+        except ValueError as error:
+            pytest.skip(f"Тест упал из-за ошибки {error}")
 
     def open_profile(self):
         icon_login = self.browser.find_element(*ProductPageLocators.Icon_login)

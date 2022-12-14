@@ -66,7 +66,8 @@ class WidgetPage(BasePage):
         exact_price = self.browser.find_element(*WidgetLocators.Exact_price).text
         exact_price = exact_price.translate({ord(i): None for i in ' руб$€¥₽'})
         exact_price = exact_price.replace(' ', '')
-        return float(exact_price)
+        price = float(exact_price)
+        return price
 
     # Получить количество месяцев на графике
     def get_value_months(self):
