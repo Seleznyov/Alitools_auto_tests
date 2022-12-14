@@ -22,12 +22,12 @@ def setup(browser):
         page.should_be_greetings()
 
 
-# def test_greetings(browser):
-#     page = BasePage(browser, browser.current_url)
-#     # # Проверка откуда вы узнали о расширении
-#     # page.should_be_option_start()
-#     # Проверка отображения приветствия
-#     page.should_be_greetings()
+def test_greetings(browser):
+    page = BasePage(browser, browser.current_url)
+    # # Проверка откуда вы узнали о расширении
+    # page.should_be_option_start()
+    # Проверка отображения приветствия
+    page.should_be_greetings()
 
 
 def test_widget_price_view(browser):

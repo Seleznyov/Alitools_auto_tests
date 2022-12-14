@@ -140,4 +140,3 @@ def test_image_search_on_a_random_site(browser, sites_act=sites_active):
     page.should_be_search_results()
     page.should_be_text_product_search_by_image()
     time.sleep(4)
-
