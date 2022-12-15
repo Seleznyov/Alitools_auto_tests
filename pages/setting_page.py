@@ -334,3 +334,8 @@ class SettingsPage(BasePage):
     def scroll_to_general_settings(self):
         text_color_scheme = self.browser.find_element(*SettingsLocators.Widget_extension_text_dark)
         self.browser.execute_script("arguments[0].scrollIntoView(true);", text_color_scheme)
+
+    # Нажать на чекбокс "Кнопка на картинках"
+    def click_on_checkbox_button_on_image(self):
+        checkbox = self.browser.find_element(*SettingsLocators.Widget_checkbox_button_on_image)
+        checkbox.click()

@@ -103,6 +103,7 @@ class SettingsLocators:
     Widget_tab_synchronization = (By.XPATH, widget + "//div[@class ='_2fg_j']/a[5]")
     Widget_extension_text_dark = (By.XPATH, "//div[@class ='at-theme-dark'][2]//div[@class ='_1LiA_']")
     Widget_disabled_site = (By.XPATH, widget + "//div[@class ='JvDO_']//div[@class ='BTOq4']")
+    Widget_checkbox_button_on_image = (By.XPATH, widget + "//label[@class ='_3g_v7']/span/div")
 
     # Локаторы для настроек
     # Вкладка "Общее"
