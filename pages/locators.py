@@ -104,6 +104,8 @@ class SettingsLocators:
     Widget_extension_text_dark = (By.XPATH, "//div[@class ='at-theme-dark'][2]//div[@class ='_1LiA_']")
     Widget_disabled_site = (By.XPATH, widget + "//div[@class ='JvDO_']//div[@class ='BTOq4']")
     Widget_checkbox_button_on_image = (By.XPATH, widget + "//label[@class ='_3g_v7']/span/div")
+    Widget_cross_for_disabled_site = (By.XPATH, widget + "//div[@class ='JvDO_']/*[3]")
+    Widget_text_for_empty_disabled_list = (By.CSS_SELECTOR, "._1T683")
 
     # Локаторы для настроек
     # Вкладка "Общее"

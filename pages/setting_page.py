@@ -1,3 +1,5 @@
+import time
+
 from .base_page import BasePage
 from .locators import SettingsLocators
 from selenium.webdriver.common.by import By
@@ -339,3 +341,15 @@ class SettingsPage(BasePage):
     def click_on_checkbox_button_on_image(self):
         checkbox = self.browser.find_element(*SettingsLocators.Widget_checkbox_button_on_image)
         checkbox.click()
+
+    # Удалить все сайты из списка исключений (Поиск по картинке)
+    def delete_all_site_from_disabled_list(self):
+        crosses = self.browser.find_elements(*SettingsLocators.Widget_cross_for_disabled_site)
+        for i in range(len(crosses)):
+            crosses[i].click()
+            time.sleep(0.5)
+
+    # Проверка отображается ли текст для пустого списка
+    def should_be_text_for_empty_disabled_list(self):
+        text = self.browser.find_element(*SettingsLocators.Widget_text_for_empty_disabled_list)
+        assert text.text == "Если вы отключите кнопку\n«Найти на AliExpress» на каком-то\nсайте, его адрес появится здесь."

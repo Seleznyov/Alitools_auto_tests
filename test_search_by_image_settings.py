@@ -66,3 +66,13 @@ def test_turn_off_button_on_image(browser):
     time.sleep(0.5)
     page_product.hover_on_product_main_image(url_global[2])
     page_product.should_not_be_icon_find_on_aliexpress()
+
+
+def test_empty_disabled_list_display(browser):
+    page_widget = WidgetPage(browser, browser.current_url)
+    page_widget.open_price_widget()
+    page_widget.open_price_settings()
+    page_settings = SettingsPage(browser, browser.current_url)
+    page_settings.open_search_by_image_tab_from_widget()
+    page_settings.delete_all_site_from_disabled_list()
+    page_settings.should_be_text_for_empty_disabled_list()
