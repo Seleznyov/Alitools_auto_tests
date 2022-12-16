@@ -20,7 +20,7 @@ class WidgetPage(BasePage):
     # цена
     def open_price_widget(self):
         try:
-            WebDriverWait(self.browser, 5).until(EC.presence_of_element_located((By.CSS_SELECTOR, WidgetLocators.Pricebutton)))
+            WebDriverWait(self.browser, 5).until(EC.presence_of_element_located((By.CSS_SELECTOR, WidgetLocators.Price_button)))
         except TimeoutException:
             pytest.skip("Не успел отобразиться элемент [цена]")
         price_widget_button = self.browser.find_element(*WidgetLocators.Price_widget_button)

@@ -5,7 +5,6 @@ from webdriver_manager.chrome import ChromeDriverManager as ChromeService
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.firefox import GeckoDriverManager as FirefoxService
 from selenium_stealth import stealth
-from fake_useragent import UserAgent
 
 
 def pytest_addoption(parser):
@@ -21,15 +20,14 @@ def browser(request):
     user_language = request.config.getoption("language")
     if browser_name == "chrome":
         options = Options()
-        useragent = UserAgent()
         options.add_argument("--start-maximized")
         options.add_argument('--no-sandbox')
         options.add_argument('--disable-dev-shm-usage')
         # ======================================================
         # Ставит флаг WebDriver(New) -> missing (passed)
         options.add_argument('--disable-blink-features=AutomationControlled')
-        options.add_argument(
-            "user-agent=" + useragent.chrome)
+        options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, "
+                             "like Gecko) Chrome/108.0.0.0 Safari/537.36")
         options.add_experimental_option("excludeSwitches", ["enable-automation"])
         options.add_experimental_option('useAutomationExtension', False)
         options.add_experimental_option('prefs', {'intl.accept_languages': user_language})
@@ -48,11 +46,11 @@ def browser(request):
 
     elif browser_name == "firefox":
         options = webdriver.FirefoxOptions()
-        useragent = UserAgent()
         options.set_preference("dom.webdriver.enabled", False)
         options.set_preference('dom.webnotifications.enabled', False)
         options.set_preference('useAutomationExtension', False)
-        options.set_preference("general.useragent.override", useragent.firefox)
+        options.set_preference("general.useragent.override",
+                               "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:108.0) Gecko/20100101 Firefox/108.0")
         # Запуск в фоне
         # options.headless = True
         ex = "alitools13897.xpi"
