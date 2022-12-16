@@ -41,16 +41,17 @@ class BasePage:
 
     def should_be_greetings(self):
         try:
-            WebDriverWait(self.browser, 20).until(EC.presence_of_element_located((By.XPATH, "//div[contains(text(),'Alitools готов к работе')]")))
+            WebDriverWait(self.browser, 20).until(EC.presence_of_element_located((By.XPATH, BasePageLocators.Greeting)))
         except TimeoutException:
-            pytest.skip("Не успел отобразиться стартовый элемент")
+            pytest.skip("Не успел отобразиться стартовый элемент Приветствие")
         assert self.is_element_present(*BasePageLocators.Starting_greeting), "element is not presented"
 
     def click_on_cross_start_greeting(self):
         try:
-            WebDriverWait(self.browser, 20).until(EC.presence_of_element_located((By.XPATH, "//div[@class ='_2GJWf']/div/*[1]")))
+            WebDriverWait(self.browser, 20).until(EC.presence_of_element_located((By.XPATH, BasePageLocators.Cross_start)))
+            time.sleep(0.5)
         except TimeoutException:
-            pytest.skip("Не успел отобразиться стартовый элемент")
+            pytest.skip("Не успел отобразиться стартовый элемент [x]")
         cross_start_greeting = self.browser.find_element(*BasePageLocators.Cross_start_greeting)
         cross_start_greeting.click()
 

@@ -3,9 +3,11 @@ from selenium.webdriver.common.by import By
 
 class BasePageLocators:
     Possible_answer = (By.XPATH, "//div[contains(text(),'Друзья или коллеги')]")
-    Starting_greeting = (By.XPATH, "//div[contains(text(),'Alitools готов к работе')]")
+    Greeting = "//div[contains(text(),'Alitools готов к работе')]"
+    Starting_greeting = (By.XPATH, Greeting)
     #  Прод локатор
-    Cross_start_greeting = (By.XPATH, "//div[@class ='_2GJWf']/div/*[1]")
+    Cross_start = "//div[@class ='_2GJWf']/div/*[1]"
+    Cross_start_greeting = (By.XPATH, Cross_start)
     # Тестовый локатор
     # Cross_start_greeting = (By.XPATH, "//body/div[6]/div[2]/div[1]/div[1]/div[2]/div[2]/div[1]/*[1]")
     #  Прод локатор
@@ -163,7 +165,8 @@ class SettingsLocators:
 class WidgetLocators:
     # цена
     # Проблемы с поиском этого локатора есть задрежка попробую через CSS
-    Price_widget_button = (By.CSS_SELECTOR, ".at-widget-price__label")
+    Price_button = ".at-widget-price__label"
+    Price_widget_button = (By.CSS_SELECTOR, Price_button)
 
     Card_name_price = (By.XPATH, "//div[contains(text(),'История цены')]")
     Price_drop_down_for_3_months = (

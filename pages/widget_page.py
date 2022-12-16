@@ -1,9 +1,14 @@
 import time
+import pytest
 from .base_page import BasePage
 from .locators import WidgetLocators
 import nums_from_string
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.actions.wheel_input import ScrollOrigin
+from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
 import random
 
 
@@ -14,6 +19,10 @@ class WidgetPage(BasePage):
     # ======================================================================================================================
     # цена
     def open_price_widget(self):
+        try:
+            WebDriverWait(self.browser, 5).until(EC.presence_of_element_located((By.CSS_SELECTOR, WidgetLocators.Pricebutton)))
+        except TimeoutException:
+            pytest.skip("Не успел отобразиться элемент [цена]")
         price_widget_button = self.browser.find_element(*WidgetLocators.Price_widget_button)
         price_widget_button.click()
 

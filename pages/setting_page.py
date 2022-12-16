@@ -347,7 +347,7 @@ class SettingsPage(BasePage):
         crosses = self.browser.find_elements(*SettingsLocators.Widget_cross_for_disabled_site)
         for i in range(len(crosses)):
             crosses[i].click()
-            time.sleep(0.5)
+            time.sleep(0.2)
 
     # Проверка отображается ли текст для пустого списка
     def should_be_text_for_empty_disabled_list(self):
