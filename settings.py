@@ -1,7 +1,7 @@
 currency_list = ["USD", "EUR", "RUB", "UAH", "PLN", "GBP", "BRL", "CAD", "SGD", "NZD", "AUD", "INR", "JPY", "MXN",
                  "IDR", "TRY", "KRW", "SEK", "CLP", "CHF"]
 
-language = ["ru", "en", "pl", "es", "fr", "pt"]
+languages = ["ru", "en", "pl", "es", "fr", "pt"]
 
 # Стартовые урлы "Расширения"
 recommendedProductUrls = ['https://www.aliexpress.com/item/4000203522848.html',

@@ -3,7 +3,7 @@ import pytest
 from .pages.widget_page import WidgetPage
 from .pages.product_page import ProductPage
 from .pages.setting_page import SettingsPage
-from .settings import currency_list, language
+from .settings import currency_list, languages
 
 
 @pytest.fixture(scope="function", autouse=True)
@@ -28,8 +28,8 @@ def test_displaying_a_list_of_languages(browser):
     page = SettingsPage(browser, browser.current_url)
     list_of_extension = page.get_languages_list()
     # сравниваем списки
-    assert list_of_extension == language, \
-        f" 'Список расширения': {list_of_extension} не равен 'эталонному списку': {language}. "
+    assert list_of_extension == languages, \
+        f" 'Список расширения': {list_of_extension} не равен 'эталонному списку': {languages}. "
 
 
 def test_displaying_a_list_of_currency(browser):
@@ -76,19 +76,24 @@ def test_turn_on_seller_trust_level(browser):
     page_product.should_be_seller_trust_level_title()
 
 
-@pytest.mark.parametrize('languages', language)
-def test_language_change(browser, languages):
+@pytest.mark.parametrize('language', languages)
+def test_language_change(browser, language):
     page_widget = WidgetPage(browser, browser.current_url)
     page_widget.click_on_cross_start_greeting()
     page_widget.open_price_widget()
     page_widget.open_price_settings()
     page = SettingsPage(browser, browser.current_url)
     page.open_language_list()
-    page.choose_language(languages)
-    page.translation_check_for_settings(languages)
+    page.choose_language(language)
+    page.translation_check_for_settings(language)
     time.sleep(0.7)
     page.close_settings()
     time.sleep(0.5)
     page_widget.close_price_card()
-    page_widget.translation_check_for_widget(languages)
+    page_widget.translation_check_for_widget(language)
     time.sleep(0.5)
+
+
+@pytest.mark.parametrize('currency', currency_list)
+def test_currency_change(browser, currency):
+    pass
