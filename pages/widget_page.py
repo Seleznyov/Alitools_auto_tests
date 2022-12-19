@@ -20,7 +20,7 @@ class WidgetPage(BasePage):
     # цена
     def open_price_widget(self):
         try:
-            WebDriverWait(self.browser, 5).until(EC.presence_of_element_located((By.CSS_SELECTOR, WidgetLocators.Price_button)))
+            WebDriverWait(self.browser, 5).until(EC.presence_of_element_located((By.XPATH, WidgetLocators.Price_button)))
         except TimeoutException:
             pytest.skip("Не успел отобразиться элемент [цена]")
         price_widget_button = self.browser.find_element(*WidgetLocators.Price_widget_button)
@@ -90,6 +90,18 @@ class WidgetPage(BasePage):
     def select_value_for_half_a_year(self):
         for_half_a_year = self.browser.find_element(*WidgetLocators.Drop_down_value_for_half_a_year)
         for_half_a_year.click()
+
+    # Взять значение символа цены
+    def get_value_symbol(self):
+        exact_price = self.browser.find_element(*WidgetLocators.Exact_price).text
+        exact_price = exact_price.translate({ord(i): None for i in ' .0123456789'})
+        symbol = exact_price.replace(' ', '')
+        return symbol
+
+    # Проверить, что символ действительно соответствует валюте
+    def check_currency_symbol(self, currency_symbol_list, currency, symbol_from_page):
+        # print(currency_symbol_list[currency], symbol_from_page)
+        assert symbol_from_page == currency_symbol_list[currency], f"Для валюты {currency}, символ {symbol_from_page} не является ожидаемым"
 
     # ======================================================================================================================
     # продавец

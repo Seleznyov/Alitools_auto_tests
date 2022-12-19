@@ -3,7 +3,7 @@ import pytest
 from .pages.widget_page import WidgetPage
 from .pages.product_page import ProductPage
 from .pages.setting_page import SettingsPage
-from .settings import currency_list, languages
+from .settings import currency_list, languages, currency_symbol
 
 
 @pytest.fixture(scope="function", autouse=True)
@@ -94,6 +94,22 @@ def test_language_change(browser, language):
     time.sleep(0.5)
 
 
-@pytest.mark.parametrize('currency', currency_list)
+@pytest.mark.parametrize('currency', ["USD", "EUR", "RUB", "UAH", "PLN", "GBP", "BRL", "CAD", "SGD",
+                                      pytest.param("NZD", marks=pytest.mark.skip), "AUD", "INR", "JPY",
+                         pytest.param("MXN", marks=pytest.mark.skip),
+                         pytest.param("IDR", marks=pytest.mark.skip), "TRY", "KRW", "SEK",
+                         pytest.param("CLP", marks=pytest.mark.skip), "CHF"])
 def test_currency_change(browser, currency):
-    pass
+    page_widget = WidgetPage(browser, browser.current_url)
+    page_widget.click_on_cross_start_greeting()
+    page_widget.open_price_widget()
+    page_widget.open_price_settings()
+    page_settings = SettingsPage(browser, browser.current_url)
+    page_settings.choose_currency(currency)
+    time.sleep(0.5)
+    page_settings.close_settings()
+    time.sleep(0.5)
+    symbol_from_page = page_widget.get_value_symbol()
+    # Проверить, что символ действительно соответствует валюте
+    page_widget.check_currency_symbol(currency_symbol, currency, symbol_from_page)
+

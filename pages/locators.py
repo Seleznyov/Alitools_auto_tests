@@ -165,8 +165,10 @@ class SettingsLocators:
 class WidgetLocators:
     # цена
     # Проблемы с поиском этого локатора есть задрежка попробую через CSS
-    Price_button = ".at-widget-price__label"
-    Price_widget_button = (By.CSS_SELECTOR, Price_button)
+    # Price_button = ".at-widget-price__label"
+    # Пробую через XPATH
+    Price_button = "//div[@class ='at-widgets-panel']/div/div[2]/div[1]"
+    Price_widget_button = (By.XPATH, Price_button)
 
     Card_name_price = (By.XPATH, "//div[contains(text(),'История цены')]")
     Price_drop_down_for_3_months = (

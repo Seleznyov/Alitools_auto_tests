@@ -1,6 +1,10 @@
 currency_list = ["USD", "EUR", "RUB", "UAH", "PLN", "GBP", "BRL", "CAD", "SGD", "NZD", "AUD", "INR", "JPY", "MXN",
                  "IDR", "TRY", "KRW", "SEK", "CLP", "CHF"]
 
+currency_symbol = {"USD": "$", "EUR": "€", "RUB": "₽", "UAH": "₴", "PLN": "zł", "GBP": "￡", "BRL": "R$", "CAD": "C$",
+                   "SGD": "SG$", "NZD": "-", "AUD": "AU$", "INR": "Rs", "JPY": "¥", "MXN": "-", "IDR": "-", "TRY": "TL",
+                   "KRW": "₩", "SEK": "SEK", "CLP": "-", "CHF": "CHF"}
+
 languages = ["ru", "en", "pl", "es", "fr", "pt"]
 
 # Стартовые урлы "Расширения"
