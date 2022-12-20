@@ -291,6 +291,17 @@ class SettingsPage(BasePage):
         tab_history = self.browser.find_element(*SettingsLocators.Tab_history)
         tab_history.click()
 
+    def open_tab_history_from_widget(self):
+        tab_search_by_image = self.browser.find_element(*SettingsLocators.Widget_tab_history)
+        tab_search_by_image.click()
+
+    def get_list_site_names_with_disabled_history(self):
+        sites_list = []
+        sites = self.browser.find_elements(*SettingsLocators.Site_names_with_disabled_history)
+        for i in sites:
+            sites_list.append(i.text.split(".")[0])
+        return sites_list
+
     def should_be_block_sites_with_history_enabled(self):
         assert self.is_element_present(*SettingsLocators.Block_sites_with_history_enabled), "block  is not presented"
 

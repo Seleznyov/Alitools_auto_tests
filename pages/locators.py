@@ -108,6 +108,7 @@ class SettingsLocators:
     Widget_checkbox_button_on_image = (By.XPATH, widget + "//label[@class ='_3g_v7']/span/div")
     Widget_cross_for_disabled_site = (By.XPATH, widget + "//div[@class ='JvDO_']/*[3]")
     Widget_text_for_empty_disabled_list = (By.CSS_SELECTOR, "._1T683")
+    Site_names_with_disabled_history = (By.CSS_SELECTOR, "._1k9Ks")
 
     # Локаторы для настроек
     # Вкладка "Общее"
