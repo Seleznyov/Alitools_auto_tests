@@ -58,6 +58,8 @@ def test_add_aliexpress_to_exclusions(browser):
 
 
 def test_add_random_site_to_exclusions(browser, sites_act=sites_active, ID=extension["id"]):
+    if browser.name == "firefox":
+        pytest.skip(reason="For browser firefox this test skip")
     name_site = "mvideo"
     browser.get(sites_act[name_site])
     page_widget = WidgetPage(browser, browser.current_url)

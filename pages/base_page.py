@@ -48,7 +48,7 @@ class BasePage:
 
     def click_on_cross_start_greeting(self):
         try:
-            WebDriverWait(self.browser, 20).until(EC.presence_of_element_located((By.XPATH, BasePageLocators.Cross_start)))
+            WebDriverWait(self.browser, 25).until(EC.presence_of_element_located((By.XPATH, BasePageLocators.Cross_start)))
             time.sleep(0.5)
         except TimeoutException:
             pytest.skip("Не успел отобразиться стартовый элемент [x]")
