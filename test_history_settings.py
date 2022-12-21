@@ -3,6 +3,7 @@ import pytest
 from .pages.widget_page import WidgetPage
 from .pages.product_page import ProductPage
 from .pages.setting_page import SettingsPage
+from .settings import sites_active, extension
 
 warning = False
 url_global = []
@@ -54,3 +55,18 @@ def test_add_aliexpress_to_exclusions(browser):
     page_settings.open_tab_history()
     site_name = page_settings.get_list_site_names_with_disabled_history()
     assert "aliexpress" in site_name, f"aliexpress не был добавлен в исключение, вернулся: {site_name}"
+
+
+def test_add_random_site_to_exclusions(browser, sites_act=sites_active, ID=extension["id"]):
+    name_site = "mvideo"
+    browser.get(sites_act[name_site])
+    page_widget = WidgetPage(browser, browser.current_url)
+    page_widget.open_history_widget()
+    page_widget.open_history_widget_context_menu()
+    page_widget.do_not_show_history_on_this_site()
+    url = f"chrome-extension://{ID}/settings.html"
+    browser.get(url)
+    page_settings = SettingsPage(browser, browser.current_url)
+    page_settings.open_tab_history()
+    site_name = page_settings.get_list_site_names_with_disabled_history()
+    assert name_site in site_name, f"{name_site} не был добавлен в исключение, вернулся: {site_name}"

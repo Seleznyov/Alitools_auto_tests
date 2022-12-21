@@ -227,7 +227,8 @@ class WidgetLocators:
 
     # --------------------------------------------------------------------------------------------------------------
     # история
-    History_widget_button = (By.CSS_SELECTOR, ".at-widget-all-history__label")
+    History_button = ".at-widget-all-history__label"
+    History_widget_button = (By.CSS_SELECTOR, History_button)
     History_widget_collapse_button = (
         By.XPATH, "//div[@class ='at-widgets-panel at-widgets-history']/div[@class ='at-widgets-panel__arrow-wrapper']")
     History_widget_expand_button = (By.XPATH,

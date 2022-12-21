@@ -357,6 +357,10 @@ class WidgetPage(BasePage):
     # ======================================================================================================================
     #   история
     def open_history_widget(self):
+        try:
+            WebDriverWait(self.browser, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, WidgetLocators.History_button)))
+        except TimeoutException:
+            pytest.skip("Не успел отобразиться виджет история")
         history_widget_button = self.browser.find_element(*WidgetLocators.History_widget_button)
         history_widget_button.click()
 
