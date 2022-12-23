@@ -121,3 +121,9 @@ class BasePage:
         url_page = self.browser.current_url
         page_domain = url_page.split("/")
         return page_domain
+
+    # Ждем загрузку страницы
+    def page_loading(self):
+        time.sleep(5)
+        WebDriverWait(self.browser, 10).until(
+            lambda browser: self.browser.execute_script('return document.readyState') == 'complete')

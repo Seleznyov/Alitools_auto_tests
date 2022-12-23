@@ -11,16 +11,17 @@ url_global = []
 
 @pytest.fixture(scope="function", autouse=True)
 def setup(browser):
-    url = "https://alitools.io/ru"
+    url = "https://www.google.com/"
     global url_global
     browser.get(url)
     page_product = ProductPage(browser, browser.current_url)
-    page_product.switch_to_window(1)
+    browser.close()
+    page_product.switch_to_window(0)
     if browser.name == "firefox":
         page = WidgetPage(browser, browser.current_url)
         page.setup_firefox()
         time.sleep(2)
-        page_product.switch_to_window(1)
+        page_product.switch_to_window(0)
         time.sleep(0.5)
         page.click_on_cross_start_greeting()
         url_global = page.page_domain()
@@ -53,6 +54,7 @@ def test_add_aliexpress_to_exclusions(browser):
     page_widget.open_price_settings()
     page_settings = SettingsPage(browser, browser.current_url)
     page_settings.open_tab_history()
+    time.sleep(1)
     site_name = page_settings.get_list_site_names_with_disabled_history()
     assert "aliexpress" in site_name, f"aliexpress не был добавлен в исключение, вернулся: {site_name}"
 
@@ -63,12 +65,18 @@ def test_add_random_site_to_exclusions(browser, sites_act=sites_active, ID=exten
     name_site = "mvideo"
     browser.get(sites_act[name_site])
     page_widget = WidgetPage(browser, browser.current_url)
+    # Ждем загрузку страницы
+    page_widget.page_loading()
     page_widget.open_history_widget()
+    time.sleep(1)
     page_widget.open_history_widget_context_menu()
+    time.sleep(1)
     page_widget.do_not_show_history_on_this_site()
     url = f"chrome-extension://{ID}/settings.html"
     browser.get(url)
+    time.sleep(0.5)
     page_settings = SettingsPage(browser, browser.current_url)
     page_settings.open_tab_history()
+    time.sleep(0.5)
     site_name = page_settings.get_list_site_names_with_disabled_history()
     assert name_site in site_name, f"{name_site} не был добавлен в исключение, вернулся: {site_name}"

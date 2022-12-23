@@ -1,14 +1,15 @@
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager as ChromeService
+# from webdriver_manager.chrome import ChromeDriverManager as ChromeService
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.firefox import GeckoDriverManager as FirefoxService
 from selenium_stealth import stealth
+# import undetected_chromedriver as uc
 
 
 def pytest_addoption(parser):
-    parser.addoption('--browser_name', action='store', default='chrome',
+    parser.addoption('--browser_name', action='store', default='firefox',
                      help="Choose browser: chrome or firefox")
     parser.addoption('--language', action='store', default="ru",
                      help="language: en or ru")
@@ -21,7 +22,9 @@ def browser(request):
     if browser_name == "chrome":
         options = Options()
         options.add_argument("--start-maximized")
+        # options.add_argument('--start-fullscreen')
         options.add_argument('--no-sandbox')
+        options.add_argument('--single-process')
         options.add_argument('--disable-dev-shm-usage')
         # ======================================================
         # Ставит флаг WebDriver(New) -> missing (passed)
@@ -30,10 +33,24 @@ def browser(request):
                              "like Gecko) Chrome/108.0.0.0 Safari/537.36")
         options.add_experimental_option("excludeSwitches", ["enable-automation"])
         options.add_experimental_option('useAutomationExtension', False)
+        options.add_argument("disable-infobars")
         options.add_experimental_option('prefs', {'intl.accept_languages': user_language})
         options.add_extension(r'D:\Alitools_auto_tests\Alitools.crx')
-        s = Service(ChromeService().install())
-        browser = webdriver.Chrome(service=s, options=options)
+        # s = Service(ChromeService().install())
+        webdriver.DesiredCapabilities.CHROME['acceptSslCerts'] = True
+        # Стратегия загрузки 'normal', 'eager', 'none'
+        options.page_load_strategy = 'eager'
+        browser = webdriver.Chrome(options=options)
+        browser.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
+            "source": """Object.defineProperty(navigator, 'webdriver', {get: () => undefined})"""
+        })
+        browser.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
+            "source": """
+                  const newProto = navigator.__proto__
+                  delete newProto.webdriver
+                  navigator.__proto__ = newProto
+                  """
+        })
         stealth(browser,
                 languages=["en-US", "en"],
                 vendor="Google Inc.",
@@ -56,10 +73,12 @@ def browser(request):
         ex = "alitools13897.xpi"
         ex_dir = "C:\\Users\\HP\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\4d9syyxl.default\\extensions\\"
         s = Service(FirefoxService().install())
+        options.page_load_strategy = 'eager'
         browser = webdriver.Firefox(service=s, options=options)
         browser.install_addon(ex_dir + ex, temporary=True)
         browser.maximize_window()
     else:
         raise pytest.UsageError("--browser_name should be chrome or firefox")
     yield browser
+    browser.close()
     browser.quit()
