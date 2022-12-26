@@ -57,7 +57,8 @@ class ProductPageLocators:
     # Доставка и возврат - текст
     Delivery_and_returns = (By.XPATH, "//h2[contains(text(),'Доставка и возврат')]")
     # Кнопка "Прекрасно"
-    Button_wonderful = (By.XPATH, "//div[@class='snow-ali-kit_Informer__flexAligner__8lq3ka']/button")
+    Button_wond = "//div[@class='snow-ali-kit_Informer__flexAligner__8lq3ka']/button"
+    Button_wonderful = (By.XPATH, Button_wond)
     # Button_wonderful = (By.XPATH, "//button[contains(text(),'Прекрасно')]")
     Product_image = (By.XPATH, "//div[@class='gallery_Gallery__picListWrapper__re6q0q']/div/div")
     Product_image_com = (By.XPATH, "//div[@class='video-container']/img")

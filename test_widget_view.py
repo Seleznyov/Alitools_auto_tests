@@ -1,6 +1,7 @@
 import time
 import pytest
 from .pages.widget_page import WidgetPage
+from .pages.product_page import ProductPage
 from .pages.base_page import BasePage
 
 
@@ -8,8 +9,9 @@ from .pages.base_page import BasePage
 def setup(browser):
     url = "https://alitools.io/ru"
     browser.get(url)
-    page = BasePage(browser, browser.current_url)
-    page.switch_to_window(1)
+    page_product = ProductPage(browser, browser.current_url)
+    page_product.switch_to_window(1)
+    page_product.click_on_button_wonderful()
     if browser.name == "firefox":
         page = WidgetPage(browser, browser.current_url)
         page.setup_firefox()
@@ -19,7 +21,7 @@ def setup(browser):
         page.should_be_greetings()
     else:
         # Проверка отображения приветствия
-        page.should_be_greetings()
+        page_product.should_be_greetings()
 
 
 def test_greetings(browser):

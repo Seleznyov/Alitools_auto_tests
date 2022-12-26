@@ -1,6 +1,7 @@
 import time
 import pytest
 from .pages.widget_page import WidgetPage
+from .pages.product_page import ProductPage
 from .settings import url_zero_reviews
 import random
 
@@ -9,8 +10,9 @@ import random
 def setup(browser):
     url = "https://alitools.io/ru"
     browser.get(url)
-    page = WidgetPage(browser, browser.current_url)
-    page.switch_to_window(1)
+    page_product = ProductPage(browser, browser.current_url)
+    page_product.switch_to_window(1)
+    page_product.click_on_button_wonderful()
     if browser.name == "firefox":
         page = WidgetPage(browser, browser.current_url)
         page.setup_firefox()

@@ -2,7 +2,7 @@ import time
 from .base_page import BasePage
 from .locators import ProductPageLocators
 import pytest
-# from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
@@ -137,11 +137,11 @@ class ProductPage(BasePage):
             ActionChains(self.browser).scroll_from_origin(scroll_origin, 0, 500).perform()
 
     def click_on_button_wonderful(self):
-        # try:
-        #     WebDriverWait(self.browser, 20).until(
-        #         EC.presence_of_element_located((By.XPATH, "//div[@class='snow-ali-kit_Informer__flexAligner__8lq3ka']/button")))
-        # except TimeoutException:
-        #     pytest.skip("Не успел отобразиться элемент")
+        try:
+            WebDriverWait(self.browser, 20).until(
+                EC.presence_of_element_located((By.XPATH, ProductPageLocators.Button_wond)))
+        except TimeoutException:
+            pytest.skip("Не успел отобразиться элемент")
         button_wonderful = self.browser.find_element(*ProductPageLocators.Button_wonderful)
         button_wonderful.click()
 
@@ -161,6 +161,7 @@ class ProductPage(BasePage):
                 action = ActionChains(self.browser)
                 action.move_to_element(product_image)
                 action.perform()
+                time.sleep(0.5)
                 action.move_to_element(product_image)
                 action.perform()
                 break
@@ -170,6 +171,7 @@ class ProductPage(BasePage):
                 action = ActionChains(self.browser)
                 action.move_to_element(product_image)
                 action.perform()
+                time.sleep(0.5)
                 action.move_to_element(product_image)
                 action.perform()
                 break
@@ -178,6 +180,7 @@ class ProductPage(BasePage):
                 action = ActionChains(self.browser)
                 action.move_to_element(product_image)
                 action.perform()
+                time.sleep(0.5)
                 action.move_to_element(product_image)
                 action.perform()
                 break

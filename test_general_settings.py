@@ -12,6 +12,7 @@ def setup(browser):
     browser.get(url)
     page_product = ProductPage(browser, browser.current_url)
     page_product.switch_to_window(1)
+    page_product.click_on_button_wonderful()
     if browser.name == "firefox":
         page = WidgetPage(browser, browser.current_url)
         page.setup_firefox()

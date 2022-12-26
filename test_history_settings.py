@@ -15,13 +15,14 @@ def setup(browser):
     global url_global
     browser.get(url)
     page_product = ProductPage(browser, browser.current_url)
-    browser.close()
-    page_product.switch_to_window(0)
+    # browser.close()
+    page_product.switch_to_window(1)
+    page_product.click_on_button_wonderful()
     if browser.name == "firefox":
         page = WidgetPage(browser, browser.current_url)
         page.setup_firefox()
         time.sleep(2)
-        page_product.switch_to_window(0)
+        page_product.switch_to_window(1)
         page.click_on_cross_start_greeting()
         url_global = page.page_domain()
         time.sleep(1)
@@ -54,6 +55,7 @@ def test_add_aliexpress_to_exclusions(browser):
     assert "aliexpress" in site_name, f"aliexpress не был добавлен в исключение, вернулся: {site_name}"
 
 
+@pytest.mark.skip(reason="В проде скипать")
 def test_add_random_site_to_exclusions(browser, sites_act=sites_active, ID=extension["id"]):
     if browser.name == "firefox":
         pytest.skip(reason="For browser firefox this test skip")

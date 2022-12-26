@@ -73,6 +73,7 @@ class WidgetPage(BasePage):
 
     # Значение точной цены на графике
     def exact_price(self):
+        WebDriverWait(self.browser, 10).until(EC.presence_of_element_located((By.XPATH, WidgetLocators.Exact_pr)))
         exact_price = self.browser.find_element(*WidgetLocators.Exact_price).text
         exact_price = exact_price.translate({ord(i): None for i in ' руб$€¥₽'})
         exact_price = exact_price.replace(' ', '')
@@ -418,6 +419,8 @@ class WidgetPage(BasePage):
         for i in list_product:
             url = list_product[i]
             self.browser.get("https://www.aliexpress.com/item/" + url)
+            WebDriverWait(self.browser, 10).until(
+                lambda browser: self.browser.execute_script('return document.readyState') == 'complete')
             window = self.browser.window_handles
             self.browser.switch_to.window(window[1])
             time.sleep(2)

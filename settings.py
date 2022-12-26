@@ -20,7 +20,7 @@ url_zero_reviews = ['https://aliexpress.ru/item/1005004774771440.html',
                     'https://aliexpress.ru/item/1005004242353824.html']
 
 # Урлы случайных товаров
-url_random_four_product = {"1": "1005004946487223.html",
+url_random_four_product = {"1": "1005004880121014.html",
                            "2": "1005001883884598.html",
                            "3": "32949830845.html",
                            "4": "4000238008009.html"}
@@ -39,7 +39,7 @@ profile = {"Email": "stanislav.seleznev@bdtech.by", "Password": "Stefler_1992"}
 currency_processing = {"US": "USD", "€": "EUR", "руб": "RUB"}
 currencies = ["USD", "EUR", "RUB"]
 
-# ID_extension тестовая "ibocngjdimaiblnckndicocclenmnmjo", прод "eenflijjbchafephdplkdmeenekabdfb"
+# ID_extension тестовая "pbdoolklchlmhgkojhmmjfpiledidhgg", прод "eenflijjbchafephdplkdmeenekabdfb"
 extension = {"id": "eenflijjbchafephdplkdmeenekabdfb"}
 
 # Поиск по картинке -> "САЙТЫ С ВЫКЛЮЧЕННОЙ КНОПКОЙ"
