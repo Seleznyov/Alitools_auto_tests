@@ -144,6 +144,7 @@ class SettingsPage(BasePage):
                 f"Ошибка, в названии вкладки {tab_synchronization}, для {language}"
 
     def close_settings(self):
+        WebDriverWait(self.browser, 10).until(EC.presence_of_element_located((By.XPATH, SettingsLocators.widget + SettingsLocators.button_cross)))
         settings_button_cross = self.browser.find_element(*SettingsLocators.Widget_settings_button_cross)
         settings_button_cross.click()
 

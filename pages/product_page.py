@@ -3,9 +3,9 @@ from .base_page import BasePage
 from .locators import ProductPageLocators
 import pytest
 # from selenium.common.exceptions import TimeoutException
-# from selenium.webdriver.support.ui import WebDriverWait
-# from selenium.webdriver.support import expected_conditions as EC
-# from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.actions.wheel_input import ScrollOrigin
 from ..settings import currency_processing
@@ -213,6 +213,7 @@ class ProductPage(BasePage):
         assert text == "Поиск товара по картинке", f"Текст {text} не отображается"
 
     def should_be_search_results(self):
+        WebDriverWait(self.browser, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, ProductPageLocators.Img_result)))
         result = self.is_element_present(*ProductPageLocators.Image_search_result)
         assert result, f"Результат поиска не отображается"
 

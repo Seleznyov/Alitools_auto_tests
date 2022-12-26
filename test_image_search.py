@@ -21,7 +21,6 @@ def setup(browser):
         page.setup_firefox()
         time.sleep(2)
         page_product.switch_to_window(1)
-        time.sleep(0.5)
         page.click_on_cross_start_greeting()
         url_global = page.page_domain()
         time.sleep(1)
@@ -35,7 +34,6 @@ def setup(browser):
             page.hold_and_move_section_to_down()
             # page_product = ProductPage(browser, browser.current_url)
             # page_product.click_on_button_wonderful()
-            time.sleep(0.5)
             page.click_on_cross_start_greeting()
             time.sleep(0.5)
             page.close_warning()
@@ -44,7 +42,6 @@ def setup(browser):
         else:
             # page_product = ProductPage(browser, browser.current_url)
             # page_product.click_on_button_wonderful()
-            time.sleep(0.5)
             page.click_on_cross_start_greeting()
 
 
@@ -67,7 +64,6 @@ def test_find_on_aliexpress(browser, directory_name="product_page"):
     page.hover_on_icon_find_on_aliexpress()
     time.sleep(0.5)
     page.find_on_aliexpress()
-    time.sleep(2)
     page.should_be_search_results()
     page.should_be_text_product_search_by_image()
     time.sleep(0.7)
@@ -136,7 +132,5 @@ def test_image_search_on_a_random_site(browser, sites_act=sites_active):
     page.hover_on_icon_find_on_aliexpress()
     time.sleep(0.5)
     page.find_on_aliexpress()
-    time.sleep(0.5)
     page.should_be_search_results()
     page.should_be_text_product_search_by_image()
-    time.sleep(2)

@@ -20,7 +20,7 @@ class WidgetPage(BasePage):
     # цена
     def open_price_widget(self):
         try:
-            WebDriverWait(self.browser, 5).until(EC.presence_of_element_located((By.XPATH, WidgetLocators.Price_button)))
+            WebDriverWait(self.browser, 10).until(EC.presence_of_element_located((By.XPATH, WidgetLocators.Price_button)))
         except TimeoutException:
             pytest.skip("Не успел отобразиться элемент [цена]")
         price_widget_button = self.browser.find_element(*WidgetLocators.Price_widget_button)
@@ -64,6 +64,7 @@ class WidgetPage(BasePage):
         price_settings.click()
 
     def close_price_card(self):
+        WebDriverWait(self.browser, 10).until(EC.presence_of_element_located((By.XPATH, WidgetLocators.Price_button)))
         price_card = self.browser.find_element(*WidgetLocators.Price_button_cross)
         price_card.click()
 
@@ -93,6 +94,7 @@ class WidgetPage(BasePage):
 
     # Взять значение символа цены
     def get_value_symbol(self):
+        WebDriverWait(self.browser, 10).until(EC.presence_of_element_located((By.XPATH, WidgetLocators.Exact_pr)))
         exact_price = self.browser.find_element(*WidgetLocators.Exact_price).text
         exact_price = exact_price.translate({ord(i): None for i in ' .0123456789'})
         symbol = exact_price.replace(' ', '')

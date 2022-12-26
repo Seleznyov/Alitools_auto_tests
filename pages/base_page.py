@@ -95,7 +95,7 @@ class BasePage:
         usd_courses = self.browser.find_elements(*BasePageLocators.Usd_course_aliExpress_global)
         for i in range(len(usd_courses)):
             self.browser.execute_script("arguments[0].scrollIntoView(true);", usd_courses[1])
-            usd_course = usd_courses[0].text
+            usd_course = usd_courses[1].text
             usd_course = usd_course[:5]
             return float(usd_course)
 

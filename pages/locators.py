@@ -65,7 +65,8 @@ class ProductPageLocators:
     Find_on_aliexpress_button = (By.XPATH, "//div[@class='_2Nj_w VRH7i']")
     Find_on_aliexpress_drop_down = (By.XPATH, "//div[@class='_1pe-u VRH7i']")
     Product_search_by_image_text = (By.CSS_SELECTOR, ".ssdMT")
-    Image_search_result = (By.CSS_SELECTOR, ".h1ISG")
+    Img_result = ".h1ISG"
+    Image_search_result = (By.CSS_SELECTOR, Img_result)
     Find_on_aliexpress_drop_down_values = (By.CSS_SELECTOR, "._3vAZ7")
     # Локаторы продуктов
     # sportmaster
@@ -186,7 +187,8 @@ class WidgetLocators:
     Price_button_info = (By.XPATH, "//div[@class ='at-body__controls']/*[1]")
     Price_button_settings = (By.XPATH, "//div[@class ='at-body__controls']/*[3]")
     Price_button_cross = (By.XPATH, "//div[@class ='at-body__controls']/a[2]/*[1]")
-    Exact_price = (By.XPATH, "//div[@class ='_1aBUH']")
+    Exact_pr = "//div[@class ='_1aBUH']"
+    Exact_price = (By.XPATH, Exact_pr)
 
     # --------------------------------------------------------------------------------------------------------------
     # продавец

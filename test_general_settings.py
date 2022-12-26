@@ -65,13 +65,11 @@ def test_turn_on_seller_trust_level(browser):
     time.sleep(0.7)
     page_product.scroll_to_text_delivery_and_returns()
     page_product.should_not_be_seller_trust_level_title()
-    time.sleep(0.7)
     page_widget.open_price_widget()
     page_widget.open_price_settings()
     page_settings = SettingsPage(browser, browser.current_url)
     page_settings.turn_on_widget_checkbox_seller_verification()
     page_settings.close_settings()
-    time.sleep(1)
     page_widget.close_price_card()
     page_product.should_be_seller_trust_level_title()
 
@@ -86,12 +84,9 @@ def test_language_change(browser, language):
     page.open_language_list()
     page.choose_language(language)
     page.translation_check_for_settings(language)
-    time.sleep(0.7)
     page.close_settings()
-    time.sleep(0.5)
     page_widget.close_price_card()
     page_widget.translation_check_for_widget(language)
-    time.sleep(0.5)
 
 
 @pytest.mark.parametrize('currency', ["USD", "EUR", "RUB", "UAH", "PLN", "GBP", "BRL", "CAD", "SGD",
@@ -106,9 +101,7 @@ def test_currency_change(browser, currency):
     page_widget.open_price_settings()
     page_settings = SettingsPage(browser, browser.current_url)
     page_settings.choose_currency(currency)
-    time.sleep(0.5)
     page_settings.close_settings()
-    time.sleep(0.5)
     symbol_from_page = page_widget.get_value_symbol()
     # Проверить, что символ действительно соответствует валюте
     page_widget.check_currency_symbol(currency_symbol, currency, symbol_from_page)
