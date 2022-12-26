@@ -108,7 +108,8 @@ class SettingsLocators:
     Widget_checkbox_button_on_image = (By.XPATH, widget + "//label[@class ='_3g_v7']/span/div")
     Widget_cross_for_disabled_site = (By.XPATH, widget + "//div[@class ='JvDO_']/*[3]")
     Widget_text_for_empty_disabled_list = (By.CSS_SELECTOR, "._1T683")
-    Site_names_with_disabled_history = (By.CSS_SELECTOR, "._1k9Ks")
+    Site_names_dis_his = "._1k9Ks"
+    Site_names_with_disabled_history = (By.CSS_SELECTOR, Site_names_dis_his)
 
     # Локаторы для настроек
     # Вкладка "Общее"
@@ -149,7 +150,8 @@ class SettingsLocators:
     Image_adviser = (By.XPATH, "//img")
 
     # Вкладка "История"
-    Tab_history = (By.XPATH, "//div[@class ='_2fg_j']/a[4]")
+    Tab_hist = "//div[@class ='_2fg_j']/a[4]"
+    Tab_history = (By.XPATH, Tab_hist)
     Block_sites_with_history_enabled = (By.XPATH, "//div[@class ='_2u4Wd']")
     Block_text_disable_the_widget = (By.XPATH, "//div[@class ='_9EXxv']")
     Extension_version_history_tab = (By.XPATH, "//div[@class ='_3MMFq']")
@@ -234,8 +236,8 @@ class WidgetLocators:
     History_widget_expand_button = (By.XPATH,
                                     "//div[@class ='at-widgets-panel at-widgets-history']/div[@class ='at-widgets-panel__arrow-wrapper at-widgets-panel__arrow-wrapper--open']")
     Card_name_history = (By.XPATH, "//div[contains(text(),'История просмотров')]")
-    History_widget_control_context_menu = (
-        By.XPATH, "//div[@class ='at-body__controls']/a/div[@class ='at-body__controls-context-menu']")
+    History_widget_con_menu = "//div[@class ='at-body__controls']/a/div[@class ='at-body__controls-context-menu']"
+    History_widget_control_context_menu = (By.XPATH, History_widget_con_menu)
     History_button_cross = (By.XPATH, "//a[@class ='at-body__controls-item']/*[1]")
     History_text_today = (By.XPATH, "//div[contains(text(),'Сегодня')]")
     Product_in_history_for_widget = (By.CSS_SELECTOR, ".at-widgets-history__item")
@@ -243,5 +245,6 @@ class WidgetLocators:
     Button_cross_for_history_card = (By.XPATH, "//div[@class ='W92R1']/*[1]")
     Empty_title_history_card = (By.CSS_SELECTOR, ".at-tab-empty__title")
     Customize_history_button = (By.XPATH, "//div[@class ='_2tt2W HRySV']/div[2]")
-    Do_not_show_on_this_site_button = (By.XPATH, "//div[@class ='_2tt2W HRySV']/div[1]")
+    Do_not_show_button = "//div[@class ='_2tt2W HRySV']/div[1]"
+    Do_not_show_on_this_site_button = (By.XPATH, Do_not_show_button)
 

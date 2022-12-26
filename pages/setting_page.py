@@ -6,6 +6,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.actions.wheel_input import ScrollOrigin
 from ..settings import setting_tabs
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 class SettingsPage(BasePage):
@@ -288,6 +290,7 @@ class SettingsPage(BasePage):
             f"image_adviser is not presented"
 
     def open_tab_history(self):
+        WebDriverWait(self.browser, 10).until(EC.presence_of_element_located((By.XPATH, SettingsLocators.Tab_hist)))
         tab_history = self.browser.find_element(*SettingsLocators.Tab_history)
         tab_history.click()
 
@@ -297,6 +300,7 @@ class SettingsPage(BasePage):
 
     def get_list_site_names_with_disabled_history(self):
         sites_list = []
+        WebDriverWait(self.browser, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, SettingsLocators.Site_names_dis_his)))
         sites = self.browser.find_elements(*SettingsLocators.Site_names_with_disabled_history)
         for i in sites:
             sites_list.append(i.text.split(".")[0])

@@ -441,6 +441,7 @@ class WidgetPage(BasePage):
         assert empty_text == "Здесь будут товары,\nкоторые вы просматривали\nна AliExpress.", f"Тексты не совпадают"
 
     def open_history_widget_context_menu(self):
+        WebDriverWait(self.browser, 10).until(EC.presence_of_element_located((By.XPATH, WidgetLocators.History_widget_con_menu)))
         history_widget_context_menu = self.browser.find_element(*WidgetLocators.History_widget_control_context_menu)
         history_widget_context_menu.click()
 
@@ -449,6 +450,7 @@ class WidgetPage(BasePage):
         customize_history_button.click()
 
     def do_not_show_history_on_this_site(self):
+        WebDriverWait(self.browser, 10).until(EC.presence_of_element_located((By.XPATH, WidgetLocators.Do_not_show_button)))
         do_not_show_on_this_site_button = self.browser.find_element(*WidgetLocators.Do_not_show_on_this_site_button)
         do_not_show_on_this_site_button.click()
 

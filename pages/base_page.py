@@ -127,3 +127,4 @@ class BasePage:
         time.sleep(5)
         WebDriverWait(self.browser, 10).until(
             lambda browser: self.browser.execute_script('return document.readyState') == 'complete')
+

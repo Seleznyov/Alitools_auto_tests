@@ -4,12 +4,11 @@ from selenium.webdriver.chrome.service import Service
 # from webdriver_manager.chrome import ChromeDriverManager as ChromeService
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.firefox import GeckoDriverManager as FirefoxService
-from selenium_stealth import stealth
-# import undetected_chromedriver as uc
+# from selenium_stealth import stealth
 
 
 def pytest_addoption(parser):
-    parser.addoption('--browser_name', action='store', default='firefox',
+    parser.addoption('--browser_name', action='store', default='chrome',
                      help="Choose browser: chrome or firefox")
     parser.addoption('--language', action='store', default="ru",
                      help="language: en or ru")
@@ -23,9 +22,6 @@ def browser(request):
         options = Options()
         options.add_argument("--start-maximized")
         # options.add_argument('--start-fullscreen')
-        options.add_argument('--no-sandbox')
-        options.add_argument('--single-process')
-        options.add_argument('--disable-dev-shm-usage')
         # ======================================================
         # Ставит флаг WebDriver(New) -> missing (passed)
         options.add_argument('--disable-blink-features=AutomationControlled')
@@ -33,33 +29,33 @@ def browser(request):
                              "like Gecko) Chrome/108.0.0.0 Safari/537.36")
         options.add_experimental_option("excludeSwitches", ["enable-automation"])
         options.add_experimental_option('useAutomationExtension', False)
-        options.add_argument("disable-infobars")
         options.add_experimental_option('prefs', {'intl.accept_languages': user_language})
         options.add_extension(r'D:\Alitools_auto_tests\Alitools.crx')
         # s = Service(ChromeService().install())
-        webdriver.DesiredCapabilities.CHROME['acceptSslCerts'] = True
+        webdriver.DesiredCapabilities.CHROME['acceptSslCerts'] = False
+        webdriver.DesiredCapabilities.CHROME['acceptInsecureCerts'] = False
         # Стратегия загрузки 'normal', 'eager', 'none'
         options.page_load_strategy = 'eager'
         browser = webdriver.Chrome(options=options)
-        browser.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
-            "source": """Object.defineProperty(navigator, 'webdriver', {get: () => undefined})"""
-        })
-        browser.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
-            "source": """
-                  const newProto = navigator.__proto__
-                  delete newProto.webdriver
-                  navigator.__proto__ = newProto
-                  """
-        })
-        stealth(browser,
-                languages=["en-US", "en"],
-                vendor="Google Inc.",
-                platform="Win32",
-                webgl_vendor="Intel Inc.",
-                renderer="Intel Iris OpenGL Engine",
-                fix_hairline=True,
-                )
-        browser.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
+        # browser.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
+        #     "source": """Object.defineProperty(navigator, 'webdriver', {get: () => undefined})"""
+        # })
+        # browser.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
+        #     "source": """
+        #           const newProto = navigator.__proto__
+        #           delete newProto.webdriver
+        #           navigator.__proto__ = newProto
+        #           """
+        # })
+        # stealth(browser,
+        #         languages=["en-US", "en"],
+        #         vendor="Google Inc.",
+        #         platform="Win32",
+        #         webgl_vendor="Intel Inc.",
+        #         renderer="Intel Iris OpenGL Engine",
+        #         fix_hairline=True,
+        #         )
+        # browser.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
 
     elif browser_name == "firefox":
         options = webdriver.FirefoxOptions()
