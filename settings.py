@@ -39,8 +39,8 @@ profile = {"Email": "stanislav.seleznev@bdtech.by", "Password": "Stefler_1992"}
 currency_processing = {"US": "USD", "€": "EUR", "руб": "RUB"}
 currencies = ["USD", "EUR", "RUB"]
 
-# ID_extension тестовая "pbdoolklchlmhgkojhmmjfpiledidhgg", прод "eenflijjbchafephdplkdmeenekabdfb"
-extension = {"id": "eenflijjbchafephdplkdmeenekabdfb"}
+# ID_extension тестовая "mkkmefiaocckgakjbojldippeabdkfpa", прод "eenflijjbchafephdplkdmeenekabdfb"
+extension = {"id": "mkkmefiaocckgakjbojldippeabdkfpa"}
 
 # Поиск по картинке -> "САЙТЫ С ВЫКЛЮЧЕННОЙ КНОПКОЙ"
 disabled_site_list = ["youtube.com", "vk.com", "facebook.com", "instagram.com", "google.com", "twitch.tv",

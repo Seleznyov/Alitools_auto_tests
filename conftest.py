@@ -66,8 +66,8 @@ def browser(request):
                                "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:108.0) Gecko/20100101 Firefox/108.0")
         # Запуск в фоне
         # options.headless = True
-        ex = "alitools13897.xpi"
-        ex_dir = "C:\\Users\\HP\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\4d9syyxl.default\\extensions\\"
+        ex = "alitools13939.xpi"
+        ex_dir = "C:\\Users\\HP\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\2gsnd2e6.default\\extensions\\"
         s = Service(FirefoxService().install())
         options.page_load_strategy = 'eager'
         browser = webdriver.Firefox(service=s, options=options)

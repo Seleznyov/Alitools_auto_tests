@@ -10,14 +10,16 @@ from .settings import profile, url_sku
 def setup(browser):
     url = "https://alitools.io/ru"
     browser.get(url)
-    page = ProductPage(browser, browser.current_url)
-    page.switch_to_window(1)
-    page.click_on_button_wonderful()
+    page_product = ProductPage(browser, browser.current_url)
+    page_product.switch_to_window(1)
     if browser.name == "firefox":
         page = WidgetPage(browser, browser.current_url)
         page.setup_firefox()
         time.sleep(2)
         page.switch_to_window(1)
+        page_product.click_on_button_wonderful()
+    else:
+        page_product.click_on_button_wonderful()
 
 
 # Как показала практика целесообразно запускать несколько раз его, оставлю значение- 3

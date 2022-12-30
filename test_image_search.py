@@ -16,11 +16,11 @@ def setup(browser):
     browser.get(url)
     page_product = ProductPage(browser, browser.current_url)
     page_product.switch_to_window(1)
-    page_product.click_on_button_wonderful()
     if browser.name == "firefox":
         page = WidgetPage(browser, browser.current_url)
         page.setup_firefox()
         page_product.switch_to_window(1)
+        page_product.click_on_button_wonderful()
         page.click_on_cross_start_greeting()
         url_global = page.page_domain()
     else:
@@ -37,6 +37,7 @@ def setup(browser):
             time.sleep(0.5)
             page.click_on_cress_repeated_favorites()
         else:
+            page_product.click_on_button_wonderful()
             page.click_on_cross_start_greeting()
 
 
