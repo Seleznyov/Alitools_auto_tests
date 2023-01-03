@@ -1,10 +1,13 @@
 import pytest
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
+# from selenium.webdriver.chrome.service import Service
 # from webdriver_manager.chrome import ChromeDriverManager as ChromeService
 from selenium.webdriver.chrome.options import Options
-from webdriver_manager.firefox import GeckoDriverManager as FirefoxService
+# from webdriver_manager.firefox import GeckoDriverManager as FirefoxService
 # from selenium_stealth import stealth
+import os
+from .settings import TOKEN
+os.environ['GH_TOKEN'] = TOKEN
 
 
 def pytest_addoption(parser):
@@ -62,15 +65,19 @@ def browser(request):
         options.set_preference("dom.webdriver.enabled", False)
         options.set_preference('dom.webnotifications.enabled', False)
         options.set_preference('useAutomationExtension', False)
+        options.set_preference("network.proxy.socks_remote_dns", False)
+        webdriver.DesiredCapabilities.FIREFOX['acceptSslCerts'] = False
+        webdriver.DesiredCapabilities.FIREFOX['acceptInsecureCerts'] = False
         options.set_preference("general.useragent.override",
                                "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:108.0) Gecko/20100101 Firefox/108.0")
         # Запуск в фоне
         # options.headless = True
         ex = "alitools13939.xpi"
         ex_dir = "C:\\Users\\HP\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\2gsnd2e6.default\\extensions\\"
-        s = Service(FirefoxService().install())
+        # s = Service(FirefoxService().install())
         options.page_load_strategy = 'eager'
-        browser = webdriver.Firefox(service=s, options=options)
+        # browser = webdriver.Firefox(service=s, options=options)
+        browser = webdriver.Firefox(executable_path="Tools", options=options)
         browser.install_addon(ex_dir + ex, temporary=True)
         browser.maximize_window()
     else:

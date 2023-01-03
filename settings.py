@@ -34,6 +34,7 @@ url_seller_rating = {"High": "4001294911152.html",
                      "Low": "1005003982735469.html"}
 
 profile = {"Email": "stanislav.seleznev@bdtech.by", "Password": "Stefler_1992"}
+TOKEN = ""
 
 # Список валют которые обрабатывают тесты
 currency_processing = {"US": "USD", "€": "EUR", "руб": "RUB"}
@@ -53,7 +54,7 @@ setting_tabs = ["Общее", "Поиск по картинке", "Советн�
 # "sportmaster": "https://www.sportmaster.ru/product/18138670299/",
 # "svyaznoy": "https://www.svyaznoy.ru/catalog/accessories/8936/7721411",
 clear = "https://webcache.googleusercontent.com/search?q=cache:"
-sites_active = {"mvideo": "https://www.mvideo.ru/products/stiralnaya-mashina-uzkaya-daewoo-wm610t2wu9ru-20084006",
+sites_active = {"mvideo": clear + "https://www.mvideo.ru/products/stiralnaya-mashina-uzkaya-daewoo-wm610t2wu9ru-20084006",
                 "sportmaster": clear + "https://www.sportmaster.ru/product/18138670299/",
                 "svyaznoy": clear + "https://www.svyaznoy.ru/catalog/accessories/8936/7721411"}
 

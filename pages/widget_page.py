@@ -122,6 +122,7 @@ class WidgetPage(BasePage):
         assert self.is_element_present(*WidgetLocators.Seller_button_cross), "element is not presented"
 
     def get_percentage_value(self):
+        WebDriverWait(self.browser, 10).until(EC.presence_of_element_located((By.XPATH, WidgetLocators.Percentage)))
         percentage_value = self.browser.find_element(*WidgetLocators.Percentage_value).text
         percentage_value = int(percentage_value)
         return percentage_value
@@ -135,6 +136,7 @@ class WidgetPage(BasePage):
     def check_rating_seller(self):
         value = self.browser.find_element(*WidgetLocators.Value_inside_the_card).text
         value_rating = ''.join(c for c in value if c.isalpha())
+        WebDriverWait(self.browser, 10).until(EC.presence_of_element_located((By.XPATH, WidgetLocators.Percentage)))
         percentage_value = self.browser.find_element(*WidgetLocators.Percentage_value).text
         percentage_value = int(percentage_value)
         if value_rating == "Высокий":

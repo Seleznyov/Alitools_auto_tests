@@ -88,6 +88,7 @@ def test_language_change(browser, language):
     page.choose_language(language)
     page.translation_check_for_settings(language)
     page.close_settings()
+    time.sleep(0.5)
     page_widget.close_price_card()
     page_widget.translation_check_for_widget(language)
 

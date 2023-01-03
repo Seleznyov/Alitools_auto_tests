@@ -119,6 +119,8 @@ def test_disable_image_search_for_aliexpress(browser):
 
 
 def test_image_search_on_a_random_site(browser, sites_act=sites_active):
+    if browser.name == "firefox":
+        pytest.skip(reason="For browser firefox this test skip")
     page = ProductPage(browser, browser.current_url)
     page.open_randon_site(sites_act)
     time.sleep(1)

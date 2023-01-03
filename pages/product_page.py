@@ -176,7 +176,8 @@ class ProductPage(BasePage):
                 action.perform()
                 break
             elif "mvideo" in url[i]:
-                product_image = self.browser.find_element(*ProductPageLocators.Product_image_from_mvideo)
+                product_image = self.browser.find_elements(*ProductPageLocators.Product_image_from_mvideo)
+                product_image = product_image[0]
                 action = ActionChains(self.browser)
                 action.move_to_element(product_image)
                 action.perform()

@@ -11,7 +11,8 @@ class BasePageLocators:
     # Тестовый локатор
     # Cross_start_greeting = (By.XPATH, "//body/div[6]/div[2]/div[1]/div[1]/div[2]/div[2]/div[1]/*[1]")
     #  Прод локатор
-    Cross_repeated_favorites = (By.XPATH, "//div[@class ='_29Pkd _1bFZv']/div[@class ='_26mJL']/*[1]")
+    Cross_rep_favor = "//div[@class ='_29Pkd _1bFZv']/div[@class ='_26mJL']/*[1]"
+    Cross_repeated_favorites = (By.XPATH, Cross_rep_favor)
     # Тестовый локатор
     # Cross_repeated_favorites = (By.XPATH, "//body/div[6]/div[2]/div[1]/div[1]/div[2]/div[1]/div[2]/div[1]/*[1]")
     Slider = (By.XPATH, "//span[@id='nc_1_n1z']")
@@ -75,7 +76,7 @@ class ProductPageLocators:
     # svyaznoy
     Product_image_from_svyaznoy = (By.XPATH, "//div[2]/div[1]/div[2]/div[1]/div[1]/div[2]/img[1]")
     # mvideo
-    Product_image_from_mvideo = (By.XPATH, "//button/picture/img")
+    Product_image_from_mvideo = (By.XPATH, "//div/div/img")
 
 
 class SettingsLocators:
@@ -197,7 +198,8 @@ class WidgetLocators:
     Card_name_seller = (By.XPATH, "//div[contains(text(),'Рейтинг продавца')]")
     Seller_button_settings = (By.XPATH, "//div[@class ='at-body__controls']/*[1]")
     Seller_button_cross = (By.XPATH, "//div[@class ='at-body__controls']/*[2]")
-    Percentage_value = (By.XPATH, "//div[@class ='at-widget-seller-check']/*[1]/*[1]")
+    Percentage = "//div[@class ='at-widget-seller-check']/*[1]/*[1]"
+    Percentage_value = (By.XPATH, Percentage)
     Value_inside_the_card = (By.XPATH, "//div[@class ='at-seller-check__main']/*[2]")
 
     # --------------------------------------------------------------------------------------------------------------

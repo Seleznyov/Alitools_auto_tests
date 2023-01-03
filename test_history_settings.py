@@ -56,8 +56,8 @@ def test_add_aliexpress_to_exclusions(browser):
     assert "aliexpress" in site_name, f"aliexpress не был добавлен в исключение, вернулся: {site_name}"
 
 
-#Нужно знать extension_id подкидывать его на лету
-# @pytest.mark.skip(reason="В проде скипать")
+#Нужно знать extension_id подкидывать его на лету - нужно обойти cloudflare
+@pytest.mark.skip(reason="В проде скипать")
 def test_add_random_site_to_exclusions(browser, sites_act=sites_active, ID=extension["id"]):
     if browser.name == "firefox":
         pytest.skip(reason="For browser firefox this test skip")
