@@ -7,7 +7,7 @@ from .settings import url_seller_rating
 
 @pytest.fixture(scope="function", autouse=True)
 def setup(browser):
-    url = "https://alitools.io/ru"
+    url = "https://www.google.com/"
     browser.get(url)
     page_product = ProductPage(browser, browser.current_url)
     page_product.switch_to_window(1)

@@ -11,7 +11,7 @@ url_global = []
 
 @pytest.fixture(scope="function", autouse=True)
 def setup(browser):
-    url = "https://alitools.io/ru"
+    url = "https://www.google.com/"
     global url_global
     browser.get(url)
     page_product = ProductPage(browser, browser.current_url)

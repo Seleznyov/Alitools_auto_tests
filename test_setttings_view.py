@@ -6,7 +6,7 @@ from .settings import extension, disabled_site_list, setting_tabs
 
 @pytest.fixture(scope="function", autouse=True)
 def setup(browser):
-    url = "https://alitools.io/ru"
+    url = "https://www.google.com/"
     browser.get(url)
     page = SettingsPage(browser, browser.current_url)
     page.switch_to_window(1)
