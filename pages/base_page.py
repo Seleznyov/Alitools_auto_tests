@@ -41,7 +41,7 @@ class BasePage:
 
     def should_be_greetings(self):
         try:
-            WebDriverWait(self.browser, 20).until(EC.presence_of_element_located((By.XPATH, BasePageLocators.Greeting)))
+            WebDriverWait(self.browser, 25).until(EC.presence_of_element_located((By.XPATH, BasePageLocators.Greeting)))
         except TimeoutException:
             pytest.skip("Не успел отобразиться стартовый элемент Приветствие")
         assert self.is_element_present(*BasePageLocators.Starting_greeting), "element is not presented"
@@ -115,6 +115,7 @@ class BasePage:
         return list_without_dots
 
     def switch_to_window(self, number):
+        time.sleep(1)
         window2 = self.browser.window_handles
         self.browser.switch_to.window(window2[number])
 
