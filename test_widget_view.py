@@ -33,6 +33,7 @@ def test_greetings(browser):
     # Проверка отображения приветствия
     page.should_be_greetings()
 
+
 @pytest.mark.smoke
 def test_widget_price_view(browser):
     page = WidgetPage(browser, browser.current_url)
@@ -95,6 +96,13 @@ def test_widget_similar_view(browser):
     page.should_be_similar_button_settings()
     # Отображается ли иконка закрыть [X]
     page.should_be_similar_button_cross()
+
+
+@pytest.mark.smoke
+def test_widget_favorites_button_view(browser):
+    page = WidgetPage(browser, browser.current_url)
+    # Проверяем наличие кнопки "Избранное"
+    page.should_be_favorites_button()
 
 
 @pytest.mark.smoke

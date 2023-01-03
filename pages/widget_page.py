@@ -360,6 +360,11 @@ class WidgetPage(BasePage):
                 without_sorting.click()
 
     # ======================================================================================================================
+    #  избранное
+    def should_be_favorites_button(self):
+        assert self.is_element_present(*WidgetLocators.favorites_button), "favorites_button is not presented"
+
+    # ======================================================================================================================
     #   история
     def open_history_widget(self):
         try:

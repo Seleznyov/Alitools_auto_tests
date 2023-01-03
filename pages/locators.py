@@ -233,6 +233,9 @@ class WidgetLocators:
     Similar_message_displayed = (By.CSS_SELECTOR, ".at-similar-list__best-offer-message")
 
     # --------------------------------------------------------------------------------------------------------------
+    # избранное
+    favorites_button = (By.CSS_SELECTOR, ".at-favorites-panel-button")
+    # --------------------------------------------------------------------------------------------------------------
     # история
     History_button = ".at-widget-all-history__label"
     History_widget_button = (By.CSS_SELECTOR, History_button)
