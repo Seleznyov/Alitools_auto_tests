@@ -12,5 +12,8 @@ pytest -v test_general_settings.py::test_language_change # Запуск конк
 pytest --alluredir=./my_allure_results  name_tests       #"Генерация отчета + запукс тестов"
 pytest ./ --alluredir=./report_allure 			 # Запуск всех тестов из текущей директории
 pytest -v test_general_settings.py::test_language_change # Запуск конкретного теста
+pytest -s -v -m smoke					 # Запуск smoke тестов
 
 allure serve ./my_allure_results                         #"Просмотр"
+
+-W ignore::DeprecationWarning                            # флаг игноррирования сообщений об ошибке "executable_path" - писать в конце

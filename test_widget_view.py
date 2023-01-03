@@ -25,6 +25,7 @@ def setup(browser):
         page_product.should_be_greetings()
 
 
+@pytest.mark.smoke
 def test_greetings(browser):
     page = BasePage(browser, browser.current_url)
     # # Проверка откуда вы узнали о расширении
@@ -32,7 +33,7 @@ def test_greetings(browser):
     # Проверка отображения приветствия
     page.should_be_greetings()
 
-
+@pytest.mark.smoke
 def test_widget_price_view(browser):
     page = WidgetPage(browser, browser.current_url)
     # Открыть "цена"
@@ -55,6 +56,7 @@ def test_widget_price_view(browser):
     page.should_be_price_button_cross()
 
 
+@pytest.mark.smoke
 def test_widget_seller_view(browser):
     page = WidgetPage(browser, browser.current_url)
     # Открыть "продавец"
@@ -67,6 +69,7 @@ def test_widget_seller_view(browser):
     page.should_be_seller_button_cross()
 
 
+@pytest.mark.smoke
 def test_widget_reviews_view(browser):
     page = WidgetPage(browser, browser.current_url)
     # Открыть "обзоры"
@@ -79,6 +82,7 @@ def test_widget_reviews_view(browser):
     page.should_be_reviews_button_cross()
 
 
+@pytest.mark.smoke
 def test_widget_similar_view(browser):
     page = WidgetPage(browser, browser.current_url)
     # Открыть "похожие"
@@ -93,6 +97,7 @@ def test_widget_similar_view(browser):
     page.should_be_similar_button_cross()
 
 
+@pytest.mark.smoke
 def test_widget_history_view(browser):
     page = WidgetPage(browser, browser.current_url)
     # Закрываем приветствие

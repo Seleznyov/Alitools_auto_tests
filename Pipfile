@@ -12,8 +12,6 @@ selenium-stealth = "*"
 datetime = "*"
 undetected-chromedriver = "*"
 webdriver-manager = "*"
-fake-useragent = "*"
-cookiejar = "*"
 
 [dev-packages]
 
