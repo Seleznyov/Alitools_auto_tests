@@ -119,6 +119,7 @@ def test_widget_course_usd_check(browser, directory_name="widget", email=profile
 def test_different_sku(browser, url=url_sku):
     browser.get(url[0])
     page = WidgetPage(browser, browser.current_url)
+    page.page_loading()
     page.click_on_cross_start_greeting()
     page_product = ProductPage(browser, browser.current_url)
     product_page_price = page_product.product_price()

@@ -144,6 +144,7 @@ class ProductPage(BasePage):
             pytest.skip("Не успел отобразиться элемент кнопка [Прекрасно]")
         button_wonderful = self.browser.find_element(*ProductPageLocators.Button_wonderful)
         button_wonderful.click()
+        time.sleep(0.5)
 
     def hover_on_product_main_image(self, url="ru"):
         for i in range(len(url)):

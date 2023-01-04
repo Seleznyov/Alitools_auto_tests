@@ -26,7 +26,7 @@ url_random_four_product = {"1": "1005004880121014.html",
                            "4": "4000238008009.html"}
 
 # Урлы для теста sku
-url_sku = ["https://aliexpress.ru/item/1005003891185800.html"]
+url_sku = ["https://aliexpress.ru/item/1005003938775879.html"]
 
 # Урлы с разным рейтингом
 url_seller_rating = {"High": "4001294911152.html",
