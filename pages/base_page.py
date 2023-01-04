@@ -49,11 +49,16 @@ class BasePage:
     def click_on_cross_start_greeting(self):
         try:
             WebDriverWait(self.browser, 25).until(EC.presence_of_element_located((By.XPATH, BasePageLocators.Cross_start)))
-            time.sleep(0.5)
         except TimeoutException:
-            pytest.skip("Не успел отобразиться стартовый элемент [x]")
+            self.refresh_page()
+            try:
+                WebDriverWait(self.browser, 10).until(
+                    EC.presence_of_element_located((By.XPATH, BasePageLocators.Cross_start)))
+            except TimeoutException:
+                pytest.skip("Не успел отобразиться стартовый элемент [x]")
         cross_start_greeting = self.browser.find_element(*BasePageLocators.Cross_start_greeting)
         cross_start_greeting.click()
+        time.sleep(0.5)
 
     def click_on_cress_repeated_favorites(self):
         WebDriverWait(self.browser, 10).until(EC.presence_of_element_located((By.XPATH, BasePageLocators.Cross_rep_favor)))

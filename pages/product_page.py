@@ -141,7 +141,12 @@ class ProductPage(BasePage):
             WebDriverWait(self.browser, 20).until(
                 EC.presence_of_element_located((By.XPATH, ProductPageLocators.Button_wond)))
         except TimeoutException:
-            pytest.skip("Не успел отобразиться элемент кнопка [Прекрасно]")
+            self.refresh_page()
+            try:
+                WebDriverWait(self.browser, 10).until(
+                    EC.presence_of_element_located((By.XPATH, ProductPageLocators.Button_wond)))
+            except TimeoutException:
+                pytest.skip("Не успел отобразиться элемент кнопка [Прекрасно]")
         button_wonderful = self.browser.find_element(*ProductPageLocators.Button_wonderful)
         button_wonderful.click()
         time.sleep(0.5)
