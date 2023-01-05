@@ -364,6 +364,14 @@ class WidgetPage(BasePage):
     def should_be_favorites_button(self):
         assert self.is_element_present(*WidgetLocators.favorites_button), "favorites_button is not presented"
 
+    def add_product_to_favorites(self):
+        favorites_button = self.browser.find_element(*WidgetLocators.favorites_button)
+        favorites_button.click()
+
+    def should_be_text_product_added_to_Alitools(self):
+        text = self.browser.find_element(*WidgetLocators.text_product_added_to_Alitools).text
+        assert text == "Товар добавлен в Alitools", f"Отображается текст:{text}, вместо 'Товар добавлен в Alitool'"
+
     # ======================================================================================================================
     #   история
     def open_history_widget(self):

@@ -235,6 +235,8 @@ class WidgetLocators:
     # --------------------------------------------------------------------------------------------------------------
     # избранное
     favorites_button = (By.CSS_SELECTOR, ".at-favorites-panel-button")
+    text_product_added_to_Alitools = (By.XPATH, "//div[@class ='_2QV79']/*[1]")
+
     # --------------------------------------------------------------------------------------------------------------
     # история
     History_button = ".at-widget-all-history__label"
