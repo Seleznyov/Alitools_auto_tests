@@ -239,6 +239,7 @@ class WidgetPage(BasePage):
     # ======================================================================================================================
     #  похожие
     def open_similar_widget(self):
+        WebDriverWait(self.browser, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, WidgetLocators.Similar_button)))
         similar_widget_button = self.browser.find_element(*WidgetLocators.Similar_widget_button)
         similar_widget_button.click()
 
@@ -291,14 +292,18 @@ class WidgetPage(BasePage):
             if i == random_index:
                 actions = ActionChains(self.browser)
                 actions.move_to_element(prices[i]).perform()
+                time.sleep(0.5)
                 price = prices[i].text
                 if "US" in price:
                     price = price.translate({ord(i): None for i in ' руб$€¥₽US'})
+                    price = price.replace(' ', '')
                 if "руб" in price:
                     price = price.translate({ord(i): None for i in ' руб.$€¥₽US'})
+                    price = price.replace(' ', '')
                     price = price.replace(",", ".")
                 if "€" in price:
                     price = price.translate({ord(i): None for i in ' руб$€¥₽US'})
+                    price = price.replace(' ', '')
                     price = price.replace(",", ".")
                 return float(price)
 

@@ -14,9 +14,9 @@ def setup(browser):
         page = WidgetPage(browser, browser.current_url)
         page.setup_firefox()
         time.sleep(1)
-        page_product.switch_to_window(1)
+        page.switch_to_window(1)
         page_product.click_on_button_wonderful()
-        page.click_on_cross_start_greeting()
+        page_product.click_on_cross_start_greeting()
     else:
         page_product.click_on_button_wonderful()
         page_product.click_on_cross_start_greeting()

@@ -20,6 +20,7 @@ class ProductPage(BasePage):
     def product_price(self):
         product_price = self.browser.find_element(*ProductPageLocators.Product_price).text
         product_price = product_price.translate({ord(i): None for i in ' руб.$€¥US'})
+        product_price = product_price.replace(' ', '')
         product_price = product_price.replace(",", ".")
         try:
             price = float(product_price)
@@ -63,6 +64,7 @@ class ProductPage(BasePage):
         if value_country != "BY":
             regional_country = self.browser.find_elements(*ProductPageLocators.Regional_country_currency_language)
             regional_country = regional_country[0]
+            time.sleep(1)
             regional_country.click()
             time.sleep(1)
             country_bel = self.browser.find_element(*ProductPageLocators.Regional_country_BEL)

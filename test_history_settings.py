@@ -40,7 +40,7 @@ def setup(browser):
             page.click_on_cress_repeated_favorites()
         else:
             page_product.click_on_button_wonderful()
-            page.click_on_cross_start_greeting()
+            page_product.click_on_cross_start_greeting()
 
 
 def test_add_aliexpress_to_exclusions(browser):

@@ -45,7 +45,7 @@ def test_exact_price_display(browser):
     extension_price = page_widget.exact_price()
     # Получаем цену со страницы
     product_page_price = page_product.product_price()
-    # print(product_page_price, extension_price)
+    print(product_page_price, extension_price)
     assert extension_price == product_page_price, \
         f"Ошибка -> цена: {extension_price} не равна цене: {product_page_price} "
 

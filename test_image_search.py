@@ -19,7 +19,7 @@ def setup(browser):
     if browser.name == "firefox":
         page = WidgetPage(browser, browser.current_url)
         page.setup_firefox()
-        page_product.switch_to_window(1)
+        page.switch_to_window(1)
         page_product.click_on_button_wonderful()
         page.click_on_cross_start_greeting()
         url_global = page.page_domain()
@@ -38,7 +38,7 @@ def setup(browser):
             page.click_on_cress_repeated_favorites()
         else:
             page_product.click_on_button_wonderful()
-            page.click_on_cross_start_greeting()
+            page_product.click_on_cross_start_greeting()
 
 
 def test_icon_display_find_on_aliexpress(browser, directory_name="product_page"):
@@ -96,15 +96,15 @@ def test_open_settings_history_from_icon(browser, directory_name="product_page")
 
 
 def test_disable_image_search_for_aliexpress(browser):
-    page = ProductPage(browser, browser.current_url)
+    page_product = ProductPage(browser, browser.current_url)
     time.sleep(1)
-    page.hover_on_product_main_image(url_global[2])
+    page_product.hover_on_product_main_image(url_global[2])
     time.sleep(0.5)
-    page.hover_on_icon_find_on_aliexpress()
-    page.open_drop_down_find_on_aliexpress()
-    page.disable_image_search_from_the_page()
-    page.hover_on_product_main_image(url_global[2])
-    page.should_not_be_icon_find_on_aliexpress()
+    page_product.hover_on_icon_find_on_aliexpress()
+    page_product.open_drop_down_find_on_aliexpress()
+    page_product.disable_image_search_from_the_page()
+    page_product.hover_on_product_main_image(url_global[2])
+    page_product.should_not_be_icon_find_on_aliexpress()
     page_widget = WidgetPage(browser, browser.current_url)
     page_widget.open_history_widget()
     page_widget.open_history_widget_context_menu()
@@ -114,7 +114,7 @@ def test_disable_image_search_for_aliexpress(browser):
     page_settings.open_search_by_image_tab_from_widget()
     time.sleep(0.2)
     list_disabled_site = page_settings.get_list_disabled_site_from_widget()
-    list_without_dots = page.cleared_list(list_disabled_site)
+    list_without_dots = page_widget.cleared_list(list_disabled_site)
     assert "aliexpress" in list_without_dots, f"Сайт: 'aliexpress' не был добавлен в исключение"
 
 

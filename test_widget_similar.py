@@ -79,7 +79,6 @@ def test_open_random_product_card(browser, currency, email=profile["Email"], pas
         price_random_product = page.get_price_random_product(choose_rand_prod)
         # Открыть случайный продукт
         page.open_random_product(choose_rand_prod)
-        time.sleep(0.5)
         window3 = browser.window_handles
         if len(window3) == 3:
             browser.switch_to.window(window3[2])
@@ -94,7 +93,7 @@ def test_open_random_product_card(browser, currency, email=profile["Email"], pas
         # Сравнить значения цен, в карточке [похожие] и на странице
         page = ProductPage(browser, browser.current_url)
         product_price_on_page = page.product_price()
-        # print(price_random_product, product_price_on_page)
+        print(price_random_product, product_price_on_page)
         assert price_random_product == product_price_on_page, \
             f"Ошибка -> цена в карточке: {price_random_product} не равен на странице: {product_price_on_page} "
         # Сранить количество заказов (Пока стоп- есть ошибка)

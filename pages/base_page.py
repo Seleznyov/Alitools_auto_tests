@@ -61,7 +61,7 @@ class BasePage:
         time.sleep(0.5)
 
     def click_on_cress_repeated_favorites(self):
-        WebDriverWait(self.browser, 10).until(EC.presence_of_element_located((By.XPATH, BasePageLocators.Cross_rep_favor)))
+        WebDriverWait(self.browser, 15).until(EC.presence_of_element_located((By.XPATH, BasePageLocators.Cross_rep_favor)))
         cross_repeated_favorites = self.browser.find_element(*BasePageLocators.Cross_repeated_favorites)
         cross_repeated_favorites.click()
 

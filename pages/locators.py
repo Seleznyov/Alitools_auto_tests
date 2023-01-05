@@ -45,6 +45,7 @@ class ProductPageLocators:
     Regional_currency_USD = (By.XPATH, "//li/div[2]/img[@alt='USD']")
     Regional_currency_RUB = (By.XPATH, "//li/div[2]/img[@alt='RUB']")
     Regional_currency_EUR = (By.XPATH, "//li/div[2]/img[@alt='EUR']")
+
     # Написать лучше
     # Save_settings_button = (By.XPATH,
     #                         "//div[@class='snow-scrolling-header_SnowScrollingHeader__buttonGroup__16wax0']/button")
@@ -215,7 +216,8 @@ class WidgetLocators:
 
     # --------------------------------------------------------------------------------------------------------------
     # похожие
-    Similar_widget_button = (By.CSS_SELECTOR, ".at-widget-similars__label")
+    Similar_button = ".at-widget-similars__label"
+    Similar_widget_button = (By.CSS_SELECTOR, Similar_button)
     Card_name_similar = (By.XPATH, "//div[contains(text(),'Похожие')]")
     Similar_drop_down_sort = (By.CSS_SELECTOR, ".at-drop-down__label")
     Drop_down_values_1_2_3 = (By.XPATH, "//div[@class ='at-drop-down__menu']/div[@class ='at-drop-down__item']")
