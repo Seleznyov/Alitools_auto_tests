@@ -272,12 +272,17 @@ class WidgetPage(BasePage):
 
     def open_random_product(self, random_index):
         similar_products = self.browser.find_elements(*WidgetLocators.Similar_products)
-        for i in range(len(similar_products)):
-            if i == random_index:
-                actions = ActionChains(self.browser)
-                actions.move_to_element(similar_products[i]).perform()
-                product = similar_products[i]
-                product.click()
+        # self.browser.execute_script("arguments[0].scrollIntoView(true);", similar_products[i])
+        # actions = ActionChains(self.browser)
+        # actions.move_to_element(similar_products[random_index]).perform()
+        WebDriverWait(self.browser, 10).until(
+            lambda browser: self.browser.execute_script('return document.readyState') == 'complete')
+        time.sleep(0.5)
+        # scroll_origin = ScrollOrigin.from_element(similar_products[random_index])
+        # ActionChains(self.browser).scroll_from_origin(scroll_origin, 0, 30).perform()
+        product = similar_products[random_index]
+        time.sleep(3)
+        product.click()
 
     def get_url_random_product(self, random_index):
         similar_products = self.browser.find_elements(*WidgetLocators.Similar_products_for_url)
@@ -288,24 +293,28 @@ class WidgetPage(BasePage):
 
     def get_price_random_product(self, random_index):
         prices = self.browser.find_elements(*WidgetLocators.Similar_products_price)
-        for i in range(len(prices)):
-            if i == random_index:
-                actions = ActionChains(self.browser)
-                actions.move_to_element(prices[i]).perform()
-                time.sleep(0.5)
-                price = prices[i].text
-                if "US" in price:
-                    price = price.translate({ord(i): None for i in ' руб$€¥₽US'})
-                    price = price.replace(' ', '')
-                if "руб" in price:
-                    price = price.translate({ord(i): None for i in ' руб.$€¥₽US'})
-                    price = price.replace(' ', '')
-                    price = price.replace(",", ".")
-                if "€" in price:
-                    price = price.translate({ord(i): None for i in ' руб$€¥₽US'})
-                    price = price.replace(' ', '')
-                    price = price.replace(",", ".")
-                return float(price)
+        actions = ActionChains(self.browser)
+        actions.move_to_element(prices[random_index]).perform()
+        WebDriverWait(self.browser, 10).until(
+            lambda browser: self.browser.execute_script('return document.readyState') == 'complete')
+        time.sleep(2)
+        scroll_origin = ScrollOrigin.from_element(prices[random_index])
+        ActionChains(self.browser).scroll_from_origin(scroll_origin, 0, 25).perform()
+        # self.browser.execute_script("arguments[0].scrollIntoView(true);", prices[i])
+        price = prices[random_index].text
+        if "US" in price:
+            price = price.translate({ord(i): None for i in ' руб$€¥₽US'})
+            price = price.replace(' ', '')
+        if "руб" in price:
+            price = price.translate({ord(i): None for i in ' руб.$€¥₽US'})
+            price = price.replace(' ', '')
+            price = price.replace(",", ".")
+        if "€" in price:
+            price = price.translate({ord(i): None for i in ' руб$€¥₽US€'})
+            price = price.replace(' ', '')
+            price = price.replace(",", ".")
+        return float(price)
+
 
     # Проверка сортировки по цене
     def check_sorting_by_price(self):
@@ -404,6 +413,8 @@ class WidgetPage(BasePage):
 
     #  Открыть продукт из виджета "История"
     def open_product_from_history_widget(self):
+        WebDriverWait(self.browser, 10).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, WidgetLocators.Product_in_history)))
         product_one = self.browser.find_element(*WidgetLocators.Product_in_history_for_widget)
         product_one.click()
 

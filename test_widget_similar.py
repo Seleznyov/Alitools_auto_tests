@@ -34,7 +34,8 @@ def test_number_of_similar_products(browser):
 
 @pytest.mark.parametrize('currency', currencies)
 @pytest.mark.skip(reason="Есть ошибка")
-def test_open_random_product_card(browser, currency, email=profile["Email"], password=profile["Password"]):
+def test_open_random_product_card(browser, currency, email=profile["Email"], password=profile["Password"], directory_name="widget"):
+    name = "Open_random_product_card_with_different_currencies"
     if browser.name == "firefox":
         pytest.skip("firefox browser is used")
     page = WidgetPage(browser, browser.current_url)
@@ -48,9 +49,7 @@ def test_open_random_product_card(browser, currency, email=profile["Email"], pas
         pass
     else:
         # Выполням логин
-        time.sleep(2)
         page.log_in_aliexpress(email, password)
-        time.sleep(1)
         page.click_on_cress_repeated_favorites()
         page.open_profile()
         page.open_regional_settings()
@@ -63,22 +62,26 @@ def test_open_random_product_card(browser, currency, email=profile["Email"], pas
         time.sleep(1)
         page.click_on_logo()
         page = WidgetPage(browser, browser.current_url)
-        time.sleep(0.5)
         # Открываем товар из истории с новой уже валютой
         page.open_product_from_history_widget()
-        time.sleep(0.5)
+        page.page_loading()
         page.switch_to_window(2)
     if value_widget_products > 0:
         page = WidgetPage(browser, browser.current_url)
         page.open_similar_widget()
         # Выбрать случайный продукт
         choose_rand_prod = page.choose_random_product()
+        # # Берем первый продукт
+        # choose_rand_prod = 0
         # Взять url случайного продукта
         url_random_product = page.get_url_random_product(choose_rand_prod)
         # Взять цену случайного продукта
         price_random_product = page.get_price_random_product(choose_rand_prod)
+        # Скрин страницы
+        page.screenshot_page(directory_name, name+currency)
         # Открыть случайный продукт
         page.open_random_product(choose_rand_prod)
+        page.page_loading()
         window3 = browser.window_handles
         if len(window3) == 3:
             browser.switch_to.window(window3[2])
@@ -93,7 +96,7 @@ def test_open_random_product_card(browser, currency, email=profile["Email"], pas
         # Сравнить значения цен, в карточке [похожие] и на странице
         page = ProductPage(browser, browser.current_url)
         product_price_on_page = page.product_price()
-        print(price_random_product, product_price_on_page)
+        # print(price_random_product, product_price_on_page)
         assert price_random_product == product_price_on_page, \
             f"Ошибка -> цена в карточке: {price_random_product} не равен на странице: {product_price_on_page} "
         # Сранить количество заказов (Пока стоп- есть ошибка)
