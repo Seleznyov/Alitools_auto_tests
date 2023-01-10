@@ -77,7 +77,7 @@ class ProductPageLocators:
     # svyaznoy
     Product_image_from_svyaznoy = (By.XPATH, "//div[2]/div[1]/div[2]/div[1]/div[1]/div[2]/img[1]")
     # mvideo
-    Product_image_from_mvideo = (By.XPATH, "//div/div/img")
+    Product_image_from_mvideo = (By.XPATH, "//div/*[1]/button/picture")
 
 
 class SettingsLocators:
@@ -229,8 +229,10 @@ class WidgetLocators:
     Similar_products_price = (By.XPATH, "//div[@class ='at-similar-list']/div/a/div/*[1]")
     Products_price_sorted_by_price = (By.XPATH, "//div[@class ='at-similar-list__item-wrap']/a/div[2]/div[1]")
     # Для заказов надо два локатора
-    Similar_products_orders1 = (By.XPATH, "//div[@class ='at-similar-list']/div/a/div/*[2]/span")
-    Similar_products_orders2 = (By.XPATH, "//div[@class ='at-similar-list at-similar-list--small']/div/a/div/*[2]/span")
+    Similar_products_1 = "//div[@class ='at-similar-list']/div/a/div/*[2]/span"
+    Similar_products_orders1 = (By.XPATH, Similar_products_1)
+    Similar_products_2 = "//div[@class ='at-similar-list at-similar-list--small']/div/a/div/*[2]/span"
+    Similar_products_orders2 = (By.XPATH, Similar_products_2)
     # + Дополнительный для функции
     Similar_message_displayed = (By.CSS_SELECTOR, ".at-similar-list__best-offer-message")
 

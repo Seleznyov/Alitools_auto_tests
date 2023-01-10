@@ -1,4 +1,3 @@
-import time
 import pytest
 from .pages.widget_page import WidgetPage
 from .pages.product_page import ProductPage
@@ -14,7 +13,6 @@ def setup(browser):
     if browser.name == "firefox":
         page = WidgetPage(browser, browser.current_url)
         page.setup_firefox()
-        time.sleep(2)
         page.switch_to_window(1)
         page_product.click_on_button_wonderful()
     else:

@@ -19,12 +19,10 @@ def setup(browser):
     if browser.name == "firefox":
         page = WidgetPage(browser, browser.current_url)
         page.setup_firefox()
-        time.sleep(2)
         page.switch_to_window(1)
         page_product.click_on_button_wonderful()
         page.click_on_cross_start_greeting()
         url_global = page.page_domain()
-        time.sleep(1)
     else:
         page = WidgetPage(browser, browser.current_url)
         result_warning = page.check_warning_text()
@@ -99,7 +97,6 @@ def test_open_product_card_from_widget_history(browser):
     page = WidgetPage(browser, browser.current_url)
     time.sleep(0.5)
     page.open_product_from_history_widget()
-    time.sleep(0.5)
     page.switch_to_window(2)
     if warning is False:
         page.click_on_cress_repeated_favorites()
@@ -111,8 +108,8 @@ def test_open_product_card_from_widget_history(browser):
     page.open_history_widget()
     time.sleep(0.2)
     page.open_product_from_card_of_widget_history()
-    time.sleep(0.5)
-    window2 = browser.window_handles
-    browser.switch_to.window(window2[3])
+    page.switch_to_window(3)
+    time.sleep(1)
+    product_url_from_current_page = browser.current_url
     # Тут проверка, что наш товар открылся
     assert product_url_from_current_page.split('?')[0] == product_url_from_widget[0], f"URL не совподает"

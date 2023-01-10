@@ -66,7 +66,7 @@ def browser(request):
         options.set_preference("dom.webdriver.enabled", False)
         options.set_preference('dom.webnotifications.enabled', False)
         options.set_preference('useAutomationExtension', False)
-        options.set_preference("network.proxy.socks_remote_dns", False)
+        # options.set_preference("network.proxy.socks_remote_dns", False)
         # webdriver.DesiredCapabilities.FIREFOX['acceptSslCerts'] = False
         # webdriver.DesiredCapabilities.FIREFOX['acceptInsecureCerts'] = False
         options.set_preference("general.useragent.override",

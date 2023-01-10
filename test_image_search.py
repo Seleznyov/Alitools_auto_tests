@@ -34,7 +34,6 @@ def setup(browser):
             page.click_on_cross_start_greeting()
             time.sleep(0.5)
             page.close_warning()
-            time.sleep(0.5)
             page.click_on_cress_repeated_favorites()
         else:
             page_product.click_on_button_wonderful()
@@ -62,7 +61,6 @@ def test_find_on_aliexpress(browser, directory_name="product_page"):
     page.find_on_aliexpress()
     page.should_be_search_results()
     page.should_be_text_product_search_by_image()
-    time.sleep(0.7)
     page.screenshot_page(directory_name, name)
 
 

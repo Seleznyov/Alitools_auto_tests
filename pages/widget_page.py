@@ -203,7 +203,7 @@ class WidgetPage(BasePage):
             # self.browser.execute_script("arguments[0].scrollIntoView(true);", image)
             actions = ActionChains(self.browser)
             actions.move_to_element(image).perform()
-            random_review = reviews_images[index - 1]
+            random_review = reviews_images[index]
             # random_review.click()
             return random_review
 
@@ -319,7 +319,6 @@ class WidgetPage(BasePage):
             price = price.replace(",", ".")
         return float(price)
 
-
     # Проверка сортировки по цене
     def check_sorting_by_price(self):
         prices = self.browser.find_elements(*WidgetLocators.Products_price_sorted_by_price)
@@ -336,9 +335,13 @@ class WidgetPage(BasePage):
     def check_sorting_by_orders(self):
         message = self.is_not_element_present(*WidgetLocators.Similar_message_displayed)
         if message is True:
+            WebDriverWait(self.browser, 10).until(
+                EC.presence_of_element_located((By.XPATH, WidgetLocators.Similar_products_1)))
             orders_list1 = self.browser.find_elements(*WidgetLocators.Similar_products_orders1)
             orders = orders_list1
         else:
+            WebDriverWait(self.browser, 10).until(
+                EC.presence_of_element_located((By.XPATH, WidgetLocators.Similar_products_2)))
             orders_list2 = self.browser.find_elements(*WidgetLocators.Similar_products_orders2)
             orders = orders_list2
         for i in range(len(orders) - 1):

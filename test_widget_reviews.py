@@ -15,7 +15,6 @@ def setup(browser):
     if browser.name == "firefox":
         page = WidgetPage(browser, browser.current_url)
         page.setup_firefox()
-        time.sleep(2)
         page.switch_to_window(1)
         page_product.click_on_button_wonderful()
     else:
@@ -69,4 +68,4 @@ def test_open_random_card_of_reviews(browser):
     page.open_random_review(review)
     # Проверка что обзор открыт и  отображается
     page.should_be_displayed_overview()
-    time.sleep(0.7)
+

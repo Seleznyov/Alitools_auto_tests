@@ -224,7 +224,7 @@ class ProductPage(BasePage):
         assert text == "Поиск товара по картинке", f"Текст {text} не отображается"
 
     def should_be_search_results(self):
-        WebDriverWait(self.browser, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, ProductPageLocators.Img_result)))
+        WebDriverWait(self.browser, 15).until(EC.presence_of_element_located((By.CSS_SELECTOR, ProductPageLocators.Img_result)))
         result = self.is_element_present(*ProductPageLocators.Image_search_result)
         assert result, f"Результат поиска не отображается"
 

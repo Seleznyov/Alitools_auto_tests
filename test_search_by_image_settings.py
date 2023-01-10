@@ -18,12 +18,10 @@ def setup(browser):
     if browser.name == "firefox":
         page = WidgetPage(browser, browser.current_url)
         page.setup_firefox()
-        time.sleep(2)
         page.switch_to_window(1)
         page_product.click_on_button_wonderful()
         page.click_on_cross_start_greeting()
         url_global = page.page_domain()
-        time.sleep(1)
     else:
         page = WidgetPage(browser, browser.current_url)
         result_warning = page.check_warning_text()
@@ -36,7 +34,6 @@ def setup(browser):
             page.click_on_cross_start_greeting()
             time.sleep(0.5)
             page.close_warning()
-            time.sleep(0.5)
             page.click_on_cress_repeated_favorites()
         else:
             page_product.click_on_button_wonderful()
@@ -50,7 +47,6 @@ def test_turn_off_button_on_image(browser):
     page_product.should_be_icon_find_on_aliexpress()
     time.sleep(0.5)
     page_widget = WidgetPage(browser, browser.current_url)
-    time.sleep(1)
     page_widget.open_price_widget()
     page_widget.open_price_settings()
     page_settings = SettingsPage(browser, browser.current_url)
