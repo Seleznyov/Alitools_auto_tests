@@ -72,7 +72,7 @@ class BasePage:
         # ActionChains(self.browser).click_and_hold(source).move_by_offset(300, 0)
         # ActionChains(self.browser).drag_and_drop_by_offset(source, 300, 0).perform()
 
-        # Добработать
+    # Добработать
     def hold_and_move_section_to_down(self):
         source = self.browser.find_element(*BasePageLocators.Slider)
         ActionChains(self.browser).drag_and_drop_by_offset(source, 300, 0).perform()
@@ -120,7 +120,7 @@ class BasePage:
         return list_without_dots
 
     def switch_to_window(self, number):
-        time.sleep(1)
+        WebDriverWait(self.browser, 20).until(EC.number_of_windows_to_be(number + 1))
         window2 = self.browser.window_handles
         self.browser.switch_to.window(window2[number])
 
@@ -135,3 +135,8 @@ class BasePage:
         WebDriverWait(self.browser, 10).until(
             lambda browser: self.browser.execute_script('return document.readyState') == 'complete')
 
+    def add_cookies(self, cookies):
+        for i in cookies:
+            name = i["name"]
+            value = i["value"]
+            self.browser.add_cookie({"name": name, "value": value})

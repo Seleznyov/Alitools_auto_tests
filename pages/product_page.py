@@ -122,7 +122,6 @@ class ProductPage(BasePage):
         next_sku = product_sku[index+1]
         next_sku.click()
 
-
     def should_be_seller_trust_level_title(self):
         title = self.browser.find_element(*ProductPageLocators.Seller_trust_level_title)
         assert title, "title is not presented "

@@ -49,6 +49,10 @@ class WidgetPage(BasePage):
     def should_be_price_button_follow_the_item(self):
         assert self.is_element_present(*WidgetLocators.Price_button_Follow_the_item), "element is not presented"
 
+    def click_on_price_button_follow_the_item(self):
+        button_follow_the_item = self.browser.find_element(*WidgetLocators.Price_button_Follow_the_item)
+        button_follow_the_item.click()
+
     def should_be_price_button_info(self):
         assert self.is_element_present(*WidgetLocators.Price_button_info), "element is not presented"
 

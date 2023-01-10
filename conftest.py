@@ -36,8 +36,8 @@ def browser(request):
         options.add_experimental_option('prefs', {'intl.accept_languages': user_language})
         options.add_extension(r'D:\Alitools_auto_tests\Alitools.crx')
         # s = Service(ChromeService().install())
-        webdriver.DesiredCapabilities.CHROME['acceptSslCerts'] = False
-        webdriver.DesiredCapabilities.CHROME['acceptInsecureCerts'] = False
+        # webdriver.DesiredCapabilities.CHROME['acceptSslCerts'] = False
+        # webdriver.DesiredCapabilities.CHROME['acceptInsecureCerts'] = False
         # Стратегия загрузки 'normal', 'eager', 'none'
         options.page_load_strategy = 'eager'
         browser = webdriver.Chrome(options=options)
@@ -67,8 +67,8 @@ def browser(request):
         options.set_preference('dom.webnotifications.enabled', False)
         options.set_preference('useAutomationExtension', False)
         options.set_preference("network.proxy.socks_remote_dns", False)
-        webdriver.DesiredCapabilities.FIREFOX['acceptSslCerts'] = False
-        webdriver.DesiredCapabilities.FIREFOX['acceptInsecureCerts'] = False
+        # webdriver.DesiredCapabilities.FIREFOX['acceptSslCerts'] = False
+        # webdriver.DesiredCapabilities.FIREFOX['acceptInsecureCerts'] = False
         options.set_preference("general.useragent.override",
                                "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:108.0) Gecko/20100101 Firefox/108.0")
         # Запуск в фоне
