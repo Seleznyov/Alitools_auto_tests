@@ -121,7 +121,7 @@ def test_image_search_on_a_random_site(browser, sites_act=sites_active):
         pytest.skip(reason="For browser firefox this test skip")
     page = ProductPage(browser, browser.current_url)
     page.open_randon_site(sites_act)
-    time.sleep(1)
+    page.page_loading()
     url = page.page_domain()
     page.hover_on_product_main_image(url)
     time.sleep(0.5)

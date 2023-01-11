@@ -76,7 +76,7 @@ def browser(request):
         ex = "alitools13939.xpi"
         ex_dir = "C:\\Users\\HP\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\2gsnd2e6.default\\extensions\\"
         # s = Service(FirefoxService().install())
-        options.page_load_strategy = 'eager'
+        options.page_load_strategy = 'normal'
         # browser = webdriver.Firefox(service=s, options=options)
         browser = webdriver.Firefox(executable_path="Tools", options=options)
         browser.install_addon(ex_dir + ex, temporary=True)

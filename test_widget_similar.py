@@ -33,7 +33,8 @@ def test_number_of_similar_products(browser):
 
 @pytest.mark.parametrize('currency', currencies)
 @pytest.mark.skip(reason="Есть ошибка")
-def test_open_random_product_card(browser, currency, email=profile["Email"], password=profile["Password"], directory_name="widget"):
+def test_open_random_product_card(browser, currency, email=profile["Email"], password=profile["Password"],
+                                  directory_name="widget"):
     name = "Open_random_product_card_with_different_currencies"
     if browser.name == "firefox":
         pytest.skip("firefox browser is used")
