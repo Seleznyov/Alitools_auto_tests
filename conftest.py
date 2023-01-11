@@ -5,7 +5,7 @@ from selenium import webdriver
 # from selenium.webdriver.firefox.service import Service
 # from webdriver_manager.firefox import GeckoDriverManager as FirefoxService
 from selenium.webdriver.chrome.options import Options
-# from selenium_stealth import stealth
+from selenium_stealth import stealth
 import os
 from .settings import TOKEN
 os.environ['GH_TOKEN'] = TOKEN
@@ -41,9 +41,9 @@ def browser(request):
         # Стратегия загрузки 'normal', 'eager', 'none'
         options.page_load_strategy = 'eager'
         browser = webdriver.Chrome(options=options)
-        # browser.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
-        #     "source": """Object.defineProperty(navigator, 'webdriver', {get: () => undefined})"""
-        # })
+        browser.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
+            "source": """Object.defineProperty(navigator, 'webdriver', {get: () => undefined})"""
+        })
         # browser.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
         #     "source": """
         #           const newProto = navigator.__proto__
@@ -51,14 +51,14 @@ def browser(request):
         #           navigator.__proto__ = newProto
         #           """
         # })
-        # stealth(browser,
-        #         languages=["en-US", "en"],
-        #         vendor="Google Inc.",
-        #         platform="Win32",
-        #         webgl_vendor="Intel Inc.",
-        #         renderer="Intel Iris OpenGL Engine",
-        #         fix_hairline=True,
-        #         )
+        stealth(browser,
+                languages=["en-US", "en"],
+                vendor="Google Inc.",
+                platform="Win32",
+                webgl_vendor="Intel Inc.",
+                renderer="Intel Iris OpenGL Engine",
+                fix_hairline=True,
+                )
         # browser.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
 
     elif browser_name == "firefox":

@@ -333,8 +333,8 @@ class WidgetPage(BasePage):
 
     # Проверка сортировки по заказам
     def check_sorting_by_orders(self):
-        message = self.is_not_element_present(*WidgetLocators.Similar_message_displayed)
-        if message is True:
+        message = self.is_element_present(*WidgetLocators.Similar_message_displayed)
+        if message is False:
             WebDriverWait(self.browser, 10).until(
                 EC.presence_of_element_located((By.XPATH, WidgetLocators.Similar_products_1)))
             orders_list1 = self.browser.find_elements(*WidgetLocators.Similar_products_orders1)
